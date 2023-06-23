@@ -117,7 +117,7 @@ export default function Mouvement() {
   const [mouvnumberInput, setMouvNumberInput] = useState(null);
 
   useEffect(() => {
-    axios(`${process.env.REACT_APP_BASE_URL}/masterfile/`, {
+    axios(`${process.env.REACT_APP_BASE_URL}/newmasterfile/`, {
       headers: {
         Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`
       }
@@ -333,12 +333,12 @@ export default function Mouvement() {
                 options={mouvementTab}
                 onChange={(event, newType) => {
                   if (newType) {
-                    setMouvNumberInput(newType.number);
+                    setMouvNumberInput(newType.numero);
                   } else {
                     setMouvNumberInput(null);
                   }
                 }}
-                getOptionLabel={(option) => option.number}
+                getOptionLabel={(option) => option.numero}
                 style={{ width: 400 }}
                 renderInput={(params) => (
                   <TextField {...params} label="Sélectionner le numero" variant="outlined" />

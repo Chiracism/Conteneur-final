@@ -561,7 +561,7 @@ export default function UserMoreMenu({
 
   const deleteListHistoric = () => {
     axios
-      .delete(`${process.env.REACT_APP_BASE_URL}/masterfile/${idHistoric}`, {
+      .delete(`${process.env.REACT_APP_BASE_URL}/newsurestarie/${idHistoric}`, {
         headers: {
           Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`
         }

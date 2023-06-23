@@ -116,7 +116,7 @@ export default function Reparation() {
   const [reparanumeroInput, setReparaNumeroInput] = useState(null);
 
   useEffect(() => {
-    axios(`${process.env.REACT_APP_BASE_URL}/masterfile/`, {
+    axios(`${process.env.REACT_APP_BASE_URL}/newmasterfile/`, {
       headers: {
         Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`
       }
@@ -340,12 +340,12 @@ export default function Reparation() {
                 options={reparationTab}
                 onChange={(event, newType) => {
                   if (newType) {
-                    setReparaNumeroInput(newType.number);
+                    setReparaNumeroInput(newType.numero);
                   } else {
                     setReparaNumeroInput(null);
                   }
                 }}
-                getOptionLabel={(option) => option.number}
+                getOptionLabel={(option) => option.numero}
                 style={{ width: 400 }}
                 renderInput={(params) => (
                   <TextField {...params} label="Sélectionner le numero" variant="outlined" />

@@ -38,16 +38,16 @@ export default function SidebarConfig() {
         //   path: '/dashboard/masterfile',
         //   icon: getIcon(fileTextFill)
         // },
-        // {
-        //   title: 'Mouvement',
-        //   path: '/dashboard/mouvement',
-        //   icon: getIcon(fileTextFill)
-        // },
-        // {
-        //   title: 'Réparation',
-        //   path: '/dashboard/reparation',
-        //   icon: getIcon(fileTextFill)
-        // },
+        {
+          title: 'Mouvement',
+          path: '/dashboard/mouvement',
+          icon: getIcon(fileTextFill)
+        },
+        {
+          title: 'Réparation',
+          path: '/dashboard/reparation',
+          icon: getIcon(fileTextFill)
+        },
         {
           title: 'MasterFile',
           path: '/dashboard/newmasterfile',
