@@ -29,7 +29,7 @@ export default function SidebarConfig() {
     } else if (user && user.role_id === 1) {
       sidebarConfig = [
         {
-          title: 'dashboard',
+          title: 'Tableau de bord',
           path: '/dashboard/app',
           icon: getIcon(pieChart2Fill)
         },
@@ -103,16 +103,16 @@ export default function SidebarConfig() {
         //   path: '/dashboard/historique',
         //   icon: getIcon(listFill)
         // },
-        // {
-        //   title: 'Historique Mouvements',
-        //   path: '/dashboard/historicmouvement',
-        //   icon: getIcon(listFill)
-        // },
-        // {
-        //   title: 'Historique Réparations',
-        //   path: '/dashboard/historicreparation',
-        //   icon: getIcon(listFill)
-        // },
+        {
+          title: 'Historique Mouvements',
+          path: '/dashboard/historicmouvement',
+          icon: getIcon(listFill)
+        },
+        {
+          title: 'Historique Réparations',
+          path: '/dashboard/historicreparation',
+          icon: getIcon(listFill)
+        },
         {
           title: 'Historique Surestaries',
           path: '/dashboard/historicsurestarie',
