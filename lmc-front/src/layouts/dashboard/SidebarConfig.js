@@ -39,6 +39,11 @@ export default function SidebarConfig() {
         //   icon: getIcon(fileTextFill)
         // },
         {
+          title: 'MasterFile',
+          path: '/dashboard/newmasterfile',
+          icon: getIcon(fileTextFill)
+        },
+        {
           title: 'Mouvement',
           path: '/dashboard/mouvement',
           icon: getIcon(fileTextFill)
@@ -48,16 +53,11 @@ export default function SidebarConfig() {
           path: '/dashboard/reparation',
           icon: getIcon(fileTextFill)
         },
-        {
-          title: 'MasterFile',
-          path: '/dashboard/newmasterfile',
-          icon: getIcon(fileTextFill)
-        },
-        {
-          title: 'Conteneur',
-          path: '/dashboard/listeconteneur',
-          icon: getIcon(fileTextFill)
-        },
+        // {
+        //   title: 'Conteneur',
+        //   path: '/dashboard/listeconteneur',
+        //   icon: getIcon(fileTextFill)
+        // },
         // {
         //   title: 'formulaire importation',
         //   path: '/dashboard/importation',
@@ -83,11 +83,11 @@ export default function SidebarConfig() {
           path: '/dashboard/newsurestaries',
           icon: getIcon(fileTextFill)
         },
-        {
-          title: 'Consultation',
-          path: '/dashboard/consultat',
-          icon: getIcon(fileTextFill)
-        },
+        // {
+        //   title: 'Consultation',
+        //   path: '/dashboard/consultat',
+        //   icon: getIcon(fileTextFill)
+        // },
         // {
         //   title: 'Historique MasterFiles',
         //   path: '/dashboard/listMasterFiles',
