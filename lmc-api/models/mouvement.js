@@ -26,7 +26,8 @@ module.exports = (sequelize, DataTypes) => {
     typeconteneur: DataTypes.STRING,
     size: DataTypes.STRING,
     nombreconteneur: DataTypes.INTEGER,
-    observation: DataTypes.STRING
+    observation: DataTypes.STRING,
+    name: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Mouvement',

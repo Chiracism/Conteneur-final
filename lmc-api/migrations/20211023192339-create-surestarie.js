@@ -68,6 +68,9 @@ module.exports = {
       total: {
         type: Sequelize.FLOAT
       },
+      name: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

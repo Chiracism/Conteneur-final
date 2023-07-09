@@ -29,7 +29,8 @@ module.exports = (sequelize, DataTypes) => {
     societelocation: DataTypes.STRING,
     site: DataTypes.STRING,
     datederniereinspection: DataTypes.DATE,
-    societe: DataTypes.STRING
+    societe: DataTypes.STRING,
+    name: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Reparation',

@@ -22,7 +22,8 @@ module.exports = (sequelize, DataTypes) => {
     dateinspection: DataTypes.DATE,
     etatconteneur: DataTypes.STRING,
     proprietaire: DataTypes.STRING,
-    observation: DataTypes.STRING
+    observation: DataTypes.STRING,
+    name: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Newmasterfile',
