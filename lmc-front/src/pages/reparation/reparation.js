@@ -84,6 +84,7 @@ export default function Reparation() {
           site: reparasiteInput,
           datederniereinspection: reparadateinspInput,
           societe: reparasocieteInput,
+          name: user.name,
           date: new Date()
         },
         {

@@ -84,6 +84,7 @@ export default function Mouvement() {
           size: mouvsizeInput,
           nombreconteneur: mouvnombreInput,
           observation: mouvobservationInput,
+          name: user.name,
           date: new Date()
         },
         {

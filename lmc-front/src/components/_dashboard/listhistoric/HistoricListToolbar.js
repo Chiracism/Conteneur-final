@@ -3,6 +3,8 @@ import { Icon } from '@iconify/react';
 import searchFill from '@iconify/icons-eva/search-fill';
 import trash2Fill from '@iconify/icons-eva/trash-2-fill';
 import roundFilterList from '@iconify/icons-ic/round-filter-list';
+import TextField from '@material-ui/core/TextField';
+
 // material
 import { experimentalStyled as styled } from '@material-ui/core/styles';
 import {
@@ -42,10 +44,18 @@ const SearchStyle = styled(OutlinedInput)(({ theme }) => ({
 UserListToolbar.propTypes = {
   numSelected: PropTypes.number,
   filterName: PropTypes.string,
+  filterStartDate: PropTypes.string,
+  filterEndDate: PropTypes.string,
   onFilterName: PropTypes.func
 };
 
-export default function UserListToolbar({ numSelected, filterName, onFilterName }) {
+export default function UserListToolbar({
+  numSelected,
+  filterName,
+  filterStartDate,
+  filterEndDate,
+  onFilterName
+}) {
   return (
     <RootStyle
       sx={{
@@ -60,16 +70,38 @@ export default function UserListToolbar({ numSelected, filterName, onFilterName 
           {numSelected} selected
         </Typography>
       ) : (
-        <SearchStyle
-          value={filterName}
-          onChange={onFilterName}
-          placeholder="Chercher le conteneur..."
-          startAdornment={
-            <InputAdornment position="start">
-              <Box component={Icon} icon={searchFill} sx={{ color: 'text.disabled' }} />
-            </InputAdornment>
-          }
-        />
+        <>
+          <SearchStyle
+            value={filterName}
+            onChange={onFilterName}
+            placeholder="Chercher le conteneur..."
+            startAdornment={
+              <InputAdornment position="start">
+                <Box component={Icon} icon={searchFill} sx={{ color: 'text.disabled' }} />
+              </InputAdornment>
+            }
+          />
+          <TextField
+            value={filterStartDate}
+            onChange={onFilterName}
+            id="date"
+            label="Date de debut"
+            type="date"
+            InputLabelProps={{
+              shrink: true
+            }}
+          />
+          <TextField
+            value={filterEndDate}
+            onChange={onFilterName}
+            id="date"
+            label="Date de fin"
+            type="date"
+            InputLabelProps={{
+              shrink: true
+            }}
+          />
+        </>
       )}
 
       {numSelected > 0 ? (

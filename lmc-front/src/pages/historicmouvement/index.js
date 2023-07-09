@@ -1,3 +1,4 @@
+import { filter } from 'lodash';
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 // material
@@ -22,7 +23,7 @@ import {
 import { makeStyles } from '@material-ui/styles';
 
 import ReactToPrint from 'react-to-print';
-import ComponentToPrint from './ComponentToPrint';
+import ComponentToPrint from './ComponentToPrintMouv';
 
 // components
 import Page from '../../components/Page';
@@ -63,12 +64,41 @@ const TABLE_HEAD = [
   // { id: 'date_operation', label: 'Date Op.', alignRight: false },
   // { id: 'montant', label: 'Montant', alignRight: false },
   // { id: 'numero_recu', label: 'Numéro Réçu', alignRight: false },
-  // { id: 'name', label: 'Utilisateur', alignRight: false },
+  { id: 'name', label: 'Insérer par', alignRight: false },
   // { id: 'date', label: 'Date', alignRight: false },
   { id: '' }
 ];
 
 // ----------------------------------------------------------------------
+
+function descendingComparator(a, b, orderBy) {
+  if (b[orderBy] < a[orderBy]) {
+    return -1;
+  }
+  if (b[orderBy] > a[orderBy]) {
+    return 1;
+  }
+  return 0;
+}
+
+function getComparator(order, orderBy) {
+  return order === 'desc'
+    ? (a, b) => descendingComparator(a, b, orderBy)
+    : (a, b) => -descendingComparator(a, b, orderBy);
+}
+
+function applySortFilter(array, comparator, query) {
+  const stabilizedThis = array.map((el, index) => [el, index]);
+  stabilizedThis.sort((a, b) => {
+    const order = comparator(a[0], b[0]);
+    if (order !== 0) return order;
+    return a[1] - b[1];
+  });
+  if (query) {
+    return filter(array, (_user) => _user.number.toLowerCase().indexOf(query.toLowerCase()) !== -1);
+  }
+  return stabilizedThis.map((el) => el[0]);
+}
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -90,6 +120,7 @@ export default function User() {
   const [page, setPage] = useState(0);
   const [order, setOrder] = useState('number');
   const [selected, setSelected] = useState([]);
+  const [orderBy, setOrderBy] = useState('id');
   const [filterName, setFilterName] = useState('');
   const [rowsPerPage, setRowsPerPage] = useState(15);
 
@@ -130,20 +161,26 @@ export default function User() {
     }
   };
 
+  const handleRequestSort = (event, property) => {
+    const isAsc = orderBy === property && order === 'asc';
+    setOrder(isAsc ? 'desc' : 'asc');
+    setOrderBy(property);
+  };
+
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = historic.map((n) => n.name);
+      const newSelecteds = historic.map((n) => n.number);
       setSelected(newSelecteds);
       return;
     }
     setSelected([]);
   };
 
-  const handleClick = (event, name) => {
-    const selectedIndex = selected.indexOf(name);
+  const handleClick = (event, number) => {
+    const selectedIndex = selected.indexOf(number);
     let newSelected = [];
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
+      newSelected = newSelected.concat(selected, number);
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
     } else if (selectedIndex === selected.length - 1) {
@@ -172,7 +209,9 @@ export default function User() {
 
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - historic.length) : 0;
 
-  const isUserNotFound = historic.length === 0;
+  const filteredHistoric = applySortFilter(historic, getComparator(order, orderBy), filterName);
+
+  const isUserNotFound = filteredHistoric.length === 0;
 
   return (
     <Page title="Historique | LMC App">
@@ -196,13 +235,16 @@ export default function User() {
             <TableContainer sx={{ minWidth: 800 }}>
               <Table>
                 <UserListHead
+                  order={order}
+                  orderBy={orderBy}
                   headLabel={TABLE_HEAD}
                   rowCount={historic.length}
                   numSelected={selected.length}
+                  onRequestSort={handleRequestSort}
                   onSelectAllClick={handleSelectAllClick}
                 />
                 <TableBody>
-                  {historic
+                  {filteredHistoric
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row) => {
                       const {
@@ -224,7 +266,7 @@ export default function User() {
                         name
                       } = row;
 
-                      const isItemSelected = selected.indexOf(client) !== -1;
+                      const isItemSelected = selected.indexOf(number) !== -1;
 
                       return (
                         <TableRow
@@ -422,7 +464,7 @@ export default function User() {
                 content={() => componentRef.current}
                 suppressErrors
               />
-              <ComponentToPrint ref={componentRef} rows={historic} />
+              <ComponentToPrint ref={componentRef} rows={filteredHistoric} />
             </div>
           </Card>
         ) : null}

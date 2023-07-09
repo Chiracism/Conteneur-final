@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     position: 'auto',
     margin: 'auto',
-    padding: '40em 2em 2em',
+    padding: '10em 2em 2em',
     // top: '2%',
     // overflow: 'scroll',
     // overflow: 'auto'
@@ -76,31 +76,15 @@ const useStyles = makeStyles((theme) => ({
 
 export default function UserMoreMenu({
   idHistoric,
-  numberMaster,
-  namenavireMaster,
-  paysisMaster,
-  typeconteneuridMaster,
-  tailleconteneuridMaster,
-  materielidMaster,
-  proprietaireidMaster,
-  etatconteneurid,
-  constructeurMaster,
+  numeroMaster,
+  tailleMaster,
+  typeMaster,
   datefabricationMaster,
-  dateentrerserviceMaster,
-  datederniereinspectionMaster,
-  valeurassureeMaster,
-  deviseidMaster,
-  societeinspectionMaster,
-  dernierconstatMaster,
-  siteidMaster,
-  soussiteidMaster,
-  datemouvementMaster,
+  dateexpirationMaster,
+  dateinspectionMaster,
+  etatconteneurMaster,
   observationMaster,
-  clientMaster,
-  dateoperationMaster,
-  montantMaster,
-  numerorecuMaster,
-  dateMaster,
+  proprietaireMaster,
   sendInformation
 }) {
   const classes = useStyles();
@@ -115,29 +99,12 @@ export default function UserMoreMenu({
   // const [name, setName] = useState(nameCountrie);
   const [user, setUser] = useState(null);
 
-  const [masternumber, setMasterNumber] = useState(numberMaster);
-  // const [mastercountrieTab, setMasterCountrieTab] = useState([]);
-  // const [mastertype, setMasterTypeInput] = useState('');
-  // const [mastersizeInput, setMasterSizeInput] = useState('');
-  // const [mastermateriel, setMasterMaterielInput] = useState('');
-  // const [masterowner, setMasterOwner] = useState('');
-  // const [masteretatInput, setMasterEtatInput] = useState('');
-  const [mastercontructeur, setMasterConstructeur] = useState(constructeurMaster);
+  const [masternumero, setMasterNumero] = useState(numeroMaster);
   const [masterdatefab, setMasterDateFab] = useState(datefabricationMaster);
-  const [masterdateentrer, setMasterDateEntrer] = useState(dateentrerserviceMaster);
-  const [masterdatederniere, setMasterDateDerniere] = useState(datederniereinspectionMaster);
-  const [mastervaleur, setMasterValeur] = useState(valeurassureeMaster);
-  // const [masterdeviseinput, setMasterDeviseInput] = useState('');
-  const [mastersocieteinsp, setMasterSocieteInsp] = useState(societeinspectionMaster);
-  const [masterdernierconst, setMasterDernierConst] = useState(dernierconstatMaster);
-  // const [mastersiteInput, setMasterSiteInput] = useState('');
-  // const [mastersoussiteInput, setMasterSoussiteInput] = useState('');
-  const [masterdatemouv, setMasterDateMouv] = useState(datemouvementMaster);
+  const [masterdateexp, setMasterDateExp] = useState(dateexpirationMaster);
+  const [masterdateinsp, setMasterDateInsp] = useState(dateinspectionMaster);
   const [masterobservation, setMasterObservation] = useState(observationMaster);
-  // const [masterclient, setMasterClientInput] = useState('');
-  const [masterdateop, setMasterDateOp] = useState(dateoperationMaster);
-  const [mastermontant, setMasterMontant] = useState(montantMaster);
-  const [masternumero, setMasterNumero] = useState(numerorecuMaster);
+
   const [dataPrint, setDataPrint] = useState({});
 
   const componentToPrintRef = useRef();
@@ -159,33 +126,15 @@ export default function UserMoreMenu({
   }, []);
 
   function disabledPrint() {
-    if (navirenameInput !== '' && navirenameInput !== null) return false;
+    if (masternumero !== '' && masternumero !== null) return false;
     return true;
   }
-
-  /**
-   * Informations for Countrie
-   */
-  const [mastercountrieTab, setMasterCountrieTab] = useState([]);
-  const [mastercountrieInput, setMasterCountrieInput] = useState(paysisMaster);
-
-  useEffect(() => {
-    axios(`${process.env.REACT_APP_BASE_URL}/countrie/`, {
-      headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`
-      }
-    })
-      .then((value) => {
-        setMasterCountrieTab(value.data);
-      })
-      .catch(() => {});
-  }, []);
 
   /**
    * Informations for Type
    */
   const [mastertypeTab, setMasterTypeTab] = useState([]);
-  const [mastertype, setMasterTypeInput] = useState(typeconteneuridMaster);
+  const [mastertype, setMasterTypeInput] = useState(typeMaster);
 
   useEffect(() => {
     axios(`${process.env.REACT_APP_BASE_URL}/type/`, {
@@ -203,7 +152,7 @@ export default function UserMoreMenu({
    * Informations for Taille
    */
   const [mastersizeTab, setMasterSizeTab] = useState([]);
-  const [mastersizeInput, setMasterSizeInput] = useState(tailleconteneuridMaster);
+  const [mastersizeInput, setMasterSizeInput] = useState(tailleMaster);
 
   useEffect(() => {
     axios(`${process.env.REACT_APP_BASE_URL}/size/`, {
@@ -220,26 +169,8 @@ export default function UserMoreMenu({
   /**
    * Informations for Materiel
    */
-  const [mastermaterielTab, setMasterMaterielTab] = useState([]);
-  const [mastermateriel, setMasterMaterielInput] = useState(materielidMaster);
-
-  useEffect(() => {
-    axios(`${process.env.REACT_APP_BASE_URL}/materiel/`, {
-      headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`
-      }
-    })
-      .then((value) => {
-        setMasterMaterielTab(value.data);
-      })
-      .catch(() => {});
-  }, []);
-
-  /**
-   * Informations for Materiel
-   */
   const [masterownerTab, setMasterOwnerTab] = useState([]);
-  const [masterownerInput, setMasterOwnerInput] = useState(proprietaireidMaster);
+  const [masterownerInput, setMasterOwnerInput] = useState(proprietaireMaster);
 
   useEffect(() => {
     axios(`${process.env.REACT_APP_BASE_URL}/owner/`, {
@@ -254,46 +185,10 @@ export default function UserMoreMenu({
   }, []);
 
   /**
-   * Informations for Port
-   */
-  const [portTab, setPortTab] = useState([]);
-  const [portnameInput, setPortNameInput] = useState(null);
-
-  useEffect(() => {
-    axios(`${process.env.REACT_APP_BASE_URL}/port/`, {
-      headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`
-      }
-    })
-      .then((value) => {
-        setPortTab(value.data);
-      })
-      .catch(() => {});
-  }, []);
-
-  /**
-   * Informations for Navire
-   */
-  const [navireTab, setNavireTab] = useState([]);
-  const [navirenameInput, setNavireNameInput] = useState(namenavireMaster);
-
-  useEffect(() => {
-    axios(`${process.env.REACT_APP_BASE_URL}/navire/`, {
-      headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`
-      }
-    })
-      .then((value) => {
-        setNavireTab(value.data);
-      })
-      .catch(() => {});
-  }, []);
-
-  /**
    * Informations for Etat Conteneur
    */
   const [masteretatTab, setMasterEtatTab] = useState([]);
-  const [masteretatInput, setMasterEtatInput] = useState(etatconteneurid);
+  const [masteretatInput, setMasterEtatInput] = useState(etatconteneurMaster);
 
   useEffect(() => {
     axios(`${process.env.REACT_APP_BASE_URL}/etat_conteneur/`, {
@@ -303,78 +198,6 @@ export default function UserMoreMenu({
     })
       .then((value) => {
         setMasterEtatTab(value.data);
-      })
-      .catch(() => {});
-  }, []);
-
-  /**
-   * Informations for Devise
-   */
-  const [deviseTab, setDeviseTab] = useState([]);
-  const [masterdeviseInput, setMasterDeviseInput] = useState(deviseidMaster);
-
-  useEffect(() => {
-    axios(`${process.env.REACT_APP_BASE_URL}/devise/`, {
-      headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`
-      }
-    })
-      .then((value) => {
-        setDeviseTab(value.data);
-      })
-      .catch(() => {});
-  }, []);
-
-  /**
-   * Informations for Site
-   */
-  const [siteTab, setSiteTab] = useState([]);
-  const [mastersiteInput, setMasterSiteInput] = useState(siteidMaster);
-
-  useEffect(() => {
-    axios(`${process.env.REACT_APP_BASE_URL}/site/`, {
-      headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`
-      }
-    })
-      .then((value) => {
-        setSiteTab(value.data);
-      })
-      .catch(() => {});
-  }, []);
-
-  /**
-   * Informations for Sous-Site
-   */
-  const [soussiteTab, setSoussiteTab] = useState([]);
-  const [mastersoussiteInput, setMasterSoussiteInput] = useState(soussiteidMaster);
-
-  useEffect(() => {
-    axios(`${process.env.REACT_APP_BASE_URL}/soussite/`, {
-      headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`
-      }
-    })
-      .then((value) => {
-        setSoussiteTab(value.data);
-      })
-      .catch(() => {});
-  }, []);
-
-  /**
-   * Informations for Client
-   */
-  const [clientTab, setClientTab] = useState([]);
-  const [masterclient, setMasterClientInput] = useState(clientMaster);
-
-  useEffect(() => {
-    axios(`${process.env.REACT_APP_BASE_URL}/client/`, {
-      headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`
-      }
-    })
-      .then((value) => {
-        setClientTab(value.data);
       })
       .catch(() => {});
   }, []);
@@ -411,7 +234,7 @@ export default function UserMoreMenu({
   };
 
   const showSuccessToastMOD = () => {
-    toast.success('Opération a été modifiée avec succès', {
+    toast.success('Opération a été modifié avec succès', {
       position: toast.POSITION.TOP_RIGHT,
       autoClose: 1000
     });
@@ -436,32 +259,18 @@ export default function UserMoreMenu({
   function printFacture() {
     axios
       .put(
-        `${process.env.REACT_APP_BASE_URL}/masterfile/${idHistoric}`,
+        `${process.env.REACT_APP_BASE_URL}/newmasterfile/${idHistoric}`,
         {
-          number: masternumber,
-          namenavire: navirenameInput,
-          paysid: mastercountrieInput,
-          typeconteneurid: mastertype,
-          tailleconteneurid: mastersizeInput,
-          materielid: mastermateriel,
-          proprietaireid: masterownerInput,
-          etatconteneurid: masteretatInput,
-          constructeur: mastercontructeur,
+          numero: masternumero,
+          taille: mastersizeInput,
+          type: mastertype,
           datefabrication: masterdatefab,
-          dateentrerservice: masterdateentrer,
-          datederniereinspection: masterdatederniere,
-          valeurassuree: mastervaleur,
-          deviseid: masterdeviseInput,
-          societeinspection: mastersocieteinsp,
-          dernierconstat: masterdernierconst,
-          siteid: mastersiteInput,
-          soussiteid: mastersoussiteInput,
-          datemouvement: masterdatemouv,
+          dateexpiration: masterdateexp,
+          dateinspection: masterdateinsp,
+          etatconteneur: masteretatInput,
+          proprietaire: masterownerInput,
           observation: masterobservation,
-          client: masterclient,
-          dateoperation: masterdateop,
-          montant: mastermontant,
-          numerorecu: masternumero,
+          name: user.name,
           date: new Date()
         },
         {
@@ -474,31 +283,15 @@ export default function UserMoreMenu({
       .catch(() => {});
     setIsOpen(false);
     handleClose();
-    setMasterNumber('');
-    setMasterConstructeur('');
-    setMasterDateFab('');
-    setMasterDateEntrer('');
-    setMasterDateDerniere('');
-    setMasterValeur('');
-    setMasterSocieteInsp('');
-    setMasterDernierConst('');
-    setMasterDateMouv('');
-    setMasterObservation('');
-    setMasterDateOp('');
-    setMasterMontant('');
     setMasterNumero('');
-    setMasterCountrieInput('');
+    setMasterSizeInput('');
     setMasterTypeInput('');
-    setMasterSizeInput('');
-    setMasterSizeInput('');
-    setMasterMaterielInput('');
-    setMasterOwnerInput('');
-    setNavireNameInput('');
+    setMasterDateFab('');
+    setMasterDateExp('');
+    setMasterDateInsp('');
     setMasterEtatInput('');
-    setMasterDeviseInput('');
-    setMasterSiteInput('');
-    setMasterSoussiteInput('');
-    setMasterClientInput('');
+    setMasterOwnerInput('');
+    setMasterObservation('');
     showSuccessToastMOD();
     // reloadPage();
   }
@@ -571,33 +364,33 @@ export default function UserMoreMenu({
                     className="basic-input"
                     label="Saisissez le numéro de Conteneur"
                     variant="outlined"
-                    value={masternumber}
+                    value={masternumero}
                     onChange={(e) => {
-                      setMasterNumber(e.target.value);
+                      setMasterNumero(e.target.value);
                     }}
                   />
                 </div>
                 <div className="input-label-wrapper">
-                  Pays :{' '}
+                  Taille:{' '}
                   <Autocomplete
                     className="combo-box-completion"
-                    options={mastercountrieTab}
+                    options={mastersizeTab}
                     onChange={(event, newType) => {
                       if (newType) {
-                        setMasterCountrieInput(newType.name);
+                        setMasterSizeInput(newType.name);
                       } else {
-                        setMasterCountrieInput(null);
+                        setMasterSizeInput(null);
                       }
                     }}
                     getOptionLabel={(option) => option.name}
                     style={{ width: 400 }}
                     renderInput={(params) => (
-                      <TextField {...params} label="Sélectionner le Pays" variant="outlined" />
+                      <TextField {...params} label="Sélectionner la Taille" variant="outlined" />
                     )}
                   />
                 </div>
                 <div className="input-label-wrapper">
-                  Type :{' '}
+                  Type:{' '}
                   <Autocomplete
                     className="combo-box-completion"
                     options={mastertypeTab}
@@ -612,25 +405,6 @@ export default function UserMoreMenu({
                     style={{ width: 400 }}
                     renderInput={(params) => (
                       <TextField {...params} label="Sélectionner le type" variant="outlined" />
-                    )}
-                  />
-                </div>
-                <div className="input-label-wrapper">
-                  Client:{' '}
-                  <Autocomplete
-                    className="combo-box-completion"
-                    options={masterownerTab}
-                    onChange={(event, newType) => {
-                      if (newType) {
-                        setMasterOwnerInput(newType.name);
-                      } else {
-                        setMasterOwnerInput(null);
-                      }
-                    }}
-                    getOptionLabel={(option) => option.name}
-                    style={{ width: 400 }}
-                    renderInput={(params) => (
-                      <TextField {...params} label="Sélectionner un Client" variant="outlined" />
                     )}
                   />
                 </div>
@@ -658,7 +432,28 @@ export default function UserMoreMenu({
                   />
                 </div>
                 <div className="input-label-wrapper">
-                  Date Fab.:{' '}
+                  Propriétaire:{' '}
+                  <Autocomplete
+                    className="combo-box-completion"
+                    options={masterownerTab}
+                    onChange={(event, newType) => {
+                      if (newType) {
+                        setMasterOwnerInput(newType.name);
+                      } else {
+                        setMasterOwnerInput(null);
+                      }
+                    }}
+                    getOptionLabel={(option) => option.name}
+                    style={{ width: 400 }}
+                    renderInput={(params) => (
+                      <TextField {...params} label="Sélectionner un Client" variant="outlined" />
+                    )}
+                  />
+                </div>
+              </Box>
+              <Box className="box-2-wrapper">
+                <div className="input-label-wrapper">
+                  Date Fabrication:{' '}
                   <TextField
                     className="basic-input"
                     // label="Saisissez la date de Fabrication"
@@ -671,249 +466,29 @@ export default function UserMoreMenu({
                   />
                 </div>
                 <div className="input-label-wrapper">
-                  Date Inspection:{' '}
+                  Date Dernière Insp.:{' '}
                   <TextField
                     className="basic-input"
-                    // label="Saisissez la date de la derniere inspectin"
+                    // label="Saisissez la date de Fabrication"
                     type="date"
                     variant="outlined"
-                    value={masterdatederniere}
+                    value={masterdateexp}
                     onChange={(e) => {
-                      setMasterDateDerniere(e.target.value);
+                      setMasterDateExp(e.target.value);
                     }}
                   />
                 </div>
                 <div className="input-label-wrapper">
-                  V.A.:{' '}
+                  Date Prochaine Insp.:{' '}
                   <TextField
                     className="basic-input"
-                    label="Saisissez la valeur assuree"
-                    variant="outlined"
-                    value={mastervaleur}
-                    onChange={(e) => {
-                      setMasterValeur(e.target.value);
-                    }}
-                  />
-                </div>
-                <div className="input-label-wrapper">
-                  Societe:{' '}
-                  <TextField
-                    className="basic-input"
-                    label="Saisissez la societe d'inspection"
-                    variant="outlined"
-                    value={mastersocieteinsp}
-                    onChange={(e) => {
-                      setMasterSocieteInsp(e.target.value);
-                    }}
-                  />
-                </div>
-                <div className="input-label-wrapper">
-                  Site:{' '}
-                  <Autocomplete
-                    className="combo-box-completion"
-                    options={siteTab}
-                    onChange={(event, newType) => {
-                      if (newType) {
-                        setMasterSiteInput(newType.name);
-                      } else {
-                        setMasterSiteInput(null);
-                      }
-                    }}
-                    getOptionLabel={(option) => option.name}
-                    style={{ width: 400 }}
-                    renderInput={(params) => (
-                      <TextField {...params} label="Sélectionner un Site" variant="outlined" />
-                    )}
-                  />
-                </div>
-                <div className="input-label-wrapper">
-                  Date Mouv.:{' '}
-                  <TextField
-                    className="basic-input"
-                    // label="Saisissez la date de mouvement"
+                    // label="Saisissez la date de Fabrication"
                     type="date"
                     variant="outlined"
-                    value={masterdatemouv}
+                    value={masterdateinsp}
                     onChange={(e) => {
-                      setMasterDateMouv(e.target.value);
+                      setMasterDateInsp(e.target.value);
                     }}
-                  />
-                </div>
-                <div className="input-label-wrapper">
-                  Client:{' '}
-                  <Autocomplete
-                    className="combo-box-completion"
-                    options={clientTab}
-                    onChange={(event, newType) => {
-                      if (newType) {
-                        setMasterClientInput(newType.name);
-                      } else {
-                        setMasterClientInput(null);
-                      }
-                    }}
-                    getOptionLabel={(option) => option.name}
-                    style={{ width: 400 }}
-                    renderInput={(params) => (
-                      <TextField {...params} label="Sélectionner le Client" variant="outlined" />
-                    )}
-                  />
-                </div>
-                <div className="input-label-wrapper">
-                  Montant:{' '}
-                  <TextField
-                    className="basic-input"
-                    label="Saisissez le montant"
-                    variant="outlined"
-                    value={mastermontant}
-                    onChange={(e) => {
-                      setMasterMontant(e.target.value);
-                    }}
-                  />
-                </div>
-              </Box>
-              <Box className="box-2-wrapper">
-                <div className="input-label-wrapper">
-                  Navire:{' '}
-                  <Autocomplete
-                    className="combo-box-completion"
-                    options={navireTab}
-                    onChange={(event, newType) => {
-                      if (newType) {
-                        setNavireNameInput(newType.name);
-                      } else {
-                        setNavireNameInput(null);
-                      }
-                    }}
-                    getOptionLabel={(option) => option.name}
-                    style={{ width: 400 }}
-                    renderInput={(params) => (
-                      <TextField {...params} label="Sélectionner le navire" variant="outlined" />
-                    )}
-                  />
-                </div>
-                <div className="input-label-wrapper">
-                  Taille:{' '}
-                  <Autocomplete
-                    className="combo-box-completion"
-                    options={mastersizeTab}
-                    onChange={(event, newType) => {
-                      if (newType) {
-                        setMasterSizeInput(newType.name);
-                      } else {
-                        setMasterSizeInput(null);
-                      }
-                    }}
-                    getOptionLabel={(option) => option.name}
-                    style={{ width: 400 }}
-                    renderInput={(params) => (
-                      <TextField {...params} label="Sélectionner la Taille" variant="outlined" />
-                    )}
-                  />
-                </div>
-                <div className="input-label-wrapper">
-                  Materiel:{' '}
-                  <Autocomplete
-                    className="combo-box-completion"
-                    options={mastermaterielTab}
-                    onChange={(event, newType) => {
-                      if (newType) {
-                        setMasterMaterielInput(newType.name);
-                      } else {
-                        setMasterMaterielInput(null);
-                      }
-                    }}
-                    getOptionLabel={(option) => option.name}
-                    style={{ width: 400 }}
-                    renderInput={(params) => (
-                      <TextField {...params} label="Sélectionner le Materiel" variant="outlined" />
-                    )}
-                  />
-                </div>
-                <div className="input-label-wrapper">
-                  Constructeur:{' '}
-                  <TextField
-                    className="basic-input"
-                    label="Saisissez le nom du Constructeur"
-                    variant="outlined"
-                    value={mastercontructeur}
-                    onChange={(e) => {
-                      setMasterConstructeur(e.target.value);
-                    }}
-                  />
-                </div>
-                <div className="input-label-wrapper">
-                  Date Entree:{' '}
-                  <TextField
-                    className="basic-input"
-                    // label="Saisissez la date d'entree en Service"
-                    type="date"
-                    variant="outlined"
-                    value={masterdateentrer}
-                    onChange={(e) => {
-                      setMasterDateEntrer(e.target.value);
-                    }}
-                  />
-                </div>
-                {/* <div className="input-label-3-wrapper">
-                  N° Fiche :{' '}
-                  <TextField
-                    className="basic-input"
-                    label="Saisissez le numéro de fiche"
-                    variant="outlined"
-                    value={fileNumb}
-                    onChange={(e) => {
-                      setFileNumb(e.target.value);
-                    }}
-                  />
-                </div> */}
-                <div className="input-label-wrapper">
-                  Devise:{' '}
-                  <Autocomplete
-                    className="combo-box-completion"
-                    options={deviseTab}
-                    onChange={(event, newType) => {
-                      if (newType) {
-                        setMasterDeviseInput(newType.name);
-                      } else {
-                        setMasterDeviseInput(null);
-                      }
-                    }}
-                    getOptionLabel={(option) => option.name}
-                    style={{ width: 400 }}
-                    renderInput={(params) => (
-                      <TextField {...params} label="Sélectionner la Devise" variant="outlined" />
-                    )}
-                  />
-                </div>
-                <div className="input-label-wrapper">
-                  Constat:{' '}
-                  <TextField
-                    className="basic-input"
-                    label="Saisissez le dernier constat"
-                    variant="outlined"
-                    value={masterdernierconst}
-                    onChange={(e) => {
-                      setMasterDernierConst(e.target.value);
-                    }}
-                  />
-                </div>
-                <div className="input-label-wrapper">
-                  Sous-site:{' '}
-                  <Autocomplete
-                    className="combo-box-completion"
-                    options={soussiteTab}
-                    onChange={(event, newType) => {
-                      if (newType) {
-                        setMasterSoussiteInput(newType.name);
-                      } else {
-                        setMasterSoussiteInput(null);
-                      }
-                    }}
-                    getOptionLabel={(option) => option.name}
-                    style={{ width: 400 }}
-                    renderInput={(params) => (
-                      <TextField {...params} label="Sélectionner le Sous-site" variant="outlined" />
-                    )}
                   />
                 </div>
                 <div className="input-label-wrapper">
@@ -928,41 +503,6 @@ export default function UserMoreMenu({
                     }}
                   />
                 </div>
-                <div className="input-label-wrapper">
-                  Date Op.:{' '}
-                  <TextField
-                    className="basic-input"
-                    // label="Saisissez la date de l'operation"
-                    type="date"
-                    variant="outlined"
-                    value={masterdateop}
-                    onChange={(e) => {
-                      setMasterDateOp(e.target.value);
-                    }}
-                  />
-                </div>
-                <div className="input-label-wrapper">
-                  Numero :{' '}
-                  <TextField
-                    className="basic-input"
-                    label="Saisissez le numero recu"
-                    variant="outlined"
-                    value={masternumero}
-                    onChange={(e) => {
-                      setMasterNumero(e.target.value);
-                    }}
-                  />
-                </div>
-                {/* <div className="input-label-3-wrapper">
-                  Envoi :{' '}
-                  <TextField
-                    className="basic-input"
-                    label="Saisissez ce champ"
-                    variant="outlined"
-                    value={send}
-                    onChange={(e) => setSend(e.target.value)}
-                  />
-                </div> */}
               </Box>
             </Card>
             {/* <Button
@@ -986,15 +526,17 @@ export default function UserMoreMenu({
                 />
                 <ComponentToPrint
                   ref={componentRef}
-                  number={masternumber}
+                  number={masternumero}
                   typeconteneurid={mastertype}
                   tailleconteneurid={mastersizeInput}
-                  client={masterclient}
+                  // client={masterclient}
                   datefabrication={masterdatefab}
-                  constructeur={mastercontructeur}
-                  dateentrerservice={masterdateentrer}
-                  datederniereinspection={masterdatederniere}
-                  dernierconstat={masterdernierconst}
+                  constructeur={masterownerInput}
+                  dateentrerservice={masterdateexp}
+                  datederniereinspection={masterdateinsp}
+                  // dernierconstat={masterdernierconst}
+                  // dernierconstat={masterdateexp}
+                  observation={masterobservation}
                   rows={[]}
                 />
               </div>

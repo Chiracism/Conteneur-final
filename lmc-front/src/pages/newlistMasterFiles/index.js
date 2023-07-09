@@ -61,6 +61,8 @@ const TABLE_HEAD = [
   // { id: 'societe_inspection', label: 'Société Insp.', alignRight: false },
   // { id: 'dernier_constat', label: 'Dernier Const.', alignRight: false },
   { id: 'observation', label: 'Observation', alignRight: false },
+  { id: 'name', label: 'Insérer par', alignRight: false },
+  { id: 'createdAt', label: 'Date de creation', alignRight: false },
   // { id: 'sous_site_id', label: 'Sous-site', alignRight: false },
   // { id: 'date_mouvement', label: 'Date Mouv.', alignRight: false },
   // { id: 'observation', label: 'Observation', alignRight: false },
@@ -124,9 +126,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Countrie() {
   const [page, setPage] = useState(0);
-  const [order, setOrder] = useState('asc');
+  const [order, setOrder] = useState('desc');
   const [selected, setSelected] = useState([]);
-  const [orderBy, setOrderBy] = useState('name');
+  const [orderBy, setOrderBy] = useState('id');
   const [filterName, setFilterName] = useState('');
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
@@ -369,6 +371,7 @@ export default function Countrie() {
                         proprietaire,
                         observation,
                         date,
+                        createdAt,
                         // namenavire,
                         // paysid,
                         // typeconteneurid,
@@ -503,6 +506,13 @@ export default function Countrie() {
                               </Typography>
                             </Stack>
                           </TableCell>
+                          <TableCell component="th" scope="row" padding="none">
+                            <Stack direction="row" justifyContent="center" spacing={2}>
+                              <Typography variant="subtitle2" noWrap>
+                                {createdAt}
+                              </Typography>
+                            </Stack>
+                          </TableCell>
 
                           <TableCell align="right">
                             <HistoricMoreMenu
@@ -570,7 +580,7 @@ export default function Countrie() {
           <TablePagination
             rowsPerPageOptions={[5, 10, 25]}
             component="div"
-            count={setHistoric.length}
+            count={historic.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}
@@ -592,7 +602,7 @@ export default function Countrie() {
                 content={() => componentRef.current}
                 suppressErrors
               />
-              <ComponentToPrintSurestarie ref={componentRef} rows={historic} />
+              <ComponentToPrintSurestarie ref={componentRef} rows={filteredHistoric} />
             </div>
           </Card>
         ) : null}

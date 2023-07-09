@@ -96,6 +96,7 @@ export default function Masterfile() {
           etatconteneur: masteretatInput,
           proprietaire: masterownerInput,
           observation: masterobservation,
+          name: user.name,
           date: new Date()
           // number: masternumber,
           // namenavire: navirenameInput,
@@ -584,7 +585,7 @@ export default function Masterfile() {
               />
             </div>
             <div className="input-label-wrapper">
-              Date Expiration:{' '}
+              Date Dernière Insp.:{' '}
               <TextField
                 className="basic-input"
                 // label="Saisissez la date de Fabrication"
@@ -597,7 +598,7 @@ export default function Masterfile() {
               />
             </div>
             <div className="input-label-wrapper">
-              Date Inspection:{' '}
+              Date Prochaine Insp.:{' '}
               <TextField
                 className="basic-input"
                 // label="Saisissez la date de Fabrication"

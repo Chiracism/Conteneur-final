@@ -62,8 +62,8 @@ class ComponentToPrint extends React.PureComponent {
               <th>Qté Conteneur 40 Equipement</th>
               <th>Qté Frais Correction Manifeste Equipement</th>
               <th>Qté Frais Lettre Garantie Simple Equipement</th>
-              <th>Qté Conventionnel Navigation}</th>
-              <th>Qté Vehicule Navigation}</th>
+              <th>Qté Conventionnel Navigation</th>
+              <th>Qté Vehicule Navigation</th>
               <th>Qté Conteneur 20 Navigation</th>
               <th>Qté Conteneur 40 Equipement</th>
               <th>Qté Conteneur 40 Navigation</th>

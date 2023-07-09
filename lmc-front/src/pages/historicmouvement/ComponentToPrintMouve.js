@@ -60,68 +60,39 @@ class ComponentToPrint extends React.PureComponent {
         <h3 className="print-source" style={{ textAlign: 'center' }}>
           HISTORIQUE DES MOUVEMENTS
         </h3>
-        <p className="print-source" style={{ textAlign: 'right', margin: '2rem 1rem 3rem 0' }}>
-          <strong> Client </strong> : <span>{client}</span>
-        </p>
-        {/* <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 1rem 4.5rem' }}>
-          <span>{client.address}</span>
-        </p> */}
-        <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
-          <strong>N° Conteneur</strong> : <span>{number}</span>
-        </p>
-        <br />
-        <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
-          {/* '0rem 1rem 0rem 6.8rem' */}
-          <strong>Type Conteneur</strong> : <span>{typeconteneurid}</span>
-        </p>
-        <br />
-        <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
-          {/* 2rem 1rem 3rem 0 */}
-          <strong>Taille Conteneur</strong> : <span>{tailleconteneurid}</span>
-        </p>
-        <br />
-        <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
-          {/* 1rem 1rem 0rem 1rem */}
-          <strong>Constructeur</strong> : <span>{constructeur}</span>
-        </p>
-        <br />
-        <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
-          {/* 1rem 1rem 0rem 1rem */}
-          <strong>Date Fabrication</strong> : <span>{datefabrication}</span>
-        </p>
-        <br />
-        <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
-          {/* 1rem 1rem 0rem 1rem */}
-          <strong>Date Entrée Service</strong> : <span>{dateentrerservice}</span>
-        </p>
-        <br />
-        <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
-          {/* 1rem 1rem 0rem 1rem */}
-          <strong>Date Inspection</strong> : <span>{datederniereinspection}</span>
-        </p>
-        <br />
-        <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
-          {/* 1rem 1rem 0rem 1rem */}
-          <strong>Dernier Constat</strong> : <span>{dernierconstat}</span>
-        </p>
-        {/* <div
+        <div
           className="print-source"
-          style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem', width: '100%' }}
+          style={{
+            display: 'block',
+            justifyContent: 'center',
+            marginTop: '2rem',
+            marginBottom: '2rem',
+            width: '100%'
+          }}
         >
-          <table className="print-source" style={{ width: '100%' }}>
+          <table className="print-source" style={{ width: '100%', marginBottom: '2rem' }}>
             <thead>
               <th>N° Conteneur</th>
               <th>Type/Conteneur</th>
               <th>Taille/Conteneur</th>
               <th>Contructeur</th>
+              <th>Site</th>
+              <th>Sous-Site</th>
+              <th>Date Mouvement</th>
+              <th>Navire</th>
+              <th>Date Arrivée</th>
+              <th>Port</th>
+              <th>Observation</th>
+              <th>Inséré par</th>
+              <th>Date</th>
             </thead>
             <tbody style={{ width: '100%' }}>
               {rows.map((value, key) => {
-                const { number, typeconteneurid, tailleconteneurid, constructeur } = value;
+                const { number, typeconteneur, tailleconteneurid, constructeur } = value;
                 return (
                   <tr key={key} style={{ textAlign: 'center' }}>
                     <td>{number}</td>
-                    <td>{typeconteneurid}</td>
+                    <td>{typeconteneur}</td>
                     <td>{tailleconteneurid}</td>
                     <td>{constructeur}</td>
                   </tr>
@@ -129,7 +100,7 @@ class ComponentToPrint extends React.PureComponent {
               })}
             </tbody>
           </table>
-        </div> */}
+        </div>
         {/* <div
           className="print-source"
           style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem', width: '100%' }}

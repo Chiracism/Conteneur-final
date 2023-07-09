@@ -96,12 +96,12 @@ class ComponentToPrint extends React.PureComponent {
         <br />
         <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
           {/* 1rem 1rem 0rem 1rem */}
-          <strong>Date Expiration</strong> : <span>{dateentrerservice}</span>
+          <strong>Date Dernière Insp.</strong> : <span>{dateentrerservice}</span>
         </p>
         <br />
         <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
           {/* 1rem 1rem 0rem 1rem */}
-          <strong>Date Inspection</strong> : <span>{datederniereinspection}</span>
+          <strong>Date Prochaine Insp.</strong> : <span>{datederniereinspection}</span>
         </p>
         <br />
         <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>

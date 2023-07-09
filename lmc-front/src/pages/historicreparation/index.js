@@ -1,3 +1,4 @@
+import { filter } from 'lodash';
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 // material
@@ -62,12 +63,41 @@ const TABLE_HEAD = [
   { id: 'site', label: 'Site', alignRight: false },
   { id: 'datederniereinspection', label: 'Date Insp.', alignRight: false },
   { id: 'societe', label: 'Société', alignRight: false },
-  // { id: 'name', label: 'Utilisateur', alignRight: false },
+  { id: 'name', label: 'Insérer par', alignRight: false },
   // { id: 'date', label: 'Date', alignRight: false },
   { id: '' }
 ];
 
 // ----------------------------------------------------------------------
+
+function descendingComparator(a, b, orderBy) {
+  if (b[orderBy] < a[orderBy]) {
+    return -1;
+  }
+  if (b[orderBy] > a[orderBy]) {
+    return 1;
+  }
+  return 0;
+}
+
+function getComparator(order, orderBy) {
+  return order === 'desc'
+    ? (a, b) => descendingComparator(a, b, orderBy)
+    : (a, b) => -descendingComparator(a, b, orderBy);
+}
+
+function applySortFilter(array, comparator, query) {
+  const stabilizedThis = array.map((el, index) => [el, index]);
+  stabilizedThis.sort((a, b) => {
+    const order = comparator(a[0], b[0]);
+    if (order !== 0) return order;
+    return a[1] - b[1];
+  });
+  if (query) {
+    return filter(array, (_user) => _user.numero.toLowerCase().indexOf(query.toLowerCase()) !== -1);
+  }
+  return stabilizedThis.map((el) => el[0]);
+}
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -87,9 +117,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function User() {
   const [page, setPage] = useState(0);
-  const [order, setOrder] = useState('numero');
+  const [order, setOrder] = useState('desc');
   const [selected, setSelected] = useState([]);
-  const [orderBy, setOrderBy] = useState('numero');
+  const [orderBy, setOrderBy] = useState('id');
   const [filterName, setFilterName] = useState('');
   const [rowsPerPage, setRowsPerPage] = useState(15);
   const [historic, setHistoric] = useState([]);
@@ -137,18 +167,18 @@ export default function User() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = historic.map((n) => n.client);
+      const newSelecteds = historic.map((n) => n.numero);
       setSelected(newSelecteds);
       return;
     }
     setSelected([]);
   };
 
-  const handleClick = (event, client) => {
-    const selectedIndex = selected.indexOf(client);
+  const handleClick = (event, numero) => {
+    const selectedIndex = selected.indexOf(numero);
     let newSelected = [];
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, client);
+      newSelected = newSelected.concat(selected, numero);
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
     } else if (selectedIndex === selected.length - 1) {
@@ -177,7 +207,9 @@ export default function User() {
 
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - historic.length) : 0;
 
-  const isUserNotFound = historic.length === 0;
+  const filteredHistoric = applySortFilter(historic, getComparator(order, orderBy), filterName);
+
+  const isUserNotFound = filteredHistoric.length === 0;
 
   return (
     <Page title="Historique | LMC App">
@@ -210,7 +242,7 @@ export default function User() {
                   onSelectAllClick={handleSelectAllClick}
                 />
                 <TableBody>
-                  {historic
+                  {filteredHistoric
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row) => {
                       const {
@@ -231,7 +263,8 @@ export default function User() {
                         site,
                         datederniereinspection,
                         societe,
-                        date
+                        date,
+                        name
                       } = row;
 
                       const isItemSelected = selected.indexOf(numero) !== -1;
@@ -371,13 +404,13 @@ export default function User() {
                               </Typography>
                             </Stack>
                           </TableCell>
-                          {/* <TableCell component="th" scope="row" padding="none">
+                          <TableCell component="th" scope="row" padding="none">
                             <Stack direction="row" justifyContent="center" spacing={2}>
                               <Typography variant="subtitle2" noWrap>
-                                {date}
+                                {name}
                               </Typography>
                             </Stack>
-                          </TableCell> */}
+                          </TableCell>
                           <TableCell align="right">
                             <HistoricReparaMoreMenu
                               idHistoric={id}
@@ -447,7 +480,7 @@ export default function User() {
                 content={() => componentRef.current}
                 suppressErrors
               />
-              <ComponentToPrintReparation ref={componentRef} rows={historic} />
+              <ComponentToPrintReparation ref={componentRef} rows={filteredHistoric} />
             </div>
           </Card>
         ) : null}
