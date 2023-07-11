@@ -10,7 +10,7 @@ class ComponentToPrintSurest extends React.PureComponent {
   }
 
   render() {
-    const { rows, client, total, numero, port, size, detention, caution } = this.props;
+    const { rows, client, total, numero, port, size, detention, caution, rembourser } = this.props;
     const { date } = this.state;
 
     return (
@@ -72,6 +72,10 @@ class ComponentToPrintSurest extends React.PureComponent {
         <br />
         <p className="print-source" style={{ textAlign: 'left', margin: '1rem 1rem 0rem 1rem' }}>
           <strong> Caution Versée</strong> : <span>{caution}</span> CDF/USD
+        </p>
+        <br />
+        <p className="print-source" style={{ textAlign: 'left', margin: '1rem 1rem 0rem 1rem' }}>
+          <strong> Montant à Rembourser</strong> : <span>{rembourser}</span> CDF/USD
         </p>
         <br />
         <p className="print-source" style={{ textAlign: 'left', margin: '1rem 1rem 0rem 1rem' }}>

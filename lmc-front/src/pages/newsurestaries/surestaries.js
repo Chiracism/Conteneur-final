@@ -361,7 +361,7 @@ export default function Mouvement() {
   }, []);
 
   useEffect(() => {
-    setSurestarieInput(surestariesizeInput);
+    setSurestarieInput(surestariesizeInput + 0);
   }, [surestarieInput]);
 
   // Get the number of day between of two dates
@@ -503,11 +503,12 @@ export default function Mouvement() {
   const [datafraisduree, setDataFraisDuree] = useState(0);
   const [datafraisdurees, setDataFraisDurees] = useState(0);
 
+  // Déclaration
+  const detention = surestariesizeInput;
+
   function validateCalcul() {
-    // useEffect(() => {
-    //   setSurestarieSizeInput(surestariesizeInput === 20);
-    // }, [surestariedetentionInput, datainferieur]);
     if (surestariesizeInput === 20) {
+      setSurestarieCautionVerseeInput(1000);
       if (surestariedetentionInput < 33) {
         setSurestarieDureeInput(0);
         setSurestariesDureesInput(0);
@@ -550,6 +551,7 @@ export default function Mouvement() {
         }
       }
     } else if (surestariesizeInput === 40) {
+      setSurestarieCautionVerseeInput(2000);
       if (surestariedetentionInput < 33) {
         setSurestarieDureeInput(0);
         setSurestariesDureesInput(0);
@@ -1125,6 +1127,7 @@ export default function Mouvement() {
               port={surestarieportInput}
               size={surestariesizeInput}
               caution={surestariecautionverseeInput}
+              rembourser={surestarierembourserInput}
               total={surestarietotalInput}
               rows={[]}
             />
