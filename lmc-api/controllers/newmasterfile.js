@@ -33,14 +33,14 @@ exports.getOneNewMasterFile = async (req, res, next) => {
 exports.modifyNewMasterFile = async ({ body, query, params }, res, next) => {
   const newMasterFileObject = JSON.parse(JSON.stringify(body));
 
-  db.newMasterFile.update(
+  db.Newmasterfile.update(
     { ...newMasterFileObject },
     {
       where: { id: params.id },
     }
   )
     .then(async () => {
-      await db.newMasterFile.findOne({ where: { id: params.id } })
+      await db.Newmasterfile.findOne({ where: { id: params.id } })
         .then((newMasterFile) => {
           res.status(200).json(newMasterFile);
         })

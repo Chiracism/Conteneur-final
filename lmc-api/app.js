@@ -35,6 +35,7 @@ const positionRoutes = require('./routes/position');
 const consultatRoutes = require('./routes/consultat');
 const agenceRoutes = require('./routes/agence');
 const newSurestariesRoutes = require('./routes/newsurestarie');
+const newmouvementRoutes = require('./routes/newmouvement');
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -88,6 +89,7 @@ app.use("/api/mouvement", mouvementRoutes);
 app.use("/api/reparation", reparationRoutes);
 // app.use("/api/surestarie", surestarieRoutes);
 app.use("/api/newsurestarie", newSurestariesRoutes);
+app.use("/api/newmouvement", newmouvementRoutes);
 app.use("/api/choix", choixRoutes);
 // app.use("/api/newsurestarie", newSurestarieRoutes);
 app.use("/api/listeconteneur", listeconteneurRoutes);
