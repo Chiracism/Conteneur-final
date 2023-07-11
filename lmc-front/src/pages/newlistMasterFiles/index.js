@@ -157,18 +157,6 @@ export default function Countrie() {
       .catch(() => {});
   }, []);
 
-  // useEffect(() => {
-  //   axios(`${process.env.REACT_APP_BASE_URL}/countrie/`, {
-  //     headers: {
-  //       Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`
-  //     }
-  //   })
-  //     .then((value) => {
-  //       setCountrieTab(value.data);
-  //     })
-  //     .catch(() => {});
-  // }, []);
-
   useEffect(() => {
     axios(`${process.env.REACT_APP_BASE_URL}/newmasterfile/`, {
       headers: {

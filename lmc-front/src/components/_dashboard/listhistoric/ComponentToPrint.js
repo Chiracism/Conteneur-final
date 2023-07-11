@@ -20,6 +20,7 @@ class ComponentToPrint extends React.PureComponent {
       datefabrication,
       dateentrerservice,
       datederniereinspection,
+      observation,
       dernierconstat
     } = this.props;
     const { date } = this.state;
@@ -82,7 +83,7 @@ class ComponentToPrint extends React.PureComponent {
         <br />
         <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
           {/* 1rem 1rem 0rem 1rem */}
-          <strong>Constructeur</strong> : <span>{constructeur}</span>
+          <strong>Propriétaire</strong> : <span>{constructeur}</span>
         </p>
         <br />
         <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
@@ -102,7 +103,7 @@ class ComponentToPrint extends React.PureComponent {
         <br />
         <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
           {/* 1rem 1rem 0rem 1rem */}
-          <strong>Dernier Constat</strong> : <span>{dernierconstat}</span>
+          <strong>Observation</strong> : <span>{observation}</span>
         </p>
         {/* <div
           className="print-source"

@@ -335,8 +335,14 @@ export default function Mouvement() {
                 onChange={(event, newType) => {
                   if (newType) {
                     setMouvNumberInput(newType.numero);
+                    setMouvSizeInput(newType.taille);
+                    setMouvTypeInput(newType.type);
+                    setMouvEtatInput(newType.etatconteneur);
                   } else {
                     setMouvNumberInput(null);
+                    setMouvSizeInput(null);
+                    setMouvTypeInput(null);
+                    setMouvEtatInput(null);
                   }
                 }}
                 getOptionLabel={(option) => option.numero}
@@ -397,7 +403,7 @@ export default function Mouvement() {
                 )}
               />
             </div>
-            <div className="input-label-wrapper">
+            {/* <div className="input-label-wrapper">
               Type:{' '}
               <Autocomplete
                 className="combo-box-completion"
@@ -419,8 +425,20 @@ export default function Mouvement() {
                   />
                 )}
               />
-            </div>
+            </div> */}
             <div className="input-label-wrapper">
+              Type:{' '}
+              <TextField
+                className="basic-input"
+                // label="Saisissez le nombre"
+                variant="outlined"
+                value={mouvtypeInput}
+                onChange={(e) => {
+                  setMouvTypeInput(e.target.value);
+                }}
+              />
+            </div>
+            {/* <div className="input-label-wrapper">
               Etat:{' '}
               <Autocomplete
                 className="combo-box-completion"
@@ -441,6 +459,18 @@ export default function Mouvement() {
                     variant="outlined"
                   />
                 )}
+              />
+            </div> */}
+            <div className="input-label-wrapper">
+              Etat:{' '}
+              <TextField
+                className="basic-input"
+                // label="Saisissez le nombre"
+                variant="outlined"
+                value={mouvetatInput}
+                onChange={(e) => {
+                  setMouvEtatInput(e.target.value);
+                }}
               />
             </div>
             <div className="input-label-wrapper">
@@ -515,7 +545,7 @@ export default function Mouvement() {
                 )}
               />
             </div>
-            <div className="input-label-wrapper">
+            {/* <div className="input-label-wrapper">
               Taille:{' '}
               <Autocomplete
                 className="combo-box-completion"
@@ -532,6 +562,18 @@ export default function Mouvement() {
                 renderInput={(params) => (
                   <TextField {...params} label="Sélectionner la Taille" variant="outlined" />
                 )}
+              />
+            </div> */}
+            <div className="input-label-3-wrapper">
+              Taille:{' '}
+              <TextField
+                className="basic-input"
+                // label="Saisissez le nombre"
+                variant="outlined"
+                value={mouvsizeInput}
+                onChange={(e) => {
+                  setMouvSizeInput(e.target.value);
+                }}
               />
             </div>
             <div className="input-label-3-wrapper">

@@ -342,8 +342,12 @@ export default function Reparation() {
                 onChange={(event, newType) => {
                   if (newType) {
                     setReparaNumeroInput(newType.numero);
+                    setReparaTypeInput(newType.type);
+                    setReparaTailleInput(newType.taille);
                   } else {
                     setReparaNumeroInput(null);
+                    setReparaTypeInput(null);
+                    setReparaTailleInput(null);
                   }
                 }}
                 getOptionLabel={(option) => option.numero}
@@ -367,6 +371,18 @@ export default function Reparation() {
               />
             </div>
             <div className="input-label-wrapper">
+              Type.:{' '}
+              <TextField
+                className="basic-input"
+                type="text"
+                variant="outlined"
+                value={reparatypeInput}
+                onChange={(e) => {
+                  setReparaTypeInput(e.target.value);
+                }}
+              />
+            </div>
+            {/* <div className="input-label-wrapper">
               Type:{' '}
               <Autocomplete
                 className="combo-box-completion"
@@ -384,7 +400,7 @@ export default function Reparation() {
                   <TextField {...params} label="Sélectionner le Type" variant="outlined" />
                 )}
               />
-            </div>
+            </div> */}
             <div className="input-label-wrapper">
               Propriétaire:{' '}
               <Autocomplete
@@ -481,7 +497,7 @@ export default function Reparation() {
             </div>
           </Box>
           <Box className="box-2-wrapper">
-            <div className="input-label-wrapper">
+            {/* <div className="input-label-wrapper">
               Taille:{' '}
               <Autocomplete
                 className="combo-box-completion"
@@ -498,6 +514,18 @@ export default function Reparation() {
                 renderInput={(params) => (
                   <TextField {...params} label="Sélectionner la Taille" variant="outlined" />
                 )}
+              />
+            </div> */}
+            <div className="input-label-wrapper">
+              Taille.:{' '}
+              <TextField
+                className="basic-input"
+                type="text"
+                variant="outlined"
+                value={reparatailleInput}
+                onChange={(e) => {
+                  setReparaTailleInput(e.target.value);
+                }}
               />
             </div>
             <div className="input-label-wrapper">

@@ -304,7 +304,7 @@ export default function UserMoreMenu({
 
   // React-Toastify-Notification
   const showSuccessToastSUP = () => {
-    toast.warning('Opération a été supprimée avec succès', {
+    toast.warning('Opération a été supprimé avec succès', {
       position: toast.POSITION.TOP_RIGHT,
       autoClose: 1000
     });

@@ -375,13 +375,13 @@ export default function User() {
                               </Typography>
                             </Stack>
                           </TableCell>
-                          <TableCell component="th" scope="row" padding="none">
+                          {/* <TableCell component="th" scope="row" padding="none">
                             <Stack direction="row" justifyContent="center" spacing={2}>
                               <Typography variant="subtitle2" noWrap>
                                 {date}
                               </Typography>
                             </Stack>
-                          </TableCell>
+                          </TableCell> */}
                           <TableCell component="th" scope="row" padding="none">
                             <Stack direction="row" justifyContent="center" spacing={2}>
                               <Typography variant="subtitle2" noWrap>

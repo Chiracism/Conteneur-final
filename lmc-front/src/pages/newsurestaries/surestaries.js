@@ -50,6 +50,9 @@ export default function Mouvement() {
   const [surestariedetentionInput, setSurestarieDetentionInput] = useState('');
   const [surestarietotalInput, setSurestarieTotalInput] = useState('');
 
+  // Variable
+  const [surestarieInput, setSurestarieInput] = useState('');
+
   // Inférieur à 14 & 32
   const [surestarieinf, setSurestarieInf] = useState('');
   const [surestariesup, setSurestarieSup] = useState('');
@@ -357,6 +360,10 @@ export default function Mouvement() {
       .catch(() => {});
   }, []);
 
+  useEffect(() => {
+    setSurestarieInput(surestariesizeInput);
+  }, [surestarieInput]);
+
   // Get the number of day between of two dates
 
   useEffect(() => {
@@ -401,100 +408,96 @@ export default function Mouvement() {
    * Informations for Table
    */
 
-  // useEffect(() => {
-  //   surestariedureeInput(surestariedetentionInput - );
-  // }, [surestariedetentionInput]);
-
   // Method
 
-  useEffect(() => {
-    if (surestariesizeInput === 20) {
-      if (surestariedetentionInput < 33) {
-        setSurestarieDureeInput(0);
-        setSurestariesDureesInput(0);
-        setSurestarieFacturerInput(0);
-        setSurestarieFraisInput(0);
-        setSurestarieRembourserInput(surestariecautionverseeInput);
-        setSurestarieTotalInput(0);
-      } else if (surestariedetentionInput < 47) {
-        setSurestarieDureeInput(surestariedetentionInput - 32);
-        setSurestariesDureesInput(0);
-        setSurestarieFacturerInput(surestariefraisInput);
-        setSurestarieFraisInput((surestariedetentionInput - 32) * 10);
-        if (surestariecautionverseeInput > surestariefraisInput) {
-          setSurestarieRembourserInput(surestariecautionverseeInput - surestariefraisInput);
-        } else {
-          setSurestarieRembourserInput(0);
-        }
-        setSurestarieTotalInput(0);
-        // if (surestariecautionverseeInput > surestariefraisInput) {
-        //   setSurestarieTotalInput(surestariecautionverseeInput - surestariefraisInput);
-        // } else {
-        //   setSurestarieTotalInput(0);
-        // }
-      } else {
-        setSurestarieDureeInput(14);
-        setSurestariesDureesInput(surestariedetentionInput - 32 - 14);
-        setSurestarieFacturerInput(surestariefraisInput);
-        setSurestarieFraisInput(
-          surestariedureeInput * 10 + (surestariedetentionInput - 32 - 14) * 20
-        );
-        if (surestariecautionverseeInput > surestariefraisInput) {
-          setSurestarieRembourserInput(surestariecautionverseeInput - surestariefraisInput);
-        } else {
-          setSurestarieRembourserInput(0);
-        }
-        if (surestariecautionverseeInput > surestariefraisInput) {
-          setSurestarieTotalInput(0);
-        } else {
-          setSurestarieTotalInput(surestariefraisInput - surestariecautionverseeInput);
-        }
-      }
-    } else if (surestariesizeInput === 40) {
-      if (surestariedetentionInput < 33) {
-        setSurestarieDureeInput(0);
-        setSurestariesDureesInput(0);
-        setSurestarieFacturerInput(0);
-        setSurestarieFraisInput(0);
-        setSurestarieRembourserInput(surestariecautionverseeInput);
-        setSurestarieTotalInput(0);
-      } else if (surestariedetentionInput < 47) {
-        setSurestarieDureeInput(surestariedetentionInput - 32);
-        setSurestariesDureesInput(0);
-        setSurestarieFacturerInput(surestariefraisInput);
-        setSurestarieFraisInput(surestariedureeInput * 20 + surestariesdureesInput * 20);
-        if (surestariecautionverseeInput > surestariefraisInput) {
-          setSurestarieRembourserInput(surestariecautionverseeInput - surestariefraisInput);
-        } else {
-          setSurestarieRembourserInput(0);
-        }
-        // setSurestarieTotalInput(surestariefraisInput);
-        if (surestariecautionverseeInput > surestariefraisInput) {
-          setSurestarieTotalInput(0);
-        } else {
-          setSurestarieTotalInput(surestariefraisInput - surestariecautionverseeInput);
-        }
-      } else {
-        setSurestarieDureeInput(14);
-        setSurestariesDureesInput(surestariedetentionInput - 32 - 14);
-        setSurestarieFacturerInput(surestariefraisInput);
-        setSurestarieFraisInput(
-          surestariedureeInput * 20 + (surestariedetentionInput - 32 - 14) * 40
-        );
-        if (surestariecautionverseeInput > surestariefraisInput) {
-          setSurestarieRembourserInput(surestariecautionverseeInput - surestariefraisInput);
-        } else {
-          setSurestarieRembourserInput(0);
-        }
-        // setSurestarieTotalInput(surestariefraisInput);
-        if (surestariecautionverseeInput > surestariefraisInput) {
-          setSurestarieTotalInput(0);
-        } else {
-          setSurestarieTotalInput(surestariefraisInput - surestariecautionverseeInput);
-        }
-      }
-    }
-  }, [surestariedetentionInput]);
+  // useEffect(() => {
+  //   if (surestarieInput === 20) {
+  //     if (surestariedetentionInput < 33) {
+  //       setSurestarieDureeInput(0);
+  //       setSurestariesDureesInput(0);
+  //       setSurestarieFacturerInput(0);
+  //       setSurestarieFraisInput(0);
+  //       setSurestarieRembourserInput(surestariecautionverseeInput);
+  //       setSurestarieTotalInput(0);
+  //     } else if (surestariedetentionInput < 47) {
+  //       setSurestarieDureeInput(surestariedetentionInput - 32);
+  //       setSurestariesDureesInput(0);
+  //       setSurestarieFacturerInput(surestariefraisInput);
+  //       setSurestarieFraisInput((surestariedetentionInput - 32) * 10);
+  //       if (surestariecautionverseeInput > surestariefraisInput) {
+  //         setSurestarieRembourserInput(surestariecautionverseeInput - surestariefraisInput);
+  //       } else {
+  //         setSurestarieRembourserInput(0);
+  //       }
+  //       setSurestarieTotalInput(0);
+  //       // if (surestariecautionverseeInput > surestariefraisInput) {
+  //       //   setSurestarieTotalInput(surestariecautionverseeInput - surestariefraisInput);
+  //       // } else {
+  //       //   setSurestarieTotalInput(0);
+  //       // }
+  //     } else {
+  //       setSurestarieDureeInput(14);
+  //       setSurestariesDureesInput(surestariedetentionInput - 32 - 14);
+  //       setSurestarieFacturerInput(surestariefraisInput);
+  //       setSurestarieFraisInput(
+  //         surestariedureeInput * 10 + (surestariedetentionInput - 32 - 14) * 20
+  //       );
+  //       if (surestariecautionverseeInput > surestariefraisInput) {
+  //         setSurestarieRembourserInput(surestariecautionverseeInput - surestariefraisInput);
+  //       } else {
+  //         setSurestarieRembourserInput(0);
+  //       }
+  //       if (surestariecautionverseeInput > surestariefraisInput) {
+  //         setSurestarieTotalInput(0);
+  //       } else {
+  //         setSurestarieTotalInput(surestariefraisInput - surestariecautionverseeInput);
+  //       }
+  //     }
+  //   } else if (surestariesizeInput === 40) {
+  //     if (surestariedetentionInput < 33) {
+  //       setSurestarieDureeInput(0);
+  //       setSurestariesDureesInput(0);
+  //       setSurestarieFacturerInput(0);
+  //       setSurestarieFraisInput(0);
+  //       setSurestarieRembourserInput(surestariecautionverseeInput);
+  //       setSurestarieTotalInput(0);
+  //     } else if (surestariedetentionInput < 47) {
+  //       setSurestarieDureeInput(surestariedetentionInput - 32);
+  //       setSurestariesDureesInput(0);
+  //       setSurestarieFacturerInput(surestariefraisInput);
+  //       setSurestarieFraisInput(surestariedureeInput * 20 + surestariesdureesInput * 20);
+  //       if (surestariecautionverseeInput > surestariefraisInput) {
+  //         setSurestarieRembourserInput(surestariecautionverseeInput - surestariefraisInput);
+  //       } else {
+  //         setSurestarieRembourserInput(0);
+  //       }
+  //       // setSurestarieTotalInput(surestariefraisInput);
+  //       if (surestariecautionverseeInput > surestariefraisInput) {
+  //         setSurestarieTotalInput(0);
+  //       } else {
+  //         setSurestarieTotalInput(surestariefraisInput - surestariecautionverseeInput);
+  //       }
+  //     } else {
+  //       setSurestarieDureeInput(14);
+  //       setSurestariesDureesInput(surestariedetentionInput - 32 - 14);
+  //       setSurestarieFacturerInput(surestariefraisInput);
+  //       setSurestarieFraisInput(
+  //         surestariedureeInput * 20 + (surestariedetentionInput - 32 - 14) * 40
+  //       );
+  //       if (surestariecautionverseeInput > surestariefraisInput) {
+  //         setSurestarieRembourserInput(surestariecautionverseeInput - surestariefraisInput);
+  //       } else {
+  //         setSurestarieRembourserInput(0);
+  //       }
+  //       // setSurestarieTotalInput(surestariefraisInput);
+  //       if (surestariecautionverseeInput > surestariefraisInput) {
+  //         setSurestarieTotalInput(0);
+  //       } else {
+  //         setSurestarieTotalInput(surestariefraisInput - surestariecautionverseeInput);
+  //       }
+  //     }
+  //   }
+  // }, [surestariedetentionInput]);
 
   // Variables
   const [datafraisduree, setDataFraisDuree] = useState(0);

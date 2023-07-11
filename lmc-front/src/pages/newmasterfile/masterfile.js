@@ -565,7 +565,7 @@ export default function Masterfile() {
                 getOptionLabel={(option) => option.name}
                 style={{ width: 400 }}
                 renderInput={(params) => (
-                  <TextField {...params} label="Sélectionner un Client" variant="outlined" />
+                  <TextField {...params} label="Sélectionner le propriétaire" variant="outlined" />
                 )}
               />
             </div>
