@@ -1,7 +1,7 @@
 import React from 'react';
-import './Masterfile.css';
+import './Mouvement.css';
 
-class ComponentToPrint extends React.PureComponent {
+class ComponentToPrintMouv extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,23 +12,21 @@ class ComponentToPrint extends React.PureComponent {
   render() {
     const {
       rows,
-      client,
       number,
       taille,
       type,
+      bl,
       navire,
       eta,
       contenu,
       poids,
+      client,
       numeromemo,
       agence,
       caution,
       destination,
       dates,
-      // datefabrication,
-      // dateentrerservice,
-      // datederniereinspection,
-      dernierconstat
+      total
     } = this.props;
     const { date } = this.state;
 
@@ -59,14 +57,14 @@ class ComponentToPrint extends React.PureComponent {
             className="print-source"
             style={{ textAlign: 'center', color: 'blue', flexGrow: 0.2 }}
           >
-            <p style={{ fontWeight: 700, fontSize: '22px' }}>République Démocratique du Congo</p>
+            <p style={{ fontWeight: 700, fontSize: '22px' }}>Republique Démocratique du Congo</p>
             <p style={{ fontWeight: 700, fontSize: '22px' }}>LIGNES MARITIMES CONGOLAISES, SA</p>
             <p style={{ fontWeight: 600, fontSize: '22px' }}>Armement National</p>
             <hr style={{ opacity: 1, color: 'blue', backgroundColor: 'blue', height: '3px' }} />
           </div>
         </div>
         <h3 className="print-source" style={{ textAlign: 'center' }}>
-          FICHE MOUVEMENT CONTENEUR
+          MOUVEMENT DE CONTENEUR
         </h3>
         <p className="print-source" style={{ textAlign: 'right', margin: '2rem 1rem 3rem 0' }}>
           <strong> Client </strong> : <span>{client}</span>
@@ -139,20 +137,20 @@ class ComponentToPrint extends React.PureComponent {
         >
           <table className="print-source" style={{ width: '100%' }}>
             <thead>
-              <th>N° Conteneur</th>
-              <th>Type/Conteneur</th>
-              <th>Taille/Conteneur</th>
-              <th>Contructeur</th>
+              <th>Numéro</th>
+              <th>Site</th>
+              <th>Sous-site</th>
+              <th>Date Mouvement</th>
             </thead>
             <tbody style={{ width: '100%' }}>
               {rows.map((value, key) => {
-                const { number, typeconteneurid, tailleconteneurid, constructeur } = value;
+                const { number, site, soussite, datemouvement  } = value;
                 return (
                   <tr key={key} style={{ textAlign: 'center' }}>
                     <td>{number}</td>
-                    <td>{typeconteneurid}</td>
-                    <td>{tailleconteneurid}</td>
-                    <td>{constructeur}</td>
+                    <td>{site}</td>
+                    <td>{soussite}</td>
+                    <td>{datemouvement}</td>
                   </tr>
                 );
               })}
@@ -165,21 +163,20 @@ class ComponentToPrint extends React.PureComponent {
         >
           <table className="print-source" style={{ width: '100%' }}>
             <thead>
-              <th>Date Fabrication</th>
-              <th>Date Entrer en Service</th>
-              <th>Date Inspection</th>
-              <th>Constat</th>
+              <th>Navire</th>
+              <th>Port</th>
+              <th>Date Arrivée</th>
+              <th>Observation</th>
             </thead>
             <tbody style={{ width: '100%' }}>
               {rows.map((value, key) => {
-                const { datefabrication, dateentrerservice, datederniereinspection, constat } =
-                  value;
+                const { exnavire, port, datearrivee, observation } = value;
                 return (
                   <tr key={key} style={{ textAlign: 'center' }}>
-                    <td>{datefabrication}</td>
-                    <td>{dateentrerservice}</td>
-                    <td>{datederniereinspection}</td>
-                    <td>{constat}</td>
+                    <td>{exnavire}</td>
+                    <td>{port}</td>
+                    <td>{datearrivee}</td>
+                    <td>{observation}</td>
                   </tr>
                 );
               })}
@@ -198,12 +195,12 @@ class ComponentToPrint extends React.PureComponent {
         >
           {/* <p>
             <strong>TVA</strong>
-          </p> */}
-          {/* <p>
+          </p>
+          <p>
             <strong>Montant Net</strong> : {total} FC
           </p> */}
           <p>
-            <strong> Date </strong> : {date}
+            <strong>Date</strong> : {date}
           </p>
         </div>
         <div
@@ -220,7 +217,7 @@ class ComponentToPrint extends React.PureComponent {
           {' '}
           <hr style={{ opacity: 1 }} />
           <p style={{ color: 'blue' }}>
-            Société Anonyme Unipersonnelle avec Conseil d'Administration
+            Société Anonyme Unipersonnelle avec conseil d'administration
           </p>
           <p style={{ color: 'blue' }}>au Capital de 16.474.900.000 CDF</p>
           <p>N°RCCM CD/RCCM/14-B-3622 - ID.NAT. : 01-715-A06030E - N°IMPOT : A0700620H</p>
@@ -238,4 +235,4 @@ class ComponentToPrint extends React.PureComponent {
   }
 }
 
-export default ComponentToPrint;
+export default ComponentToPrintMouv;

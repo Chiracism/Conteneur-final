@@ -43,9 +43,14 @@ export default function SidebarConfig() {
           path: '/dashboard/newmasterfile',
           icon: getIcon(fileTextFill)
         },
+        // {
+        //   title: 'Mouvement',
+        //   path: '/dashboard/mouvement',
+        //   icon: getIcon(fileTextFill)
+        // },
         {
           title: 'Mouvement',
-          path: '/dashboard/mouvement',
+          path: '/dashboard/newmouvement',
           icon: getIcon(fileTextFill)
         },
         {
@@ -83,6 +88,11 @@ export default function SidebarConfig() {
           path: '/dashboard/newsurestaries',
           icon: getIcon(fileTextFill)
         },
+        {
+          title: 'Localisation',
+          path: '/dashboard/localisation',
+          icon: getIcon(fileTextFill)
+        },
         // {
         //   title: 'Consultation',
         //   path: '/dashboard/consultat',
@@ -93,6 +103,11 @@ export default function SidebarConfig() {
         //   path: '/dashboard/listMasterFiles',
         //   icon: getIcon(listFill)
         // },
+        {
+          title: 'Historique Localisation',
+          path: '/dashboard/listlocalisation',
+          icon: getIcon(listFill)
+        },
         {
           title: 'Historique MasterFiles',
           path: '/dashboard/newlistMasterFiles',

@@ -1,5 +1,5 @@
 import React from 'react';
-import './Historic.css';
+import './HistoricSurestarie.css';
 
 class ComponentToPrint extends React.PureComponent {
   constructor(props) {
@@ -30,7 +30,7 @@ class ComponentToPrint extends React.PureComponent {
           </div>
         </div>
         <h3 className="print-source" style={{ textAlign: 'center' }}>
-          HISTORIQUE DES MOUVEMENTS
+          HISTORIQUE DES MOUVEMENTS CONTENEURS
         </h3>
         <div
           className="print-source"
@@ -44,38 +44,75 @@ class ComponentToPrint extends React.PureComponent {
           <table className="print-source" style={{ width: '100%', marginBottom: '2rem' }}>
             <thead>
               <th>N° Conteneur</th>
-              <th>Type</th>
               <th>Taille</th>
-              <th>B/L</th>
+              {/* <th>Type</th>
               <th>Navire</th>
+              <th>Port</th>
+              <th>Type Transport</th> */}
               <th>ETA</th>
-              <th>Contenu</th>
-              <th>Poids</th>
-              <th>Client</th>
-              <th>Numéro Memo</th>
+              <th>ETD</th>
+              {/* <th>Client</th> */}
+              <th>Caution Versée</th>
+              <th>Détention</th>
+              {/* <th>Durée Inf.</th>
+              <th>DUrée Sup.</th> */}
+              <th>Montant à Rembourser</th>
+              <th>Montant</th>
+              <th>Total</th>
+              {/* <th>Inséré par</th> */}
+              {/* <th>Série</th>
               <th>Agence</th>
-              <th>Caution</th>
-              <th>Destination</th>
+              <th>Envoi</th>
+              <th>Port Chargement</th>
+              <th>Port Dechargement</th>
+              <th>Vessel</th>
+              <th>Qté Authentification Connaissement</th>
+              <th>Qté Conventionnel 50T Consignation</th>
+              <th>Qté Conventionnel Milieu Consignation</th>
+              <th>Qté Conventionnel 500T Consignation</th>
+              <th>Qté Vehicule Consignation</th>
+              <th>Qté Conteneur 20 Consignation</th>
+              <th>Qté Conteneur 40 Consignation</th>
+              <th>Qté Conteneur 20 Tracking</th>
+              <th>Qté Conteneur 40 Tracking</th>
+              <th>Qté Conteneur 20 Equipement</th>
+              <th>Qté Conteneur 40 Equipement</th>
+              <th>Qté Frais Correction Manifeste Equipement</th>
+              <th>Qté Frais Lettre Garantie Simple Equipement</th>
+              <th>Qté Conventionnel Navigation}</th>
+              <th>Qté Vehicule Navigation}</th>
+              <th>Qté Conteneur 20 Navigation</th>
+              <th>Qté Conteneur 40 Equipement</th>
+              <th>Qté Conteneur 40 Navigation</th>
+              <th>Numéro Fiche</th>
+              <th>Taux Dollar</th>
+              <th>Taux Euro</th>
+              <th>TVA</th>
+              <th>TVA DGRKC</th>
               <th>Date</th>
+              <th>Total</th> */}
             </thead>
             <tbody style={{ width: '100%' }}>
               {rows.map((value, key) => {
+                // const { serie, agence, envoi, pol, pod, vessel, tva, total, date } = value;
                 const {
                   numero,
                   taille,
-                  type,
-                  bl,
-                  navire,
-                  eta,
-                  contenu,
-                  poids,
-                  client,
-                  numeromemo,
-                  agence,
+                  // type,
+                  // navire,
+                  // port,
+                  // typeofchoix,
+                  datearrivee,
+                  // client,
                   caution,
-                  destination,
-                  // name,
-                  dates
+                  daterestitution,
+                  detention,
+                  // duree,
+                  // durees,
+                  rembourser,
+                  montantafacture,
+                  total
+                  // name
                 } = value;
 
                 // const numeroFiche = value.numero_fiche;
@@ -107,20 +144,34 @@ class ComponentToPrint extends React.PureComponent {
                   <tr key={key} style={{ textAlign: 'center' }}>
                     <td>{numero}</td>
                     <td>{taille}</td>
-                    <td>{type}</td>
-                    <td>{bl}</td>
+                    {/* <td>{type}</td>
                     <td>{navire}</td>
-                    <td>{eta}</td>
-                    <td>{contenu}</td>
-                    <td>{poids}</td>
-                    <td>{client}</td>
-                    <td>{numeromemo}</td>
-                    <td>{agence}</td>
+                    <td>{port}</td>
+                    <td>{typeofchoix}</td> */}
+                    <td>{datearrivee}</td>
+                    <td>{daterestitution}</td>
+                    {/* <td>{client}</td> */}
                     <td>{caution}</td>
-                    <td>{destination}</td>
-                    <td>{dates}</td>
-                    {/* <td>{name}</td>
-                    <td>{date}</td>
+                    <td>{detention}</td>
+                    {/* <td>{duree}</td>
+                    <td>{durees}</td> */}
+                    <td>{rembourser}</td>
+                    <td>{montantafacture}</td>
+                    <td>{total}</td>
+                    {/* <td>{name}</td> */}
+                    {/* <td>{serie}</td>
+                    <td>{agence}</td>
+                    <td>{envoi}</td>
+                    <td>{pol}</td>
+                    <td>{pod}</td>
+                    <td>{vessel}</td>
+                    <td>{qteAuthentificationConnaissement}</td>
+                    <td>{qteConventionnel50tCconsignation}</td>
+                    <td>{qteConventionnelMilieuConsignation}</td>
+                    <td>{qteConventionnel500tConsignation}</td>
+                    <td>{qteVehiculeConsignation}</td>
+                    <td>{qteConteneur20Consignation}</td>
+                    <td>{qteConteneur40Consignation}</td>
                     <td>{qteConteneur20Tracking}</td>
                     <td>{qteConteneur40Tracking}</td>
                     <td>{qteConteneur20Equipement}</td>

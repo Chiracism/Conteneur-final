@@ -74,20 +74,19 @@ const useStyles = makeStyles((theme) => ({
 export default function UserMoreMenu({
   idHistoric,
   numberMouvement,
-  siteMouvement,
-  soussiteMouvement,
-  dateMouvement,
-  exnavireMouvement,
-  datearriveeMouvement,
-  portMouvement,
+  tailleMouvement,
+  typeMouvement,
+  blMouvement,
+  navireMouvement,
+  etaMouvement,
+  contenuMouvement,
+  poidsMouvement,
   clientMouvement,
-  etatconteneurMouvement,
-  typeconteneurMouvement,
-  sizeMouvement,
-  nombreconteneurMouvement,
-  observationMouvement,
-  dateMouvement2,
-  nameMouvement,
+  numeromemmoMouvement,
+  agenceMouvement,
+  cautionMouvement,
+  destinationMouvement,
+  datesMouvement,
   sendInformation
 }) {
   const classes = useStyles();
@@ -104,11 +103,14 @@ export default function UserMoreMenu({
 
   // for Mouvement
 
-  const [mouvdatemouvInput, setMouvDateMouvInput] = useState(dateMouvement);
-  const [mouvdatearriveeInput, setMouvDateArriveeInput] = useState(datearriveeMouvement);
-  const [mouvnombreInput, setMouvNombreInput] = useState(nombreconteneurMouvement);
-  const [mouvobservationInput, setMouvObservationInput] = useState(observationMouvement);
-  const [masterdatemouv, setMasterDateMouv] = useState('');
+  const [mouvblInput, setMouvBlInput] = useState(blMouvement);
+  const [mouvetaInput, setMouvEtaInput] = useState(etaMouvement);
+  const [mouvcontenuInput, setMouvContenuInput] = useState(contenuMouvement);
+  const [mouvpoidsInput, setMouvPoidsInput] = useState(poidsMouvement);
+  const [mouvnumeromemoInput, setMouvNumeroMemoInput] = useState(numeromemmoMouvement);
+  const [mouvcautionInput, setMouvCautionInput] = useState(cautionMouvement);
+  const [mouvdestinationInput, setMouvDestinationInput] = useState(destinationMouvement);
+  const [mouvdatesInput, setMouvDatesInput] = useState(datesMouvement);
 
   const [dataChange, setDataChange] = useState(false);
 
@@ -118,13 +120,13 @@ export default function UserMoreMenu({
   }
 
   /**
-   * Informations for MasterFile
+   * Informations for NewMasterFile N° Conteneur
    */
   const [mouvementTab, setMouvementTab] = useState([]);
   const [mouvnumberInput, setMouvNumberInput] = useState(numberMouvement);
 
   useEffect(() => {
-    axios(`${process.env.REACT_APP_BASE_URL}/masterfile/`, {
+    axios(`${process.env.REACT_APP_BASE_URL}/newmasterfile/`, {
       headers: {
         Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`
       }
@@ -139,7 +141,7 @@ export default function UserMoreMenu({
    *Informations for Type
    */
   const [mouvtypeTab, setMouvTypeTab] = useState([]);
-  const [mouvtypeInput, setMouvTypeInput] = useState(typeconteneurMouvement);
+  const [mouvtypeInput, setMouvTypeInput] = useState(typeMouvement);
 
   useEffect(() => {
     axios(`${process.env.REACT_APP_BASE_URL}/type/`, {
@@ -156,26 +158,26 @@ export default function UserMoreMenu({
   /**
    * Informations for Port
    */
-  const [mouvportTab, setMouvPortTab] = useState([]);
-  const [mouvportInput, setMouvPortInput] = useState(portMouvement);
+  // const [mouvportTab, setMouvPortTab] = useState([]);
+  // const [mouvportInput, setMouvPortInput] = useState(portMouvement);
 
-  useEffect(() => {
-    axios(`${process.env.REACT_APP_BASE_URL}/port/`, {
-      headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`
-      }
-    })
-      .then((value) => {
-        setMouvPortTab(value.data);
-      })
-      .catch(() => {});
-  }, []);
+  // useEffect(() => {
+  //   axios(`${process.env.REACT_APP_BASE_URL}/port/`, {
+  //     headers: {
+  //       Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`
+  //     }
+  //   })
+  //     .then((value) => {
+  //       setMouvPortTab(value.data);
+  //     })
+  //     .catch(() => {});
+  // }, []);
 
   /**
    * Informations for Taille
    */
-  const [mouvsizeTab, setMouvSizeTab] = useState([]);
-  const [mouvsizeInput, setMouvSizeInput] = useState(sizeMouvement);
+  const [moutailleTab, setMouvTailleTab] = useState([]);
+  const [mouvtailleInput, setMouvTailleInput] = useState(tailleMouvement);
 
   useEffect(() => {
     axios(`${process.env.REACT_APP_BASE_URL}/size/`, {
@@ -184,7 +186,7 @@ export default function UserMoreMenu({
       }
     })
       .then((value) => {
-        setMouvSizeTab(value.data);
+        setMouvTailleTab(value.data);
       })
       .catch(() => {});
   }, []);
@@ -193,7 +195,7 @@ export default function UserMoreMenu({
    * Informations for Navire
    */
   const [mouvnavireTab, setMouvNavireTab] = useState([]);
-  const [mouvnavireInput, setMouvNavireInput] = useState(exnavireMouvement);
+  const [mouvnavireInput, setMouvNavireInput] = useState(navireMouvement);
 
   useEffect(() => {
     axios(`${process.env.REACT_APP_BASE_URL}/navire/`, {
@@ -210,53 +212,53 @@ export default function UserMoreMenu({
   /**
    * Informations for Etat Conteneur
    */
-  const [mouvetatTab, setMouvEtatTab] = useState([]);
-  const [mouvetatInput, setMouvEtatInput] = useState(etatconteneurMouvement);
+  // const [mouvetatTab, setMouvEtatTab] = useState([]);
+  // const [mouvetatInput, setMouvEtatInput] = useState(etatconteneurMouvement);
 
-  useEffect(() => {
-    axios(`${process.env.REACT_APP_BASE_URL}/etat_conteneur/`, {
-      headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`
-      }
-    })
-      .then((value) => {
-        setMouvEtatTab(value.data);
-      })
-      .catch(() => {});
-  }, []);
+  // useEffect(() => {
+  //   axios(`${process.env.REACT_APP_BASE_URL}/etat_conteneur/`, {
+  //     headers: {
+  //       Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`
+  //     }
+  //   })
+  //     .then((value) => {
+  //       setMouvEtatTab(value.data);
+  //     })
+  //     .catch(() => {});
+  // }, []);
 
   /**
    * Informations for Site
    */
-  const [mouvsiteTab, setMouvSiteTab] = useState([]);
-  const [mouvsiteInput, setMouvSiteInput] = useState(siteMouvement);
+  // const [mouvsiteTab, setMouvSiteTab] = useState([]);
+  // const [mouvsiteInput, setMouvSiteInput] = useState(siteMouvement);
 
-  useEffect(() => {
-    axios(`${process.env.REACT_APP_BASE_URL}/site/`, {
-      headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`
-      }
-    })
-      .then((value) => {
-        setMouvSiteTab(value.data);
-      })
-      .catch(() => {});
-  }, []);
+  // useEffect(() => {
+  //   axios(`${process.env.REACT_APP_BASE_URL}/site/`, {
+  //     headers: {
+  //       Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`
+  //     }
+  //   })
+  //     .then((value) => {
+  //       setMouvSiteTab(value.data);
+  //     })
+  //     .catch(() => {});
+  // }, []);
 
   /**
-   * Informations for Sous-Site
+   * Informations for Agence
    */
-  const [mouvsoussiteTab, setMouvSoussiteTab] = useState([]);
-  const [mouvsoussiteInput, setMouvSoussiteInput] = useState(soussiteMouvement);
+  const [mouvagenceTab, setMouvAgenceTab] = useState([]);
+  const [mouvagenceInput, setMouvAgenceInput] = useState(agenceMouvement);
 
   useEffect(() => {
-    axios(`${process.env.REACT_APP_BASE_URL}/soussite/`, {
+    axios(`${process.env.REACT_APP_BASE_URL}/agence/`, {
       headers: {
         Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`
       }
     })
       .then((value) => {
-        setMouvSoussiteTab(value.data);
+        setMouvAgenceTab(value.data);
       })
       .catch(() => {});
   }, []);
@@ -319,7 +321,7 @@ export default function UserMoreMenu({
 
   const deleteListHistoric = () => {
     axios
-      .delete(`${process.env.REACT_APP_BASE_URL}/mouvement/${idHistoric}`, {
+      .delete(`${process.env.REACT_APP_BASE_URL}/newmouvement/${idHistoric}`, {
         headers: {
           Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`
         }
@@ -338,21 +340,22 @@ export default function UserMoreMenu({
   function printFacture() {
     axios
       .put(
-        `${process.env.REACT_APP_BASE_URL}/mouvement/${idHistoric}`,
+        `${process.env.REACT_APP_BASE_URL}/newmouvement/${idHistoric}`,
         {
-          number: mouvnumberInput,
-          site: mouvsiteInput,
-          soussite: mouvsoussiteInput,
-          datemouvement: mouvdatemouvInput,
-          exnavire: mouvnavireInput,
-          datearrivee: mouvdatearriveeInput,
-          port: mouvportInput,
+          numero: mouvnumberInput,
+          taille: mouvtailleInput,
+          type: mouvtypeInput,
+          bl: mouvblInput,
+          navire: mouvnavireInput,
+          eta: mouvetaInput,
+          contenu: mouvcontenuInput,
+          poids: mouvpoidsInput,
           client: mouvclientInput,
-          etatconteneur: mouvetatInput,
-          typeconteneur: mouvtypeInput,
-          size: mouvsizeInput,
-          nombreconteneur: mouvnombreInput,
-          observation: mouvobservationInput,
+          numeromemo: mouvnumeromemoInput,
+          agence: mouvagenceInput,
+          caution: mouvcautionInput,
+          destination: mouvdestinationInput,
+          dates: mouvdatesInput,
           date: new Date()
         },
         {
@@ -366,18 +369,19 @@ export default function UserMoreMenu({
     setIsOpen(false);
     handleClose();
     setMouvNumberInput('');
-    setMouvDateMouvInput('');
-    setMouvDateArriveeInput('');
-    setMouvNombreInput('');
-    setMouvObservationInput('');
+    setMouvTailleInput('');
     setMouvTypeInput('');
-    setMouvPortInput('');
-    setMouvSizeInput('');
+    setMouvBlInput('');
     setMouvNavireInput('');
-    setMouvEtatInput('');
-    setMouvSiteInput('');
-    setMouvSoussiteInput('');
+    setMouvEtaInput('');
+    setMouvContenuInput('');
+    setMouvPoidsInput('');
     setMouvClientInput('');
+    setMouvNumeroMemoInput('');
+    setMouvAgenceInput('');
+    setMouvCautionInput('');
+    setMouvDestinationInput('');
+    setMouvDatesInput('');
     showSuccessToastMOD();
     // reloadPage();
   }
@@ -430,7 +434,6 @@ export default function UserMoreMenu({
   return (
     <>
       <ToastContainer />
-
       {openModal ? (
         <Modal
           aria-labelledby="example-custom-modal-styling-title"
@@ -452,12 +455,16 @@ export default function UserMoreMenu({
                     options={mouvementTab}
                     onChange={(event, newType) => {
                       if (newType) {
-                        setMouvNumberInput(newType.number);
+                        setMouvNumberInput(newType.numero);
+                        setMouvTailleInput(newType.taille);
+                        setMouvTypeInput(newType.type);
                       } else {
                         setMouvNumberInput(null);
+                        setMouvTailleInput(null);
+                        setMouvTypeInput(null);
                       }
                     }}
-                    getOptionLabel={(option) => option.number}
+                    getOptionLabel={(option) => option.numero}
                     style={{ width: 400 }}
                     renderInput={(params) => (
                       <TextField {...params} label="Sélectionner le numero" variant="outlined" />
@@ -465,15 +472,27 @@ export default function UserMoreMenu({
                   />
                 </div>
                 <div className="input-label-wrapper">
-                  Site:{' '}
+                  B/L:{' '}
+                  <TextField
+                    className="basic-input"
+                    // label="Saisissez la date de mouvement"
+                    variant="outlined"
+                    value={mouvblInput}
+                    onChange={(e) => {
+                      setMouvBlInput(e.target.value);
+                    }}
+                  />
+                </div>
+                <div className="input-label-wrapper">
+                  Navire:{' '}
                   <Autocomplete
                     className="combo-box-completion"
-                    options={mouvsiteTab}
+                    options={mouvnavireTab}
                     onChange={(event, newType) => {
                       if (newType) {
-                        setMouvSiteInput(newType.name);
+                        setMouvNavireInput(newType.name);
                       } else {
-                        setMouvSiteInput(null);
+                        setMouvNavireInput(null);
                       }
                     }}
                     getOptionLabel={(option) => option.name}
@@ -484,15 +503,15 @@ export default function UserMoreMenu({
                   />
                 </div>
                 <div className="input-label-wrapper">
-                  Date Arrviee:{' '}
+                  Poids:{' '}
                   <TextField
                     className="basic-input"
                     // label="Saisissez la date de mouvement"
                     type="date"
                     variant="outlined"
-                    value={mouvdatearriveeInput}
+                    value={mouvpoidsInput}
                     onChange={(e) => {
-                      setMouvDateArriveeInput(e.target.value);
+                      setMouvPoidsInput(e.target.value);
                     }}
                   />
                 </div>
@@ -516,6 +535,37 @@ export default function UserMoreMenu({
                   />
                 </div>
                 <div className="input-label-wrapper">
+                  Agence:{' '}
+                  <Autocomplete
+                    className="combo-box-completion"
+                    options={mouvagenceTab}
+                    onChange={(event, newType) => {
+                      if (newType) {
+                        setMouvAgenceInput(newType.name);
+                      } else {
+                        setMouvAgenceInput(null);
+                      }
+                    }}
+                    getOptionLabel={(option) => option.name}
+                    style={{ width: 400 }}
+                    renderInput={(params) => (
+                      <TextField {...params} label="Sélectionner l'Agence" variant="outlined" />
+                    )}
+                  />
+                </div>
+                <div className="input-label-wrapper">
+                  Destination:{' '}
+                  <TextField
+                    className="basic-input"
+                    // label="Saisissez la date de mouvement"
+                    variant="outlined"
+                    value={mouvdestinationInput}
+                    onChange={(e) => {
+                      setMouvDestinationInput(e.target.value);
+                    }}
+                  />
+                </div>
+                {/* <div className="input-label-wrapper">
                   Type:{' '}
                   <Autocomplete
                     className="combo-box-completion"
@@ -573,10 +623,95 @@ export default function UserMoreMenu({
                       setMouvDateMouvInput(e.target.value);
                     }}
                   />
-                </div>
+                </div> */}
               </Box>
-              <Box className="box-2-wrapper">
+              <Box className="box-wrapper">
                 <div className="input-label-wrapper">
+                  Taille:{' '}
+                  <TextField
+                    className="basic-input"
+                    // label="Saisissez la date de mouvement"
+                    variant="outlined"
+                    value={mouvtailleInput}
+                    onChange={(e) => {
+                      setMouvTailleInput(e.target.value);
+                    }}
+                  />
+                </div>
+                <div className="input-label-wrapper">
+                  Type:{' '}
+                  <TextField
+                    className="basic-input"
+                    // label="Saisissez la date de mouvement"
+                    variant="outlined"
+                    value={mouvtypeInput}
+                    onChange={(e) => {
+                      setMouvTypeInput(e.target.value);
+                    }}
+                  />
+                </div>
+                <div className="input-label-wrapper">
+                  ETA:{' '}
+                  <TextField
+                    className="basic-input"
+                    // label="Saisissez la date de mouvement"
+                    type="date"
+                    variant="outlined"
+                    value={mouvetaInput}
+                    onChange={(e) => {
+                      setMouvEtaInput(e.target.value);
+                    }}
+                  />
+                </div>
+                <div className="input-label-wrapper">
+                  Contenu:{' '}
+                  <TextField
+                    className="basic-input"
+                    // label="Saisissez la date de mouvement"
+                    variant="outlined"
+                    value={mouvcontenuInput}
+                    onChange={(e) => {
+                      setMouvContenuInput(e.target.value);
+                    }}
+                  />
+                </div>
+                <div className="input-label-wrapper">
+                  N° Memo:{' '}
+                  <TextField
+                    className="basic-input"
+                    // label="Saisissez la date de mouvement"
+                    variant="outlined"
+                    value={mouvnumeromemoInput}
+                    onChange={(e) => {
+                      setMouvNumeroMemoInput(e.target.value);
+                    }}
+                  />
+                </div>
+                <div className="input-label-wrapper">
+                  Caution:{' '}
+                  <TextField
+                    className="basic-input"
+                    // label="Saisissez la date de mouvement"
+                    variant="outlined"
+                    value={mouvcautionInput}
+                    onChange={(e) => {
+                      setMouvCautionInput(e.target.value);
+                    }}
+                  />
+                </div>
+                <div className="input-label-wrapper">
+                  Date:{' '}
+                  <TextField
+                    className="basic-input"
+                    // label="Saisissez la date de mouvement"
+                    variant="outlined"
+                    value={mouvdatesInput}
+                    onChange={(e) => {
+                      setMouvDatesInput(e.target.value);
+                    }}
+                  />
+                </div>
+                {/* <div className="input-label-wrapper">
                   Sous-site:{' '}
                   <Autocomplete
                     className="combo-box-completion"
@@ -633,25 +768,6 @@ export default function UserMoreMenu({
                     )}
                   />
                 </div>
-                <div className="input-label-wrapper">
-                  Taille:{' '}
-                  <Autocomplete
-                    className="combo-box-completion"
-                    options={mouvsizeTab}
-                    onChange={(event, newType) => {
-                      if (newType) {
-                        setMouvSizeInput(newType.name);
-                      } else {
-                        setMouvSizeInput(null);
-                      }
-                    }}
-                    getOptionLabel={(option) => option.name}
-                    style={{ width: 400 }}
-                    renderInput={(params) => (
-                      <TextField {...params} label="Sélectionner la Taille" variant="outlined" />
-                    )}
-                  />
-                </div>
                 <div className="input-label-3-wrapper">
                   Nombre:{' '}
                   <TextField
@@ -675,7 +791,7 @@ export default function UserMoreMenu({
                       setMouvObservationInput(e.target.value);
                     }}
                   />
-                </div>
+                </div> */}
               </Box>
             </Card>
             {/* <Button
@@ -701,17 +817,17 @@ export default function UserMoreMenu({
                   ref={componentRef}
                   client={mouvclientInput}
                   number={mouvnumberInput}
-                  site={mouvsiteInput}
-                  soussite={mouvsoussiteInput}
-                  datemouvement={mouvdatemouvInput}
-                  exnavire={mouvnavireInput}
-                  datearrivee={mouvdatearriveeInput}
-                  port={mouvportInput}
-                  etatconteneur={mouvetatInput}
-                  typeconteneur={mouvtypeInput}
-                  size={mouvsizeInput}
-                  nombreconteneur={mouvnombreInput}
-                  observation={mouvobservationInput}
+                  taille={mouvtailleInput}
+                  type={mouvtypeInput}
+                  navire={mouvnavireInput}
+                  eta={mouvetaInput}
+                  contenu={mouvcontenuInput}
+                  poids={mouvpoidsInput}
+                  numeromemo={mouvnumeromemoInput}
+                  agence={mouvagenceInput}
+                  caution={mouvcautionInput}
+                  destination={mouvdestinationInput}
+                  dates={mouvdatesInput}
                   rows={[]}
                 />
               </div>

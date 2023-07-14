@@ -14,21 +14,14 @@ class ComponentToPrint extends React.PureComponent {
       rows,
       client,
       number,
-      taille,
-      type,
-      navire,
-      eta,
-      contenu,
-      poids,
-      numeromemo,
-      agence,
-      caution,
-      destination,
-      dates,
-      // datefabrication,
-      // dateentrerservice,
-      // datederniereinspection,
-      dernierconstat
+      typeconteneurid,
+      tailleconteneurid,
+      constructeur,
+      datefabrication,
+      dateentrerservice,
+      datederniereinspection,
+      // dernierconstat,
+      observation
     } = this.props;
     const { date } = this.state;
 
@@ -66,11 +59,13 @@ class ComponentToPrint extends React.PureComponent {
           </div>
         </div>
         <h3 className="print-source" style={{ textAlign: 'center' }}>
-          FICHE MOUVEMENT CONTENEUR
+          FICHE CONTENEUR
         </h3>
-        <p className="print-source" style={{ textAlign: 'right', margin: '2rem 1rem 3rem 0' }}>
+        <br />
+        <br />
+        {/* <p className="print-source" style={{ textAlign: 'right', margin: '2rem 1rem 3rem 0' }}>
           <strong> Client </strong> : <span>{client}</span>
-        </p>
+        </p> */}
         {/* <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 1rem 4.5rem' }}>
           <span>{client.address}</span>
         </p> */}
@@ -80,59 +75,38 @@ class ComponentToPrint extends React.PureComponent {
         <br />
         <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
           {/* '0rem 1rem 0rem 6.8rem' */}
-          <strong>Taille Conteneur</strong> : <span>{taille}</span>
+          <strong>Type Conteneur</strong> : <span>{typeconteneurid}</span>
         </p>
         <br />
         <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
           {/* 2rem 1rem 3rem 0 */}
-          <strong>Type Conteneur</strong> : <span>{type}</span>
+          <strong>Taille Conteneur</strong> : <span>{tailleconteneurid}</span>
         </p>
         <br />
         <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
           {/* 1rem 1rem 0rem 1rem */}
-          <strong>Navire</strong> : <span>{navire}</span>
+          <strong>Constructeur</strong> : <span>{constructeur}</span>
         </p>
         <br />
         <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
           {/* 1rem 1rem 0rem 1rem */}
-          <strong>ETA</strong> : <span>{eta}</span>
+          <strong>Date Fabrication</strong> : <span>{datefabrication}</span>
         </p>
         <br />
         <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
           {/* 1rem 1rem 0rem 1rem */}
-          <strong>Poids</strong> : <span>{poids}</span>
+          <strong>Date Expiration</strong> : <span>{dateentrerservice}</span>
         </p>
         <br />
         <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
           {/* 1rem 1rem 0rem 1rem */}
-          <strong>Contenu</strong> : <span>{contenu}</span>
+          <strong>Date Inspection</strong> : <span>{datederniereinspection}</span>
         </p>
         <br />
         <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
           {/* 1rem 1rem 0rem 1rem */}
-          <strong>N° Memo</strong> : <span>{numeromemo}</span>
+          <strong>Observation </strong> : <span>{observation}</span>
         </p>
-        <br />
-        <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
-          {/* 1rem 1rem 0rem 1rem */}
-          <strong>Agence</strong> : <span>{agence}</span>
-        </p>
-        <br />
-        <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
-          {/* 1rem 1rem 0rem 1rem */}
-          <strong>Caution</strong> : <span>{caution}</span>
-        </p>
-        <br />
-        <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
-          {/* 1rem 1rem 0rem 1rem */}
-          <strong>Destination</strong> : <span>{destination}</span>
-        </p>
-        <br />
-        <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
-          {/* 1rem 1rem 0rem 1rem */}
-          <strong>Date</strong> : <span>{dates}</span>
-        </p>
-        <br />
         {/* <div
           className="print-source"
           style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem', width: '100%' }}

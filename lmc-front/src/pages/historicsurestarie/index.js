@@ -61,7 +61,7 @@ const TABLE_HEAD = [
   { id: 'montantafacture', label: 'Montant Facturer', alignRight: false },
   { id: 'total', label: 'Total', alignRight: false },
   { id: 'name', label: 'Utilisateur', alignRight: false },
-  // { id: 'date', label: 'Date', alignRight: false },
+  { id: 'date', label: 'Date', alignRight: false },
   { id: '' }
 ];
 
@@ -90,9 +90,37 @@ function applySortFilter(array, comparator, query) {
     if (order !== 0) return order;
     return a[1] - b[1];
   });
-  if (query) {
-    return filter(array, (_user) => _user.numero.toLowerCase().indexOf(query.toLowerCase()) !== -1);
+  if (query.filterName || query.filterStartDate || query.filterEndDate) {
+    let dataFiltered = null;
+
+    if (query.filterName) {
+      dataFiltered = filter(
+        array,
+        (_user) => _user.numero.toLowerCase().indexOf(query.filterName.toLowerCase()) !== -1
+      );
+    }
+
+    if (query.filterStartDate) {
+      const finalData = dataFiltered || array;
+      dataFiltered = filter(
+        finalData,
+        (_user) => _user.createdAt.toLowerCase() >= query.filterStartDate.toLowerCase()
+      );
+    }
+
+    if (query.filterEndDate) {
+      const finalData = dataFiltered || array;
+      dataFiltered = filter(
+        finalData,
+        (_user) =>
+          new Date(query.filterEndDate).getTime() >= new Date(_user.createdAt).get.getTime()
+      );
+    }
+    return dataFiltered;
   }
+  // if (query) {
+  //   return filter(array, (_user) => _user.numero.toLowerCase().indexOf(query.toLowerCase()) !== -1);
+  // }
   return stabilizedThis.map((el) => el[0]);
 }
 
@@ -118,7 +146,8 @@ export default function User() {
   const [selected, setSelected] = useState([]);
   const [orderBy, setOrderBy] = useState('id');
   const [filterName, setFilterName] = useState('');
-  // const [orderBy, setOrderBy] = useState('surestariedate');
+  const [filterStartDate, setFilterStartDate] = useState('');
+  const [filterEndDate, setFilterEndDate] = useState('');
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   // const [historicsurestarieTab, setHistoricSurestarieTab] = useState([]);
@@ -205,14 +234,22 @@ export default function User() {
     setFilterName(event.target.value);
   };
 
+  const handleFilterStartDate = (event) => {
+    setFilterStartDate(event.target.value);
+  };
+
+  const handleFilterEndDate = (event) => {
+    setFilterEndDate(event.target.value);
+  };
+
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - historicsurestarie.length) : 0;
 
-  const filteredSurestarie = applySortFilter(
-    historicsurestarie,
-    getComparator(order, orderBy),
-    filterName
-  );
+  const filteredSurestarie = applySortFilter(historicsurestarie, getComparator(order, orderBy), {
+    filterName,
+    filterStartDate,
+    filterEndDate
+  });
 
   const isUserNotFound = filteredSurestarie.length === 0;
 
@@ -231,7 +268,11 @@ export default function User() {
           <HistoricSurestarieListToolbar
             numSelected={selected.length}
             filterName={filterName}
+            filterStartDate={filterStartDate}
+            filterEndDate={filterEndDate}
             onFilterName={handleFilterByName}
+            onFilterStartDate={handleFilterStartDate}
+            onFilterEndDate={handleFilterEndDate}
           />
 
           <Scrollbar>
@@ -268,7 +309,8 @@ export default function User() {
                         rembourser,
                         montantafacture,
                         total,
-                        name
+                        name,
+                        createdAt
                       } = row;
 
                       const isItemSelected = selected.indexOf(numero) !== -1;
@@ -405,6 +447,13 @@ export default function User() {
                             <Stack direction="row" justifyContent="center" spacing={2}>
                               <Typography variant="subtitle2" noWrap>
                                 {name}
+                              </Typography>
+                            </Stack>
+                          </TableCell>
+                          <TableCell component="th" scope="row" padding="none">
+                            <Stack direction="row" justifyContent="center" spacing={2}>
+                              <Typography variant="subtitle2" noWrap>
+                                {createdAt}
                               </Typography>
                             </Stack>
                           </TableCell>

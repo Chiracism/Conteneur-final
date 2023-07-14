@@ -95,13 +95,40 @@ function getComparator(order, orderBy) {
 
 function applySortFilter(array, comparator, query) {
   const stabilizedThis = array.map((el, index) => [el, index]);
+
   stabilizedThis.sort((a, b) => {
     const order = comparator(a[0], b[0]);
     if (order !== 0) return order;
     return a[1] - b[1];
   });
-  if (query) {
-    return filter(array, (_user) => _user.numero.toLowerCase().indexOf(query.toLowerCase()) !== -1);
+
+  if (query.filterName || query.filterStartDate || query.filterEndDate) {
+    let dataFiltered = null;
+
+    if (query.filterName) {
+      dataFiltered = filter(
+        array,
+        (_user) => _user.numero.toLowerCase().indexOf(query.filterName.toLowerCase()) !== -1
+      );
+    }
+
+    if (query.filterStartDate) {
+      const finalData = dataFiltered || array;
+      dataFiltered = filter(
+        finalData,
+        (_user) => _user.createdAt.toLowerCase() >= query.filterStartDate.toLowerCase()
+      );
+    }
+
+    if (query.filterEndDate) {
+      const finalData = dataFiltered || array;
+      dataFiltered = filter(
+        finalData,
+        (_user) =>
+          new Date(query.filterEndDate).getTime() >= new Date(_user.createdAt).get.getTime()
+      );
+    }
+    return dataFiltered;
   }
   return stabilizedThis.map((el) => el[0]);
 }
@@ -130,6 +157,8 @@ export default function Countrie() {
   const [selected, setSelected] = useState([]);
   const [orderBy, setOrderBy] = useState('id');
   const [filterName, setFilterName] = useState('');
+  const [filterStartDate, setFilterStartDate] = useState('');
+  const [filterEndDate, setFilterEndDate] = useState('');
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const [historicTab, setHistoricTab] = useState([]);
@@ -265,9 +294,21 @@ export default function Countrie() {
     setFilterName(event.target.value);
   };
 
+  const handleFilterStartDate = (event) => {
+    setFilterStartDate(event.target.value);
+  };
+
+  const handleFilterEndDate = (event) => {
+    setFilterEndDate(event.target.value);
+  };
+
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - historic.length) : 0;
 
-  const filteredHistoric = applySortFilter(historic, getComparator(order, orderBy), filterName);
+  const filteredHistoric = applySortFilter(historic, getComparator(order, orderBy), {
+    filterName,
+    filterStartDate,
+    filterEndDate
+  });
 
   const isUserNotFound = filteredHistoric.length === 0;
 
@@ -328,7 +369,11 @@ export default function Countrie() {
           <HistoricListToolbar
             numSelected={selected.length}
             filterName={filterName}
+            filterStartDate={filterStartDate}
+            filterEndDate={filterEndDate}
             onFilterName={handleFilterByName}
+            onFilterStartDate={handleFilterStartDate}
+            onFilterEndDate={handleFilterEndDate}
           />
 
           <Scrollbar>

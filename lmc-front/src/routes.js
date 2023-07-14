@@ -22,6 +22,9 @@ import Historicreparation from './pages/historicreparation';
 import ListeMasterFiles from './pages/listMasterFiles';
 import NewMasterFile from './pages/newmasterfile/masterfile';
 import NewListeMasterFiles from './pages/newlistMasterFiles';
+import NewMouvement from './pages/newmouvement/mouvement';
+import Localisation from './pages/localisation/localisation';
+import ListeLocalisation from './pages/listlocalisation';
 import Categorie from './pages/categorie';
 import Client from './pages/client';
 import Countrie from './pages/countrie';
@@ -59,7 +62,9 @@ export default function Router() {
         { path: 'app', element: <DashboardApp /> },
         { path: 'user', element: <User /> },
         { path: 'masterfile', element: <MasterFile /> },
+        { path: 'localisation', element: <Localisation /> },
         { path: 'newmasterfile', element: <NewMasterFile /> },
+        { path: 'newmouvement', element: <NewMouvement /> },
         { path: 'mouvement', element: <Mouvement /> },
         { path: 'reparation', element: <Reparation /> },
         { path: 'surestarie', element: <Surestarie /> },
@@ -91,6 +96,7 @@ export default function Router() {
         { path: 'listMasterFiles', element: <ListeMasterFiles /> },
         { path: 'newlistMasterFiles', element: <NewListeMasterFiles /> },
         { path: 'listeconteneur', element: <Listeconteneur /> },
+        { path: 'listlocalisation', element: <ListeLocalisation /> },
         // { path: 'newsurestarie', element: <NewSurestarie /> },
         { path: 'newsurestaries', element: <NewSurestaries /> },
         { path: 'consultat', element: <Consultat /> }
