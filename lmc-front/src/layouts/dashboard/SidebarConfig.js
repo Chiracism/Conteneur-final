@@ -153,11 +153,11 @@ export default function SidebarConfig() {
           path: '/dashboard/client',
           icon: getIcon(peopleFill)
         },
-        {
-          title: 'categorie',
-          path: '/dashboard/categorie',
-          icon: getIcon(peopleFill)
-        },
+        // {
+        //   title: 'categorie',
+        //   path: '/dashboard/categorie',
+        //   icon: getIcon(peopleFill)
+        // },
         {
           title: 'Pays',
           path: '/dashboard/countrie',
@@ -262,13 +262,13 @@ export default function SidebarConfig() {
           icon: getIcon(pieChart2Fill)
         },
         {
-          title: 'Master File',
-          path: '/dashboard/masterfile',
+          title: 'MasterFile',
+          path: '/dashboard/newmasterfile',
           icon: getIcon(fileTextFill)
         },
         {
           title: 'Mouvement',
-          path: '/dashboard/mouvement',
+          path: '/dashboard/newmouvement',
           icon: getIcon(fileTextFill)
         },
         {
@@ -288,12 +288,12 @@ export default function SidebarConfig() {
         // },
         {
           title: 'Surestarie',
-          path: '/dashboard/surestarie',
+          path: '/dashboard/newsurestaries',
           icon: getIcon(fileTextFill)
         },
         {
-          title: 'Historique MasterFiles',
-          path: '/dashboard/historique',
+          title: 'Historique',
+          path: '/dashboard/newlistMasterFiles',
           icon: getIcon(listFill)
         },
         {
@@ -312,105 +312,10 @@ export default function SidebarConfig() {
           icon: getIcon(listFill)
         },
         {
-          title: 'Historique',
-          path: '/dashboard/listMasterFiles',
+          title: 'Historique Localisation',
+          path: '/dashboard/listlocalisation',
           icon: getIcon(listFill)
         },
-        // {
-        //   title: 'choix',
-        //   path: '/dashboard/choix',
-        //   icon: getIcon(peopleFill)
-        // },
-        {
-          title: 'client',
-          path: '/dashboard/client',
-          icon: getIcon(peopleFill)
-        },
-        {
-          title: 'categorie',
-          path: '/dashboard/categorie',
-          icon: getIcon(peopleFill)
-        },
-        {
-          title: 'Pays',
-          path: '/dashboard/countrie',
-          icon: getIcon(flagFill)
-        },
-        {
-          title: 'Devise',
-          path: '/dashboard/devise',
-          icon: getIcon(compassFill)
-        },
-        {
-          title: 'Etat de Conteneur',
-          path: '/dashboard/etat_conteneur',
-          icon: getIcon(compassFill)
-        },
-        {
-          title: 'Materiel',
-          path: '/dashboard/materiel',
-          icon: getIcon(compassFill)
-        },
-        {
-          title: 'Navire',
-          path: '/dashboard/navire',
-          icon: getIcon(compassFill)
-        },
-        {
-          title: 'Propriétaire',
-          path: '/dashboard/owner',
-          icon: getIcon(peopleFill)
-        },
-        // {
-        //   title: 'Vessel',
-        //   path: '/dashboard/vessel',
-        //   icon: getIcon(compassFill)
-        // },
-        {
-          title: 'Port',
-          path: '/dashboard/port',
-          icon: getIcon(flagFill)
-        },
-        {
-          title: 'Site',
-          path: '/dashboard/site',
-          icon: getIcon(flagFill)
-        },
-        {
-          title: 'Sous site',
-          path: '/dashboard/soussite',
-          icon: getIcon(flagFill)
-        },
-        {
-          title: 'Taille',
-          path: '/dashboard/size',
-          icon: getIcon(flagFill)
-        },
-        {
-          title: 'Taux',
-          path: '/dashboard/rate',
-          icon: getIcon(flagFill)
-        },
-        {
-          title: 'Type',
-          path: '/dashboard/type',
-          icon: getIcon(flagFill)
-        }
-        // {
-        //   title: 'Chargeur',
-        //   path: '/dashboard/chargeur',
-        //   icon: getIcon(personFill)
-        // },
-        // {
-        //   title: 'Agence',
-        //   path: '/dashboard/agence',
-        //   icon: getIcon(awardFill)
-        // },
-        // {
-        //   title: 'user',
-        //   path: '/dashboard/user',
-        //   icon: getIcon(peopleFill)
-        // }
       ];
     }
   } else {
