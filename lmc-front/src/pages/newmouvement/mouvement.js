@@ -284,6 +284,14 @@ export default function Mouvement() {
       .catch(() => {});
   }, []);
 
+  useEffect(() => {
+    if (mouvsizeInput === 20) {
+      setMouvCautionInput(1000);
+    } else {
+      setMouvCautionInput(2000);
+    }
+  }, [mouvsizeInput]);
+
   /**
    * Informations for Table
    */
@@ -362,6 +370,48 @@ export default function Mouvement() {
               />
             </div>
             <div className="input-label-wrapper">
+              Caution:{' '}
+              <TextField
+                className="basic-input"
+                // label="Saisissez le nombre"
+                variant="outlined"
+                value={mouvcautionInput}
+                onChange={(e) => {
+                  setMouvCautionInput(e.target.value);
+                }}
+              />
+            </div>
+          </Box>
+          <Box className="box-wrapper">
+            <div className="input-label-wrapper">
+              Taille:{' '}
+              <TextField
+                className="basic-input"
+                // label="Saisissez le nombre"
+                variant="outlined"
+                value={mouvsizeInput}
+                onChange={(e) => {
+                  setMouvSizeInput(e.target.value);
+                }}
+              />
+            </div>
+            <div className="input-label-wrapper">
+              Type:{' '}
+              <TextField
+                className="basic-input"
+                // label="Saisissez le nombre"
+                variant="outlined"
+                value={mouvtypeInput}
+                onChange={(e) => {
+                  setMouvTypeInput(e.target.value);
+                }}
+              />
+            </div>
+          </Box>
+        </Card>
+        <Card className="card-wrapper">
+          <Box className="box-wrapper">
+            <div className="input-label-wrapper">
               B/L:{' '}
               <TextField
                 className="basic-input"
@@ -434,31 +484,6 @@ export default function Mouvement() {
                 renderInput={(params) => (
                   <TextField {...params} label="Sélectionner l'Agence" variant="outlined" />
                 )}
-              />
-            </div>
-            <div className="input-label-wrapper">
-              Caution:{' '}
-              <TextField
-                className="basic-input"
-                // label="Saisissez le nombre"
-                variant="outlined"
-                value={mouvcautionInput}
-                onChange={(e) => {
-                  setMouvCautionInput(e.target.value);
-                }}
-              />
-            </div>
-            <div className="input-label-wrapper">
-              Date:{' '}
-              <TextField
-                className="basic-input"
-                // label="Saisissez le nombre"
-                type="date"
-                variant="outlined"
-                value={mouvdatesInput}
-                onChange={(e) => {
-                  setMouvDatesInput(e.target.value);
-                }}
               />
             </div>
             {/* <div className="input-label-wrapper">
@@ -596,31 +621,7 @@ export default function Mouvement() {
               />
             </div> */}
           </Box>
-          <Box className="box-2-wrapper">
-            <div className="input-label-wrapper">
-              Taille:{' '}
-              <TextField
-                className="basic-input"
-                // label="Saisissez le nombre"
-                variant="outlined"
-                value={mouvsizeInput}
-                onChange={(e) => {
-                  setMouvSizeInput(e.target.value);
-                }}
-              />
-            </div>
-            <div className="input-label-wrapper">
-              Type:{' '}
-              <TextField
-                className="basic-input"
-                // label="Saisissez le nombre"
-                variant="outlined"
-                value={mouvtypeInput}
-                onChange={(e) => {
-                  setMouvTypeInput(e.target.value);
-                }}
-              />
-            </div>
+          <Box className="box-wrapper">
             <div className="input-label-wrapper">
               Navire:{' '}
               <Autocomplete
@@ -673,6 +674,19 @@ export default function Mouvement() {
                 value={mouvdestinationInput}
                 onChange={(e) => {
                   setMouvDestinationInput(e.target.value);
+                }}
+              />
+            </div>
+            <div className="input-label-wrapper">
+              Date:{' '}
+              <TextField
+                className="basic-input"
+                // label="Saisissez le nombre"
+                type="date"
+                variant="outlined"
+                value={mouvdatesInput}
+                onChange={(e) => {
+                  setMouvDatesInput(e.target.value);
                 }}
               />
             </div>

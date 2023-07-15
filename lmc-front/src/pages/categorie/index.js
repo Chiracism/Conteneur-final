@@ -39,11 +39,7 @@ import { CheckUserAuth } from '../../utils/auth';
 
 // ----------------------------------------------------------------------
 
-const TABLE_HEAD = [
-  { id: 'index', label: 'Identifiant', alignRight: false },
-  { id: 'name', label: 'Name', alignRight: false },
-  { id: '' }
-];
+const TABLE_HEAD = [{ id: 'name', label: 'Nom Elément', alignRight: false }, { id: '' }];
 
 // ----------------------------------------------------------------------
 
@@ -103,7 +99,7 @@ export default function Agence() {
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const [categorieTab, setCategorieTab] = useState([]);
-  const [categorieindexInput, setCategorieIndexInput] = useState('');
+  // const [categorieindexInput, setCategorieIndexInput] = useState('');
   const [categorienameInput, setCategorieNameInput] = useState('');
 
   const [dataChange, setDataChange] = useState(false);
@@ -153,18 +149,18 @@ export default function Agence() {
   };
 
   const showSuccessToastCategorie = () => {
-    toast.success('La Catégorie a été enregistrée avec succès', {
+    toast.success('Element a été enregistré avec succès', {
       position: toast.POSITION.TOP_RIGHT,
       autoClose: 1000
     });
   };
 
-  const addCategorie = (categorieindexInput, categorienameInput) => {
-    if (categorieindexInput !== '' && categorieindexInput !== null && categorienameInput !== '')
+  const addCategorie = (categorienameInput) => {
+    if (categorienameInput !== '' && categorienameInput !== null)
       axios
         .post(
           `${process.env.REACT_APP_BASE_URL}/categorie/`,
-          { index: categorieindexInput, name: categorienameInput },
+          { name: categorienameInput },
           {
             headers: {
               Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`
@@ -175,12 +171,10 @@ export default function Agence() {
           isDataChange();
           handleClose();
 
-          setCategorieIndexInput('');
           setCategorieNameInput('');
           showSuccessToastCategorie();
         })
         .catch(() => {
-          setCategorieIndexInput('');
           setCategorieNameInput('');
         });
   };
@@ -231,7 +225,7 @@ export default function Agence() {
     setFilterName(event.target.value);
   };
 
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - setCategorieTab.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - categorieTab.length) : 0;
 
   const filteredCategorie = applySortFilter(
     categorieTab,
@@ -242,18 +236,18 @@ export default function Agence() {
   const isUserNotFound = filteredCategorie.length === 0;
 
   return (
-    <Page title="Categorie | LMC App">
+    <Page title="Export | LMC App">
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            Categorie
+            Export
           </Typography>
           <Button
             variant="contained"
             startIcon={<Icon icon={plusFill} />}
             onClick={() => handleOpen()}
           >
-            Nouvelle Catégorie
+            Nouveau Element
           </Button>
         </Stack>
 
@@ -271,13 +265,13 @@ export default function Agence() {
               <h2 align="center" id="simple-modal-title">
                 Ajouter une Categorie
               </h2>
-              <TextField
+              {/* <TextField
                 label="Saisissez l'index"
                 variant="outlined"
                 style={{ marginTop: 20, marginBottom: 20 }}
                 value={categorieindexInput}
                 onChange={(e) => setCategorieIndexInput(e.target.value)}
-              />
+              /> */}
               <TextField
                 label="Saisissez le Nom de la catégorie"
                 variant="outlined"
@@ -286,7 +280,7 @@ export default function Agence() {
                 onChange={(e) => setCategorieNameInput(e.target.value)}
               />
               <Button
-                onClick={() => addCategorie(categorieindexInput, categorienameInput)}
+                onClick={() => addCategorie(categorienameInput)}
                 variant="contained"
                 startIcon={<Icon icon={plusFill} />}
               >
@@ -310,7 +304,7 @@ export default function Agence() {
                   order={order}
                   orderBy={orderBy}
                   headLabel={TABLE_HEAD}
-                  rowCount={setCategorieTab.length}
+                  rowCount={categorieTab.length}
                   numSelected={selected.length}
                   onRequestSort={handleRequestSort}
                   onSelectAllClick={handleSelectAllClick}
@@ -319,7 +313,7 @@ export default function Agence() {
                   {filteredCategorie
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row) => {
-                      const { id, index, name } = row;
+                      const { id, name } = row;
                       const isItemSelected = selected.indexOf(name) !== -1;
 
                       return (
@@ -337,13 +331,13 @@ export default function Agence() {
                               onChange={(event) => handleClick(event, name)}
                             />
                           </TableCell>
-                          <TableCell component="th" scope="row" padding="none">
+                          {/* <TableCell component="th" scope="row" padding="none">
                             <Stack direction="row" alignItems="center" spacing={2}>
                               <Typography variant="subtitle2" noWrap>
                                 {index}
                               </Typography>
                             </Stack>
-                          </TableCell>
+                          </TableCell> */}
                           <TableCell component="th" scope="row" padding="none">
                             <Stack direction="row" alignItems="center" spacing={2}>
                               <Typography variant="subtitle2" noWrap>
@@ -355,7 +349,7 @@ export default function Agence() {
                           <TableCell align="right">
                             <CategorieMoreMenu
                               idCategorie={id}
-                              indexCategorie={index}
+                              // indexCategorie={index}
                               nameCategorie={name}
                               sendInformation={(value) => isDataChange(value)}
                             />
@@ -385,7 +379,7 @@ export default function Agence() {
           <TablePagination
             rowsPerPageOptions={[5, 10, 25]}
             component="div"
-            count={setCategorieTab.length}
+            count={categorieTab.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}

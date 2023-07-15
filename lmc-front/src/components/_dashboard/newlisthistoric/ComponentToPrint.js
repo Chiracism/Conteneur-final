@@ -60,9 +60,10 @@ class ComponentToPrint extends React.PureComponent {
         <h3 className="print-source" style={{ textAlign: 'center' }}>
           FICHE CONTENEUR
         </h3>
-        <p className="print-source" style={{ textAlign: 'right', margin: '2rem 1rem 3rem 0' }}>
+        <br />
+        {/* <p className="print-source" style={{ textAlign: 'right', margin: '2rem 1rem 3rem 0' }}>
           <strong> Client </strong> : <span>{client}</span>
-        </p>
+        </p> */}
         {/* <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 1rem 4.5rem' }}>
           <span>{client.address}</span>
         </p> */}

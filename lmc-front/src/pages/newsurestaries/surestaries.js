@@ -605,6 +605,14 @@ export default function Mouvement() {
   }, [surestariedetentionInput, datainferieur]);
 
   useEffect(() => {
+    if (surestariesizeInput === 20) {
+      setSurestarieCautionVerseeInput(1000);
+    } else {
+      setSurestarieCautionVerseeInput(2000);
+    }
+  }, [surestariesizeInput]);
+
+  useEffect(() => {
     // Get User Auth
     const tokenData = localStorage.getItem('lmc_token');
 
@@ -705,7 +713,7 @@ export default function Mouvement() {
                 }}
               />
             </div> */}
-            <div className="input-label-wrapper">
+            {/* <div className="input-label-wrapper">
               N° Conteneur:{' '}
               <Autocomplete
                 className="combo-box-completion"
@@ -727,7 +735,7 @@ export default function Mouvement() {
                   <TextField {...params} label="Sélectionner le numero" variant="outlined" />
                 )}
               />
-            </div>
+            </div> */}
             {/* <div className="input-label-wrapper">
               Type:{' '}
               <Autocomplete
@@ -752,25 +760,6 @@ export default function Mouvement() {
               />
             </div> */}
             <div className="input-label-wrapper">
-              Navire:{' '}
-              <Autocomplete
-                className="combo-box-completion"
-                options={surestarienavireTab}
-                onChange={(event, newType) => {
-                  if (newType) {
-                    setSurestarieNavireInput(newType.name);
-                  } else {
-                    setSurestarieNavireInput(null);
-                  }
-                }}
-                getOptionLabel={(option) => option.name}
-                style={{ width: 400 }}
-                renderInput={(params) => (
-                  <TextField {...params} label="Sélectionner le navire" variant="outlined" />
-                )}
-              />
-            </div>
-            <div className="input-label-wrapper">
               Client:{' '}
               <Autocomplete
                 className="combo-box-completion"
@@ -789,44 +778,6 @@ export default function Mouvement() {
                 )}
               />
             </div>
-            <div className="input-label-wrapper">
-              Date Arrivée:{' '}
-              <TextField
-                className="basic-input"
-                // label="Saisissez la date d'arrviée"
-                type="date"
-                variant="outlined"
-                value={surestariedatearriveeInput}
-                onChange={(e) => {
-                  setSurestarieDateArriveeInput(e.target.value);
-                }}
-              />
-            </div>
-            <div className="input-label-wrapper">
-              Date Restitution ou Retour:{' '}
-              <TextField
-                className="basic-input"
-                // label="Saisissez la date de Restitution"
-                type="date"
-                variant="outlined"
-                value={surestariedaterestitutionInput}
-                onChange={(e) => {
-                  setSurestarieDateRestitutionInput(e.target.value);
-                }}
-              />
-            </div>
-            {/* <div className="input-label-wrapper">
-              NLS:{' '}
-              <TextField
-                className="basic-input"
-                label="Saisissez le NLS"
-                variant="outlined"
-                value={surestarienlsInput}
-                onChange={(e) => {
-                  setSurestarieNlsInput(e.target.value);
-                }}
-              />
-            </div> */}
             <div className="input-label-wrapper">
               Type de Choix:{' '}
               <Autocomplete
@@ -847,6 +798,385 @@ export default function Mouvement() {
                 )}
               />
             </div>
+            <div className="input-label-wrapper">
+              Date Arrivée:{' '}
+              <TextField
+                className="basic-input"
+                // label="Saisissez la date d'arrviée"
+                type="date"
+                variant="outlined"
+                value={surestariedatearriveeInput}
+                onChange={(e) => {
+                  setSurestarieDateArriveeInput(e.target.value);
+                }}
+              />
+            </div>
+            {/* <div className="input-label-wrapper">
+              NLS:{' '}
+              <TextField
+                className="basic-input"
+                label="Saisissez le NLS"
+                variant="outlined"
+                value={surestarienlsInput}
+                onChange={(e) => {
+                  setSurestarieNlsInput(e.target.value);
+                }}
+              />
+            </div> */}
+            {/* <div className="input-label-wrapper">
+              Detention:{' '}
+              <TextField
+                className="basic-input"
+                label="Saisissez le nombre de jour"
+                variant="outlined"
+                value={surestariedetentionInput}
+                onChange={(e) => {
+                  setSurestarieDetentionInput(e.target.value);
+                }}
+              />
+            </div>
+            <div className="input-label-wrapper">
+              Durée:{' '}
+              <TextField
+                className="basic-input"
+                label="Supérieur à 14 jours"
+                variant="outlined"
+                value={surestariesdureesInput}
+                onChange={(e) => {
+                  setSurestariesDureesInput(e.target.value);
+                }}
+              />
+            </div>
+            <div className="input-label-wrapper">
+              Frais:{' '}
+              <TextField
+                className="basic-input"
+                label="Frais à payer"
+                variant="outlined"
+                value={surestariefraisInput}
+                onChange={(e) => {
+                  setSurestarieFraisInput(e.target.value);
+                }}
+              />
+            </div>
+            <div className="input-label-wrapper">
+              Rembourser:{' '}
+              <TextField
+                className="basic-input"
+                label="A rembourser "
+                variant="outlined"
+                value={surestarierembourserInput}
+                onChange={(e) => {
+                  setSurestarieRembourserInput(e.target.value);
+                }}
+              />
+            </div> */}
+          </Box>
+          <Box className="box-wrapper">
+            {/* <div className="input-label-wrapper">
+              Taille:{' '}
+              <TextField
+                className="basic-input"
+                // label="Saisissez le montant de la Taille"
+                variant="outlined"
+                // disabled
+                value={surestariesizeInput}
+              />
+            </div>
+            <div className="input-label-wrapper">
+              Type:{' '}
+              <TextField
+                className="basic-input"
+                // label="Saisissez le montant de la Taille"
+                variant="outlined"
+                value={mouvtypeInput}
+              />
+            </div> */}
+            {/* <div className="input-label-wrapper">
+              Type:{' '}
+              <Autocomplete
+                className="combo-box-completion"
+                options={mouvtypeTab}
+                onChange={(event, newType) => {
+                  if (newType) {
+                    setMouvTypeInput(newType.name);
+                  } else {
+                    setMouvTypeInput(null);
+                  }
+                }}
+                getOptionLabel={(option) => option.name}
+                style={{ width: 400 }}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    label="Sélectionner l'Etat de Conteneur"
+                    variant="outlined"
+                  />
+                )}
+              />
+            </div> */}
+            {/* <div className="input-label-wrapper">
+              Taille:{' '}
+              <Autocomplete
+                className="combo-box-completion"
+                options={surestariesizeTab}
+                onChange={(event, newType) => {
+                  if (newType) {
+                    setSurestarieSizeInput(newType.name);
+                  } else {
+                    setSurestarieSizeInput(null);
+                  }
+                }}
+                getOptionLabel={(option) => option.name}
+                style={{ width: 400 }}
+                renderInput={(params) => (
+                  <TextField {...params} label="Sélectionner la Taille" variant="outlined" />
+                )}
+              />
+            </div> */}
+            <div className="input-label-wrapper">
+              Navire:{' '}
+              <Autocomplete
+                className="combo-box-completion"
+                options={surestarienavireTab}
+                onChange={(event, newType) => {
+                  if (newType) {
+                    setSurestarieNavireInput(newType.name);
+                  } else {
+                    setSurestarieNavireInput(null);
+                  }
+                }}
+                getOptionLabel={(option) => option.name}
+                style={{ width: 400 }}
+                renderInput={(params) => (
+                  <TextField {...params} label="Sélectionner le navire" variant="outlined" />
+                )}
+              />
+            </div>
+            <div className="input-label-wrapper">
+              Port:{' '}
+              <Autocomplete
+                className="combo-box-completion"
+                options={surestarieportTab}
+                onChange={(event, newType) => {
+                  if (newType) {
+                    setSurestariePortInput(newType.name);
+                  } else {
+                    setSurestariePortInput(null);
+                  }
+                }}
+                getOptionLabel={(option) => option.name}
+                style={{ width: 400 }}
+                renderInput={(params) => (
+                  <TextField {...params} label="Sélectionner le Port" variant="outlined" />
+                )}
+              />
+            </div>
+            {/* <div className="input-label-wrapper">
+              Date Arrivée:{' '}
+              <TextField
+                className="basic-input"
+                // label="Saisissez la date d'arrviée"
+                type="date"
+                variant="outlined"
+                value={surestariedatearriveeInput}
+                onChange={(e) => {
+                  setSurestarieDateArriveeInput(e.target.value);
+                }}
+              />
+            </div> */}
+            {/* <div className="input-label-wrapper">
+              Nombre:{' '}
+              <TextField
+                className="basic-input"
+                label="Saisissez le nombre"
+                variant="outlined"
+                value={surestarienombreInput}
+                onChange={(e) => {
+                  setSurestarieNombreInput(e.target.value);
+                }}
+              />
+            </div> */}
+            {/* <div className="input-label-wrapper">
+              Caution Versée:{' '}
+              <TextField
+                className="basic-input"
+                label="Saisissez le montant"
+                variant="outlined"
+                value={surestariecautionverseeInput}
+                onChange={(e) => {
+                  setSurestarieCautionVerseeInput(e.target.value);
+                }}
+              />
+            </div> */}
+            {/* <div className="input-label-wrapper">
+              Ls Date:{' '}
+              <TextField
+                className="basic-input"
+                // label="Saisissez le ls date"
+                type="date"
+                variant="outlined"
+                value={surestariedatelsInput}
+                onChange={(e) => {
+                  setSurestarieDateLsInput(e.target.value);
+                }}
+              />
+            </div> */}
+            <div className="input-label-wrapper">
+              Date Restitution:{' '}
+              <TextField
+                className="basic-input"
+                // label="Saisissez la date de Restitution"
+                type="date"
+                variant="outlined"
+                value={surestariedaterestitutionInput}
+                onChange={(e) => {
+                  setSurestarieDateRestitutionInput(e.target.value);
+                }}
+              />
+            </div>
+            {/* <div className="input-label-wrapper">
+              Durée:{' '}
+              <TextField
+                className="basic-input"
+                label="Inférieur à 14jours"
+                variant="outlined"
+                value={surestariedureeInput}
+                onChange={(e) => {
+                  setSurestarieDureeInput(e.target.value);
+                }}
+              />
+            </div>
+            <div className="input-label-wrapper">
+              Montant à Facturer:{' '}
+              <TextField
+                className="basic-input"
+                label="A Facturer"
+                variant="outlined"
+                value={surestarietotalInput}
+                onChange={(e) => {
+                  setSurestarieFacturerInput(e.target.value);
+                }}
+              />
+            </div>
+            <div className="input-label-wrapper">
+              Total Net à Payer:{' '}
+              <TextField
+                className="basic-input"
+                label="Total "
+                variant="outlined"
+                value={surestariefacturerInput}
+                onChange={(e) => {
+                  setSurestarieTotalInput(e.target.value);
+                }}
+              />
+            </div> */}
+            {/* <div className="input-label-wrapper">
+              Date:{' '}
+              <TextField
+                className="basic-input"
+                label="Total "
+                type="date"
+                variant="outlined"
+                value={DatepickerR}
+                onChange={(e) => {
+                  setDatepickerInput(e.target.value);
+                }}
+              />
+            </div> */}
+            {/* <CFormGroup row>
+                  <CCol md="3">
+                    <CLabel htmlFor="date-input">Date Input</CLabel>
+                  </CCol>
+                  <CCol xs="12" md="9">
+                    <CInput type="date" id="date-input" name="date-input" placeholder="date" />
+                  </CCol>
+            </CFormGroup> */}
+            {/* <div className="input-label-wrapper">
+              Observation.:{' '}
+              <TextField
+                className="basic-input"
+                label="Commentaires..."
+                variant="outlined"
+                value={mouvobservationInput}
+                onChange={(e) => {
+                  setMouvObservationInput(e.target.value);
+                }}
+              />
+            </div> */}
+          </Box>
+        </Card>
+        <Card className="card-wrapper">
+          <Box className="box-wrapper">
+            <div className="input-label-wrapper">
+              N° Conteneur:{' '}
+              <Autocomplete
+                className="combo-box-completion"
+                options={surestarienumeroTab}
+                value={surestarienumeroTab.id}
+                onChange={(event, newType) => {
+                  if (newType) {
+                    setSurestarieNumeroInput(newType.numero);
+                    setSurestarieSizeInput(newType.taille);
+                    setMouvTypeInput(newType.type);
+                  } else {
+                    setSurestarieNumeroInput(null);
+                    setSurestarieSizeInput(null);
+                    setMouvSiteInput(null);
+                  }
+                }}
+                getOptionLabel={(option) => option.numero}
+                style={{ width: 400 }}
+                renderInput={(params) => (
+                  <TextField {...params} label="Sélectionner le numero" variant="outlined" />
+                )}
+              />
+            </div>
+            <div className="input-label-wrapper">
+              Caution Versée(USD):{' '}
+              <TextField
+                className="basic-input"
+                label="Saisissez le montant"
+                variant="outlined"
+                value={surestariecautionverseeInput}
+                onChange={(e) => {
+                  setSurestarieCautionVerseeInput(e.target.value);
+                }}
+              />
+            </div>
+          </Box>
+          <Box className="box-wrapper">
+            <div className="input-label-wrapper">
+              Taille:{' '}
+              <TextField
+                className="basic-input"
+                // label="Saisissez le montant de la Taille"
+                variant="outlined"
+                // disabled
+                value={surestariesizeInput}
+              />
+            </div>
+            <div className="input-label-wrapper">
+              Type:{' '}
+              <TextField
+                className="basic-input"
+                // label="Saisissez le montant de la Taille"
+                variant="outlined"
+                value={mouvtypeInput}
+              />
+            </div>
+          </Box>
+        </Card>
+        <Card className="card-botton-2-wrapper">
+          <div>
+            <Button variant="contained" color="primary" onClick={() => validateCalcul()}>
+              CALCUL SURESTARIE
+            </Button>
+          </div>
+        </Card>
+        <br />
+        <Card className="card-wrapper">
+          <Box className="box-wrapper">
             <div className="input-label-wrapper">
               Detention:{' '}
               <TextField
@@ -896,137 +1226,7 @@ export default function Mouvement() {
               />
             </div>
           </Box>
-          <Box className="box-2-wrapper">
-            <div className="input-label-wrapper">
-              Taille:{' '}
-              <TextField
-                className="basic-input"
-                // label="Saisissez le montant de la Taille"
-                variant="outlined"
-                // disabled
-                value={surestariesizeInput}
-              />
-            </div>
-            <div className="input-label-wrapper">
-              Type:{' '}
-              <TextField
-                className="basic-input"
-                // label="Saisissez le montant de la Taille"
-                variant="outlined"
-                value={mouvtypeInput}
-              />
-            </div>
-            {/* <div className="input-label-wrapper">
-              Type:{' '}
-              <Autocomplete
-                className="combo-box-completion"
-                options={mouvtypeTab}
-                onChange={(event, newType) => {
-                  if (newType) {
-                    setMouvTypeInput(newType.name);
-                  } else {
-                    setMouvTypeInput(null);
-                  }
-                }}
-                getOptionLabel={(option) => option.name}
-                style={{ width: 400 }}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    label="Sélectionner l'Etat de Conteneur"
-                    variant="outlined"
-                  />
-                )}
-              />
-            </div> */}
-            {/* <div className="input-label-wrapper">
-              Taille:{' '}
-              <Autocomplete
-                className="combo-box-completion"
-                options={surestariesizeTab}
-                onChange={(event, newType) => {
-                  if (newType) {
-                    setSurestarieSizeInput(newType.name);
-                  } else {
-                    setSurestarieSizeInput(null);
-                  }
-                }}
-                getOptionLabel={(option) => option.name}
-                style={{ width: 400 }}
-                renderInput={(params) => (
-                  <TextField {...params} label="Sélectionner la Taille" variant="outlined" />
-                )}
-              />
-            </div> */}
-            <div className="input-label-wrapper">
-              Port:{' '}
-              <Autocomplete
-                className="combo-box-completion"
-                options={surestarieportTab}
-                onChange={(event, newType) => {
-                  if (newType) {
-                    setSurestariePortInput(newType.name);
-                  } else {
-                    setSurestariePortInput(null);
-                  }
-                }}
-                getOptionLabel={(option) => option.name}
-                style={{ width: 400 }}
-                renderInput={(params) => (
-                  <TextField {...params} label="Sélectionner le Port" variant="outlined" />
-                )}
-              />
-            </div>
-            {/* <div className="input-label-wrapper">
-              Date Arrivée:{' '}
-              <TextField
-                className="basic-input"
-                // label="Saisissez la date d'arrviée"
-                type="date"
-                variant="outlined"
-                value={surestariedatearriveeInput}
-                onChange={(e) => {
-                  setSurestarieDateArriveeInput(e.target.value);
-                }}
-              />
-            </div> */}
-            {/* <div className="input-label-wrapper">
-              Nombre:{' '}
-              <TextField
-                className="basic-input"
-                label="Saisissez le nombre"
-                variant="outlined"
-                value={surestarienombreInput}
-                onChange={(e) => {
-                  setSurestarieNombreInput(e.target.value);
-                }}
-              />
-            </div> */}
-            <div className="input-label-wrapper">
-              Caution Versée:{' '}
-              <TextField
-                className="basic-input"
-                label="Saisissez le montant"
-                variant="outlined"
-                value={surestariecautionverseeInput}
-                onChange={(e) => {
-                  setSurestarieCautionVerseeInput(e.target.value);
-                }}
-              />
-            </div>
-            {/* <div className="input-label-wrapper">
-              Ls Date:{' '}
-              <TextField
-                className="basic-input"
-                // label="Saisissez le ls date"
-                type="date"
-                variant="outlined"
-                value={surestariedatelsInput}
-                onChange={(e) => {
-                  setSurestarieDateLsInput(e.target.value);
-                }}
-              />
-            </div> */}
+          <Box className="box-wrapper">
             <div className="input-label-wrapper">
               Durée:{' '}
               <TextField
@@ -1063,50 +1263,8 @@ export default function Mouvement() {
                 }}
               />
             </div>
-            {/* <div className="input-label-wrapper">
-              Date:{' '}
-              <TextField
-                className="basic-input"
-                label="Total "
-                type="date"
-                variant="outlined"
-                value={DatepickerR}
-                onChange={(e) => {
-                  setDatepickerInput(e.target.value);
-                }}
-              />
-            </div> */}
-            {/* <CFormGroup row>
-                  <CCol md="3">
-                    <CLabel htmlFor="date-input">Date Input</CLabel>
-                  </CCol>
-                  <CCol xs="12" md="9">
-                    <CInput type="date" id="date-input" name="date-input" placeholder="date" />
-                  </CCol>
-            </CFormGroup> */}
-            {/* <div className="input-label-wrapper">
-              Observation.:{' '}
-              <TextField
-                className="basic-input"
-                label="Commentaires..."
-                variant="outlined"
-                value={mouvobservationInput}
-                onChange={(e) => {
-                  setMouvObservationInput(e.target.value);
-                }}
-              />
-            </div> */}
           </Box>
         </Card>
-
-        <Card className="card-botton-2-wrapper">
-          <div>
-            <Button variant="contained" color="primary" onClick={() => validateCalcul()}>
-              CALCUL SURESTARIE
-            </Button>
-          </div>
-        </Card>
-        <br />
         <Card className="card-botton-2-wrapper">
           <div>
             <ReactToPrint

@@ -68,7 +68,9 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
       } else if (user && user.role_id === 1) {
         setRole('Admin');
       } else if (user && user.role_id === 2) {
-        setRole('User');
+        setRole('Utilisateur');
+      } else if (user && user.role_id === 3) {
+        setRole('Utilisateur');
       }
     } else {
       navigate('/', { replace: true });

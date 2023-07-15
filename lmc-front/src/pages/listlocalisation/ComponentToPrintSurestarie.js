@@ -38,7 +38,7 @@ class ComponentToPrint extends React.PureComponent {
         </h5>
         <br />
         <h3 className="print-source" style={{ textAlign: 'center' }}>
-          REPERTOIRE DE LOCALISATION CONTENEURS
+          HISTORIQUE DE LOCALISATION CONTENEURS
         </h3>
         <div
           className="print-source"
@@ -55,25 +55,36 @@ class ComponentToPrint extends React.PureComponent {
               <th>Taille</th>
               <th>Type</th>
               <th>Position</th>
-              <th>Réf. Document</th>
+              <th>Element Export.</th>
               <th>Date Départ</th>
               <th>Port Décharg.</th>
-              {/* <th>Inséré par</th> */}
+              <th>Inséré par</th>
             </thead>
             <tbody style={{ width: '100%' }}>
               {rows.map((value, key) => {
                 // const { serie, agence, envoi, pol, pod, vessel, tva, total, date } = value;
-                const { numero, taille, type, position, docderef, datedepart, port } = value;
+                const {
+                  numero,
+                  taille,
+                  type,
+                  position,
+                  docderef,
+                  exportat,
+                  datedepart,
+                  port,
+                  name
+                } = value;
                 return (
                   <tr key={key} style={{ textAlign: 'center' }}>
                     <td>{numero}</td>
                     <td>{taille}</td>
                     <td>{type}</td>
                     <td>{position}</td>
-                    <td>{docderef}</td>
+                    {/* <td>{docderef}</td> */}
+                    <td>{exportat}</td>
                     <td>{datedepart}</td>
                     <td>{port}</td>
-                    {/* <td>{name}</td> */}
+                    <td>{name}</td>
                   </tr>
                 );
               })}

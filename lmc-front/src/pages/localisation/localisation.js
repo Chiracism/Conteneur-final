@@ -38,32 +38,37 @@ export default function Masterfile() {
   const [masternumero, setMasterNumero] = useState('');
   const [localtailleInput, setLocalTailleInput] = useState('');
   const [localtypeInput, setLocalTypeInput] = useState('');
-  const [localdocderefInput, setLocalDocdeRefInput] = useState('');
+  // const [localdocderefInput, setLocalDocdeRefInput] = useState('');
   const [localdatedepartInput, setLocalDateDepartInput] = useState('');
   // const [masternumber, setMasterNumber] = useState('');
-  // const [masternameNavire, setMasterNameNavire] = useState('');
-  // const [mastercountrieTab, setMasterCountrieTab] = useState([]);
-  // const [mastertype, setMasterTypeInput] = useState('');
-  // const [mastersizeInput, setMasterSizeInput] = useState('');
-  // const [mastermateriel, setMasterMaterielInput] = useState('');
-  // const [masterowner, setMasterOwner] = useState('');
-  // const [masteretatInput, setMasterEtatInput] = useState('');
-  // const [mastercontructeur, setMasterConstructeur] = useState('');
-  // const [masterdatefab, setMasterDateFab] = useState('');
-  // const [masterdateentrer, setMasterDateEntrer] = useState('');
-  // const [masterdatederniere, setMasterDateDerniere] = useState('');
-  // const [mastervaleur, setMasterValeur] = useState('');
-  // const [masterdeviseinput, setMasterDeviseInput] = useState('');
-  // const [mastersocieteinsp, setMasterSocieteInsp] = useState('');
-  // const [masterdernierconst, setMasterDernierConst] = useState('');
-  // const [mastersiteInput, setMasterSiteInput] = useState('');
-  // const [mastersoussiteInput, setMasterSoussiteInput] = useState('');
-  // const [masterdatemouv, setMasterDateMouv] = useState('');
-  // const [masterobservation, setMasterObservation] = useState('');
-  // const [masterclient, setMasterClientInput] = useState('');
-  // const [masterdateop, setMasterDateOp] = useState('');
-  // const [mastermontant, setMasterMontant] = useState('');
-  // const [masternumero, setMasterNumero] = useState('');
+  const [dataPrint, setDataPrint] = useState({});
+
+  useEffect(() => {
+    // Fetch datas for the current localisation
+    axios(`${process.env.REACT_APP_BASE_URL}/newmasterfile/`, {
+      headers: {
+        Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`
+      }
+    })
+      .then((value) => {
+        setDataPrint(value.data);
+      })
+      .catch(() => {});
+  }, []);
+
+  // useEffect(() => {
+  //   // Fetch datas for the current localisation
+  //   axios(`${process.env.REACT_APP_BASE_URL}/newsurestarie/${idHistoric}`, {
+  //     headers: {
+  //       Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`
+  //     }
+  //   })
+  //     .then((value) => {
+  //       console.log('Datas stored : ', value.data);
+  //       setDataPrint(value.data);
+  //     })
+  //     .catch(() => {});
+  // }, []);
 
   const reloadPage = () => {
     window.location.reload();
@@ -93,9 +98,10 @@ export default function Masterfile() {
           taille: localtailleInput,
           type: localtypeInput,
           position: localpositionInput,
-          docderef: localdocderefInput,
+          // docderef: localdocderefInput,
           datedepart: localdatedepartInput,
           port: localportInput,
+          exportat: localexportInput,
           name: user.name,
           date: new Date()
         },
@@ -111,8 +117,9 @@ export default function Masterfile() {
     setLocalTailleInput('');
     setLocalTypeInput('');
     setLocalPositionInput('');
-    setLocalDocdeRefInput('');
+    // setLocalDocdeRefInput('');
     setLocalDateDepartInput('');
+    setLocalExportInput('');
     setLocalPortInput('');
     showSuccessToast();
     // reloadPage();
@@ -193,17 +200,17 @@ export default function Masterfile() {
   /**
    * Informations for Materiel
    */
-  const [masterownerTab, setMasterOwnerTab] = useState([]);
-  const [masterownerInput, setMasterOwnerInput] = useState(null);
+  const [localexportTab, setLocalExportTab] = useState([]);
+  const [localexportInput, setLocalExportInput] = useState(null);
 
   useEffect(() => {
-    axios(`${process.env.REACT_APP_BASE_URL}/owner/`, {
+    axios(`${process.env.REACT_APP_BASE_URL}/categorie/`, {
       headers: {
         Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`
       }
     })
       .then((value) => {
-        setMasterOwnerTab(value.data);
+        setLocalExportTab(value.data);
       })
       .catch(() => {});
   }, []);
@@ -457,7 +464,7 @@ export default function Masterfile() {
                 }}
               />
             </div>
-            <div className="input-label-wrapper">
+            {/* <div className="input-label-wrapper">
               Réf. Document:{' '}
               <TextField
                 className="basic-input"
@@ -468,7 +475,7 @@ export default function Masterfile() {
                   setLocalDocdeRefInput(e.target.value);
                 }}
               />
-            </div>
+            </div> */}
             <div className="input-label-wrapper">
               Port de Décharg.:{' '}
               <Autocomplete
@@ -485,6 +492,25 @@ export default function Masterfile() {
                 style={{ width: 400 }}
                 renderInput={(params) => (
                   <TextField {...params} label="Sélectionner le port" variant="outlined" />
+                )}
+              />
+            </div>
+            <div className="input-label-wrapper">
+              Export:{' '}
+              <Autocomplete
+                className="combo-box-completion"
+                options={localexportTab}
+                onChange={(event, newType) => {
+                  if (newType) {
+                    setLocalExportInput(newType.name);
+                  } else {
+                    setLocalExportInput(null);
+                  }
+                }}
+                getOptionLabel={(option) => option.name}
+                style={{ width: 400 }}
+                renderInput={(params) => (
+                  <TextField {...params} label="Sélectionner l'Element Export" variant="outlined" />
                 )}
               />
             </div>
@@ -524,7 +550,8 @@ export default function Masterfile() {
               tailleL={localtailleInput}
               typeL={localtypeInput}
               positionL={localpositionInput}
-              docderefL={localdocderefInput}
+              exportatL={localexportInput}
+              // docderefL={localdocderefInput}
               datedepartL={localdatedepartInput}
               portL={localportInput}
             />

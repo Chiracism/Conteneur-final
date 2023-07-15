@@ -80,7 +80,8 @@ export default function UserMoreMenu({
   tailleLocal,
   typeLocal,
   positionLocal,
-  docderefLocal,
+  // docderefLocal,
+  exportLocal,
   datedepartLocal,
   portLocal,
   sendInformation
@@ -99,7 +100,7 @@ export default function UserMoreMenu({
 
   const [localtailleInput, setLocalTailleInput] = useState(tailleLocal);
   const [localtypeInput, setLocalTypeInput] = useState(typeLocal);
-  const [localdocderefInput, setLocalDocdeRefInput] = useState(docderefLocal);
+  // const [localdocderefInput, setLocalDocdeRefInput] = useState(docderefLocal);
   const [localdatedepartInput, setLocalDateDepartInput] = useState(datedepartLocal);
 
   const [dataPrint, setDataPrint] = useState({});
@@ -244,7 +245,7 @@ export default function UserMoreMenu({
           taille: localtailleInput,
           type: localtypeInput,
           position: localpositionInput,
-          docderef: localdocderefInput,
+          // docderef: localdocderefInput,
           datedepart: localdatedepartInput,
           port: localportInput,
           name: user.name,
@@ -264,7 +265,7 @@ export default function UserMoreMenu({
     setLocalTailleInput('');
     setLocalTypeInput('');
     setLocalPositionInput('');
-    setLocalDocdeRefInput('');
+    // setLocalDocdeRefInput('');
     setLocalDateDepartInput('');
     setLocalPortInput('');
     showSuccessToastMOD();
@@ -369,7 +370,7 @@ export default function UserMoreMenu({
                     }}
                   />
                 </div>
-                <div className="input-label-wrapper">
+                {/* <div className="input-label-wrapper">
                   Réf. Document:{' '}
                   <TextField
                     className="basic-input"
@@ -380,7 +381,7 @@ export default function UserMoreMenu({
                       setLocalDocdeRefInput(e.target.value);
                     }}
                   />
-                </div>
+                </div> */}
                 <div className="input-label-wrapper">
                   Port de Décharg.:{' '}
                   <Autocomplete
@@ -427,7 +428,7 @@ export default function UserMoreMenu({
                   tailleL={localtailleInput}
                   typeL={localtypeInput}
                   positionL={localpositionInput}
-                  docderefL={localdocderefInput}
+                  // docderefL={localdocderefInput}
                   datedepartL={localdatedepartInput}
                   portL={localportInput}
                   rows={[]}

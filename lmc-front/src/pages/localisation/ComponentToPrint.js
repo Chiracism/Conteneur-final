@@ -10,7 +10,8 @@ class ComponentToPrint extends React.PureComponent {
   }
 
   render() {
-    const { rows, numeroL, tailleL, typeL, positionL, docderefL, datedepartL, portL } = this.props;
+    const { rows, numeroL, tailleL, typeL, positionL, docderefL, exportatL, datedepartL, portL } =
+      this.props;
     const { date } = this.state;
 
     return (
@@ -71,22 +72,22 @@ class ComponentToPrint extends React.PureComponent {
           {/* 2rem 1rem 3rem 0 */}
           <strong>Taille</strong> : <span>{tailleL}</span>
         </p>
-        <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
+        {/* <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
           <strong>Position</strong> : <span>{positionL}</span>
         </p>
         <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
-          <strong>Réf. Document</strong> : <span>{docderefL}</span>
+          <strong>Export.</strong> : <span>{exportatL}</span>
         </p>
         <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
           <strong>Date de Départ</strong> : <span>{datedepartL}</span>
         </p>
         <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
           <strong>Port Décharg.</strong> : <span>{portL}</span>
-        </p>
+        </p> */}
         {/* <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
           <strong>Observation </strong> : <span>{observation}</span>
         </p> */}
-        {/* <div
+        <div
           className="print-source"
           style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem', width: '100%' }}
         >
@@ -99,11 +100,11 @@ class ComponentToPrint extends React.PureComponent {
             </thead>
             <tbody style={{ width: '100%' }}>
               {rows.map((value, key) => {
-                const { positionL, docderefL, datedepartL, portL } = value;
+                const { positionL, docderefL, exportatL, datedepartL, portL } = value;
                 return (
                   <tr key={key} style={{ textAlign: 'center' }}>
                     <td>{positionL}</td>
-                    <td>{docderefL}</td>
+                    <td>{exportatL}</td>
                     <td>{datedepartL}</td>
                     <td>{portL}</td>
                   </tr>
@@ -111,7 +112,7 @@ class ComponentToPrint extends React.PureComponent {
               })}
             </tbody>
           </table>
-        </div> */}
+        </div>
         {/* <div
           className="print-source"
           style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem', width: '100%' }}

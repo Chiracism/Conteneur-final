@@ -44,8 +44,8 @@ import userConfig from '../../utils/config';
 
 const TABLE_HEAD = [
   { id: 'name', label: 'Name', alignRight: false },
-  { id: 'username', label: 'Username', alignRight: false },
-  { id: 'email', label: 'Courrier Electronique', alignRight: false },
+  { id: 'username', label: 'Fonction', alignRight: false },
+  { id: 'email', label: 'Adresse Mail', alignRight: false },
   { id: 'role', label: 'Role', alignRight: false },
   { id: '' }
 ];
@@ -60,6 +60,17 @@ function descendingComparator(a, b, orderBy) {
     return 1;
   }
   return 0;
+}
+function functionrole(role) {
+  if (role === 1) {
+    return 'Admin';
+  }
+  // if (role === 2) {
+  //   return 'Utilisateur';
+  // }
+  if (role === 3) {
+    return 'Utilisateur';
+  }
 }
 
 function getComparator(order, orderBy) {
@@ -333,7 +344,8 @@ export default function User() {
                 inputProps={{ 'aria-label': 'Without label' }}
               >
                 <MenuItem value={1}>Admin</MenuItem>
-                <MenuItem value={2}>Utilisateur</MenuItem>
+                {/* <MenuItem value={2}>Utilisateur</MenuItem> */}
+                <MenuItem value={3}>User</MenuItem>
               </Select>
               <Button
                 onClick={() => addUser()}
@@ -396,7 +408,8 @@ export default function User() {
                           </TableCell>
                           <TableCell align="left">{username}</TableCell>
                           <TableCell align="left">{email}</TableCell>
-                          <TableCell align="left">{role === 1 ? 'Admin' : 'Utilisateur'}</TableCell>
+                          <TableCell align="left">{functionrole(role)}</TableCell>
+                          {/* <TableCell align="left">{role === 1 ? 'Admin' : 'Utilisateur'}</TableCell> */}
 
                           <TableCell align="right">
                             {email !== userConfig.specialEmail &&

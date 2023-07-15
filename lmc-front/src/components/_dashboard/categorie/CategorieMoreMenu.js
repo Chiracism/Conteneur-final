@@ -51,12 +51,7 @@ const useStyles = makeStyles((theme) => ({
 
 // ----------------------------------------------------------------------
 
-export default function UserMoreMenu({
-  idCategorie,
-  indexCategorie,
-  nameCategorie,
-  sendInformation
-}) {
+export default function UserMoreMenu({ idCategorie, nameCategorie, sendInformation }) {
   const classes = useStyles();
 
   // Modal
@@ -65,7 +60,7 @@ export default function UserMoreMenu({
   const [isOpen, setIsOpen] = useState(false);
 
   const componentRef = useRef();
-  const [index, setIndex] = useState(indexCategorie);
+  // const [index, setIndex] = useState(indexCategorie);
   const [name, setName] = useState(nameCategorie);
 
   const handleOpen = () => {
@@ -78,14 +73,14 @@ export default function UserMoreMenu({
 
   // React-Toastify-Notification
   const showSuccessToastSUP = () => {
-    toast.warning('Catégorie a été supprimé avec succès', {
+    toast.warning('élement a été supprimé avec succès', {
       position: toast.POSITION.TOP_RIGHT,
       autoClose: 1000
     });
   };
 
   const showSuccessToastMOD = () => {
-    toast.success('Catégorie a été modifié avec succès', {
+    toast.success('élement a été modifié avec succès', {
       position: toast.POSITION.TOP_RIGHT,
       autoClose: 1000
     });
@@ -96,7 +91,6 @@ export default function UserMoreMenu({
       .put(
         `${process.env.REACT_APP_BASE_URL}/categorie/${idCategorie}`,
         {
-          index,
           name
         },
         {
@@ -141,15 +135,15 @@ export default function UserMoreMenu({
         >
           <div className={classes.paper}>
             <h2 align="center" id="simple-modal-title">
-              Modifier la Catégorie
+              Modifier Element
             </h2>
-            <TextField
+            {/* <TextField
               label="Saisissez l'Index"
               ariant="outlined"
               style={{ marginTop: 20, marginBottom: 20 }}
               value={index}
               onChange={(e) => setIndex(e.target.value)}
-            />
+            /> */}
             <TextField
               label="Saisissez le nom"
               variant="outlined"

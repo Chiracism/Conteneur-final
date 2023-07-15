@@ -500,6 +500,8 @@ export default function UserMoreMenu({
       )
       .then(() => {})
       .catch(() => {});
+    setIsOpen(false);
+    handleClose();
     showSuccessToastMOD();
     setSurestarieDateInput('');
     setSurestarieDateArriveeInput('');
@@ -546,14 +548,14 @@ export default function UserMoreMenu({
 
   // React-Toastify-Notification
   const showSuccessToastSUP = () => {
-    toast.warning('Opération a été supprimée avec succès', {
+    toast.warning('Opération a été supprimé avec succès', {
       position: toast.POSITION.TOP_LEFT,
       autoClose: 1000
     });
   };
 
   const showSuccessToastMOD = () => {
-    toast.success('Opération a été modifiée avec succès', {
+    toast.success('Opération a été modifié avec succès', {
       position: toast.POSITION.TOP_LEFT,
       autoClose: 1000
     });

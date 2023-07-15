@@ -94,7 +94,7 @@ export default function UserListToolbar({
               shrink: true
             }}
           />
-          {/* <TextField
+          <TextField
             value={filterEndDate}
             onChange={onFilterEndDate}
             id="date"
@@ -103,7 +103,7 @@ export default function UserListToolbar({
             InputLabelProps={{
               shrink: true
             }}
-          /> */}
+          />
         </>
       )}
 

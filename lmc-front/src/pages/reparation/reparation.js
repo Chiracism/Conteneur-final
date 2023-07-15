@@ -358,6 +358,18 @@ export default function Reparation() {
               />
             </div>
             <div className="input-label-wrapper">
+              Type.:{' '}
+              <TextField
+                className="basic-input"
+                type="text"
+                variant="outlined"
+                value={reparatypeInput}
+                onChange={(e) => {
+                  setReparaTypeInput(e.target.value);
+                }}
+              />
+            </div>
+            <div className="input-label-wrapper">
               Date Réparation.:{' '}
               <TextField
                 className="basic-input"
@@ -367,18 +379,6 @@ export default function Reparation() {
                 value={reparadatereparaInput}
                 onChange={(e) => {
                   setReparaDateReparaInput(e.target.value);
-                }}
-              />
-            </div>
-            <div className="input-label-wrapper">
-              Type.:{' '}
-              <TextField
-                className="basic-input"
-                type="text"
-                variant="outlined"
-                value={reparatypeInput}
-                onChange={(e) => {
-                  setReparaTypeInput(e.target.value);
                 }}
               />
             </div>
@@ -482,21 +482,8 @@ export default function Reparation() {
                 }}
               />
             </div>
-            <div className="input-label-wrapper">
-              Date Insp.:{' '}
-              <TextField
-                className="basic-input"
-                // label="Saisissez la Date"
-                type="date"
-                variant="outlined"
-                value={reparadateinspInput}
-                onChange={(e) => {
-                  setReparaDateInspInput(e.target.value);
-                }}
-              />
-            </div>
           </Box>
-          <Box className="box-2-wrapper">
+          <Box className="box-wrapper">
             {/* <div className="input-label-wrapper">
               Taille:{' '}
               <Autocomplete
@@ -616,6 +603,19 @@ export default function Reparation() {
                 }}
               />
             </div>
+            <div className="input-label-wrapper">
+              Date Insp.:{' '}
+              <TextField
+                className="basic-input"
+                // label="Saisissez la Date"
+                type="date"
+                variant="outlined"
+                value={reparadateinspInput}
+                onChange={(e) => {
+                  setReparaDateInspInput(e.target.value);
+                }}
+              />
+            </div>
           </Box>
         </Card>
 
@@ -626,7 +626,7 @@ export default function Reparation() {
             <ReactToPrint
               trigger={() => (
                 <Button variant="contained" color="primary" disabled={disabledPrint()}>
-                  Print & Save
+                  Sauvegarder & Imprimer
                 </Button>
               )}
               content={() => componentRef.current}

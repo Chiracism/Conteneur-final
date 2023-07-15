@@ -52,9 +52,10 @@ const TABLE_HEAD = [
   { id: 'taille', label: 'Taille', alignRight: false },
   { id: 'type', label: 'Type', alignRight: false },
   { id: 'position', label: 'Position', alignRight: false },
-  { id: 'docderef', label: 'Document de Référence', alignRight: false },
+  // { id: 'docderef', label: 'Document de Référence', alignRight: false },
   { id: 'datedepart', label: 'Date de Départ', alignRight: false },
   { id: 'port', label: 'Port', alignRight: false },
+  { id: 'exportat', label: 'Element Export.', alignRight: false },
   { id: 'name', label: 'Insérer par', alignRight: false },
   { id: 'createdAt', label: 'Date de creation', alignRight: false },
   { id: '' }
@@ -109,8 +110,9 @@ function applySortFilter(array, comparator, query) {
       const finalData = dataFiltered || array;
       dataFiltered = filter(
         finalData,
-        (_user) =>
-          new Date(query.filterEndDate).getTime() >= new Date(_user.createdAt).get.getTime()
+        (_user) => _user.createdAt.toLowerCase() <= query.filterEndDate.toLowerCase()
+        // (_user) =>
+        //   new Date(query.filterEndDate).getTime() >= new Date(_user.createdAt).get.getTime()
       );
     }
     return dataFiltered;
@@ -383,7 +385,8 @@ export default function Countrie() {
                         taille,
                         type,
                         position,
-                        docderef,
+                        // docderef,
+                        exportat,
                         datedepart,
                         port,
                         createdAt,
@@ -434,13 +437,13 @@ export default function Countrie() {
                               </Typography>
                             </Stack>
                           </TableCell>
-                          <TableCell component="th" scope="row" padding="none">
+                          {/* <TableCell component="th" scope="row" padding="none">
                             <Stack direction="row" justifyContent="center" spacing={2}>
                               <Typography variant="subtitle2" noWrap>
                                 {docderef}
                               </Typography>
                             </Stack>
-                          </TableCell>
+                          </TableCell> */}
                           <TableCell component="th" scope="row" padding="none">
                             <Stack direction="row" justifyContent="center" spacing={2}>
                               <Typography variant="subtitle2" noWrap>
@@ -455,14 +458,14 @@ export default function Countrie() {
                               </Typography>
                             </Stack>
                           </TableCell>
-                          {/* <TableCell component="th" scope="row" padding="none">
+                          <TableCell component="th" scope="row" padding="none">
                             <Stack direction="row" justifyContent="center" spacing={2}>
                               <Typography variant="subtitle2" noWrap>
-                                {siteid}
+                                {exportat}
                               </Typography>
                             </Stack>
                           </TableCell>
-                          <TableCell component="th" scope="row" padding="none">
+                          {/* <TableCell component="th" scope="row" padding="none">
                             <Stack direction="row" justifyContent="center" spacing={2}>
                               <Typography variant="subtitle2" noWrap>
                                 {montant}
@@ -498,8 +501,9 @@ export default function Countrie() {
                               tailleLocal={taille}
                               typeLocal={type}
                               positionLocal={position}
-                              docderefLocal={docderef}
+                              // docderefLocal={docderef}
                               datedepartLocal={datedepart}
+                              exportLocal={exportat}
                               portLocal={port}
                               sendInformation={(value) => isDataChange(value)}
                             />

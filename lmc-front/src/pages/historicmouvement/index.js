@@ -151,7 +151,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function User() {
   const [page, setPage] = useState(0);
-  const [order, setOrder] = useState('number');
+  const [order, setOrder] = useState('desc');
   const [selected, setSelected] = useState([]);
   const [orderBy, setOrderBy] = useState('id');
   const [filterName, setFilterName] = useState('');

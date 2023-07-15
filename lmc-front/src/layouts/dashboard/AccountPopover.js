@@ -121,7 +121,7 @@ export default function AccountPopover() {
 
         <Box sx={{ p: 2, pt: 1.5 }}>
           <Button fullWidth color="inherit" variant="outlined" onClick={() => logOut()}>
-            Logout
+            Se déconnecter
           </Button>
         </Box>
       </MenuPopover>

@@ -65,6 +65,7 @@ class ComponentToPrintRepara extends React.PureComponent {
             <hr style={{ opacity: 1, color: 'blue', backgroundColor: 'blue', height: '3px' }} />
           </div>
         </div>
+        <br />
         <h3 className="print-source" style={{ textAlign: 'center' }}>
           REPARATION DE CONTENEUR
         </h3>
