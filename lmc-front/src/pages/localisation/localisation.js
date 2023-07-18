@@ -101,6 +101,7 @@ export default function Masterfile() {
           // docderef: localdocderefInput,
           datedepart: localdatedepartInput,
           port: localportInput,
+          navire: navirenameInput,
           exportat: localexportInput,
           name: user.name,
           date: new Date()
@@ -120,6 +121,7 @@ export default function Masterfile() {
     // setLocalDocdeRefInput('');
     setLocalDateDepartInput('');
     setLocalExportInput('');
+    setNavireNameInput('');
     setLocalPortInput('');
     showSuccessToast();
     // reloadPage();
@@ -236,20 +238,20 @@ export default function Masterfile() {
   /**
    * Informations for Navire
    */
-  // const [navireTab, setNavireTab] = useState([]);
-  // const [navirenameInput, setNavireNameInput] = useState(null);
+  const [navireTab, setNavireTab] = useState([]);
+  const [navirenameInput, setNavireNameInput] = useState(null);
 
-  // useEffect(() => {
-  //   axios(`${process.env.REACT_APP_BASE_URL}/navire/`, {
-  //     headers: {
-  //       Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`
-  //     }
-  //   })
-  //     .then((value) => {
-  //       setNavireTab(value.data);
-  //     })
-  //     .catch(() => {});
-  // }, []);
+  useEffect(() => {
+    axios(`${process.env.REACT_APP_BASE_URL}/navire/`, {
+      headers: {
+        Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`
+      }
+    })
+      .then((value) => {
+        setNavireTab(value.data);
+      })
+      .catch(() => {});
+  }, []);
 
   /**
    * Informations for Etat Conteneur
@@ -396,30 +398,26 @@ export default function Masterfile() {
                 }}
               />
             </div>
-            {/* <div className="input-label-wrapper">
-              Etat:{' '}
+            <div className="input-label-wrapper">
+              Navire:{' '}
               <Autocomplete
                 className="combo-box-completion"
-                options={masteretatTab}
+                options={navireTab}
                 onChange={(event, newType) => {
                   if (newType) {
-                    setMasterEtatInput(newType.name);
+                    setNavireNameInput(newType.name);
                   } else {
-                    setMasterEtatInput(null);
+                    setNavireNameInput(null);
                   }
                 }}
                 getOptionLabel={(option) => option.name}
                 style={{ width: 400 }}
                 renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    label="Sélectionner l'Etat de Conteneur"
-                    variant="outlined"
-                  />
+                  <TextField {...params} label="Sélectionner le Navire" variant="outlined" />
                 )}
               />
             </div>
-            <div className="input-label-wrapper">
+            {/* <div className="input-label-wrapper">
               Propriétaire:{' '}
               <Autocomplete
                 className="combo-box-completion"
@@ -551,7 +549,7 @@ export default function Masterfile() {
               typeL={localtypeInput}
               positionL={localpositionInput}
               exportatL={localexportInput}
-              // docderefL={localdocderefInput}
+              navireL={navirenameInput}
               datedepartL={localdatedepartInput}
               portL={localportInput}
             />

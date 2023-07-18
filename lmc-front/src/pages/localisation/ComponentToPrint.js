@@ -10,8 +10,18 @@ class ComponentToPrint extends React.PureComponent {
   }
 
   render() {
-    const { rows, numeroL, tailleL, typeL, positionL, docderefL, exportatL, datedepartL, portL } =
-      this.props;
+    const {
+      rows,
+      numeroL,
+      tailleL,
+      typeL,
+      positionL,
+      docderefL,
+      exportatL,
+      navireL,
+      datedepartL,
+      portL
+    } = this.props;
     const { date } = this.state;
 
     return (
@@ -72,7 +82,7 @@ class ComponentToPrint extends React.PureComponent {
           {/* 2rem 1rem 3rem 0 */}
           <strong>Taille</strong> : <span>{tailleL}</span>
         </p>
-        {/* <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
+        <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
           <strong>Position</strong> : <span>{positionL}</span>
         </p>
         <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
@@ -82,11 +92,14 @@ class ComponentToPrint extends React.PureComponent {
           <strong>Date de Départ</strong> : <span>{datedepartL}</span>
         </p>
         <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
+          <strong>navire</strong> : <span>{navireL}</span>
+        </p>
+        <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
           <strong>Port Décharg.</strong> : <span>{portL}</span>
-        </p> */}
+        </p>
         {/* <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
           <strong>Observation </strong> : <span>{observation}</span>
-        </p> */}
+        </p>
         <div
           className="print-source"
           style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem', width: '100%' }}
@@ -100,11 +113,12 @@ class ComponentToPrint extends React.PureComponent {
             </thead>
             <tbody style={{ width: '100%' }}>
               {rows.map((value, key) => {
-                const { positionL, docderefL, exportatL, datedepartL, portL } = value;
+                const { positionL, docderefL, exportatL, navireL, datedepartL, portL } = value;
                 return (
                   <tr key={key} style={{ textAlign: 'center' }}>
                     <td>{positionL}</td>
                     <td>{exportatL}</td>
+                    <td>{navireL}</td>
                     <td>{datedepartL}</td>
                     <td>{portL}</td>
                   </tr>

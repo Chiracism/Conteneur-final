@@ -389,6 +389,7 @@ export default function Countrie() {
                         exportat,
                         datedepart,
                         port,
+                        navire,
                         createdAt,
                         name
                       } = row;
@@ -454,6 +455,13 @@ export default function Countrie() {
                           <TableCell component="th" scope="row" padding="none">
                             <Stack direction="row" justifyContent="center" spacing={2}>
                               <Typography variant="subtitle2" noWrap>
+                                {navire}
+                              </Typography>
+                            </Stack>
+                          </TableCell>
+                          <TableCell component="th" scope="row" padding="none">
+                            <Stack direction="row" justifyContent="center" spacing={2}>
+                              <Typography variant="subtitle2" noWrap>
                                 {port}
                               </Typography>
                             </Stack>
@@ -501,7 +509,7 @@ export default function Countrie() {
                               tailleLocal={taille}
                               typeLocal={type}
                               positionLocal={position}
-                              // docderefLocal={docderef}
+                              navireLocal={navire}
                               datedepartLocal={datedepart}
                               exportLocal={exportat}
                               portLocal={port}

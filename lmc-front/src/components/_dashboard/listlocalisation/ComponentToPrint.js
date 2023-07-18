@@ -10,7 +10,8 @@ class ComponentToPrint extends React.PureComponent {
   }
 
   render() {
-    const { rows, numeroL, tailleL, typeL, positionL, docderefL, datedepartL, portL } = this.props;
+    const { rows, numeroL, tailleL, typeL, positionL, docderefL, navireL, datedepartL, portL } =
+      this.props;
     const { date } = this.state;
 
     return (
@@ -68,7 +69,10 @@ class ComponentToPrint extends React.PureComponent {
           <strong>Position</strong> : <span>{positionL}</span>
         </p>
         <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
-          <strong>Réf. Document</strong> : <span>{docderefL}</span>
+          <strong>Navire</strong> : <span>{navireL}</span>
+        </p>
+        <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
+          <strong>Port</strong> : <span>{portL}</span>
         </p>
         <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
           <strong>Date de Départ</strong> : <span>{datedepartL}</span>

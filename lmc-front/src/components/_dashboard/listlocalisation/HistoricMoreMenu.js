@@ -80,7 +80,7 @@ export default function UserMoreMenu({
   tailleLocal,
   typeLocal,
   positionLocal,
-  // docderefLocal,
+  navireLocal,
   exportLocal,
   datedepartLocal,
   portLocal,
@@ -177,6 +177,39 @@ export default function UserMoreMenu({
       .catch(() => {});
   }, []);
 
+  /**
+   * Informations for Navire
+   */
+  const [localnavireTab, setLocalNavireTab] = useState([]);
+  const [localnavireInput, setLocalNavireInput] = useState(navireLocal);
+
+  useEffect(() => {
+    axios(`${process.env.REACT_APP_BASE_URL}/port/`, {
+      headers: {
+        Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`
+      }
+    })
+      .then((value) => {
+        setLocalNavireTab(value.data);
+      })
+      .catch(() => {});
+  }, []);
+
+  const [localexportTab, setLocalExportTab] = useState([]);
+  const [localexportInput, setLocalExportInput] = useState(exportLocal);
+
+  useEffect(() => {
+    axios(`${process.env.REACT_APP_BASE_URL}/categorie/`, {
+      headers: {
+        Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`
+      }
+    })
+      .then((value) => {
+        setLocalExportTab(value.data);
+      })
+      .catch(() => {});
+  }, []);
+
   function disabledPrint() {
     if (localnumeroInput !== '' && localnumeroInput !== null) return false;
     return true;
@@ -245,7 +278,7 @@ export default function UserMoreMenu({
           taille: localtailleInput,
           type: localtypeInput,
           position: localpositionInput,
-          // docderef: localdocderefInput,
+          navire: localnavireInput,
           datedepart: localdatedepartInput,
           port: localportInput,
           name: user.name,
@@ -265,7 +298,7 @@ export default function UserMoreMenu({
     setLocalTailleInput('');
     setLocalTypeInput('');
     setLocalPositionInput('');
-    // setLocalDocdeRefInput('');
+    setLocalNavireInput('');
     setLocalDateDepartInput('');
     setLocalPortInput('');
     showSuccessToastMOD();
@@ -344,6 +377,25 @@ export default function UserMoreMenu({
                     }}
                   />
                 </div>
+                <div className="input-label-wrapper">
+                  Navire:{' '}
+                  <Autocomplete
+                    className="combo-box-completion"
+                    options={localnavireTab}
+                    onChange={(event, newType) => {
+                      if (newType) {
+                        setLocalNavireInput(newType.name);
+                      } else {
+                        setLocalNavireInput(null);
+                      }
+                    }}
+                    getOptionLabel={(option) => option.name}
+                    style={{ width: 400 }}
+                    renderInput={(params) => (
+                      <TextField {...params} label="Sélectionner la position" variant="outlined" />
+                    )}
+                  />
+                </div>
               </Box>
               <Box className="box-wrapper">
                 <div className="input-label-wrapper">
@@ -401,6 +453,29 @@ export default function UserMoreMenu({
                     )}
                   />
                 </div>
+                <div className="input-label-wrapper">
+                  Export:{' '}
+                  <Autocomplete
+                    className="combo-box-completion"
+                    options={localexportTab}
+                    onChange={(event, newType) => {
+                      if (newType) {
+                        setLocalExportInput(newType.name);
+                      } else {
+                        setLocalExportInput(null);
+                      }
+                    }}
+                    getOptionLabel={(option) => option.name}
+                    style={{ width: 400 }}
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        label="Sélectionner l'Element Export"
+                        variant="outlined"
+                      />
+                    )}
+                  />
+                </div>
               </Box>
             </Card>
             {/* <Button
@@ -428,7 +503,7 @@ export default function UserMoreMenu({
                   tailleL={localtailleInput}
                   typeL={localtypeInput}
                   positionL={localpositionInput}
-                  // docderefL={localdocderefInput}
+                  navireL={localnavireInput}
                   datedepartL={localdatedepartInput}
                   portL={localportInput}
                   rows={[]}
