@@ -71,6 +71,12 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
         setRole('Utilisateur');
       } else if (user && user.role_id === 3) {
         setRole('Utilisateur');
+      } else if (user && user.role_id === 4) {
+        setRole('Agent-Conteneur');
+      } else if (user && user.role_id === 5) {
+        setRole('Agent-Consignation');
+      } else if (user && user.role_id === 6) {
+        setRole('Agent-Financier');
       }
     } else {
       navigate('/', { replace: true });

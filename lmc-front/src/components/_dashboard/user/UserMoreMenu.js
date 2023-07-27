@@ -192,7 +192,10 @@ export default function UserMoreMenu({
               inputProps={{ 'aria-label': 'Without label' }}
             >
               <MenuItem value={1}>Admin</MenuItem>
-              <MenuItem value={2}>Utilisateur</MenuItem>
+              <MenuItem value={3}>Utilisateur</MenuItem>
+              <MenuItem value={4}>Agent-Conteneur</MenuItem>
+              <MenuItem value={5}>Agent-Consignation</MenuItem>
+              <MenuItem value={6}>Agent-Financier</MenuItem>
             </Select>
             <Button
               onClick={() => modifyUser()}

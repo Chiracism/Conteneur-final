@@ -71,6 +71,15 @@ function functionrole(role) {
   if (role === 3) {
     return 'Utilisateur';
   }
+  if (role === 4) {
+    return 'Agent-Conteneur';
+  }
+  if (role === 5) {
+    return 'Agent-Consignation';
+  }
+  if (role === 6) {
+    return 'Agent-Financier';
+  }
 }
 
 function getComparator(order, orderBy) {
@@ -345,7 +354,10 @@ export default function User() {
               >
                 <MenuItem value={1}>Admin</MenuItem>
                 {/* <MenuItem value={2}>Utilisateur</MenuItem> */}
-                <MenuItem value={3}>User</MenuItem>
+                <MenuItem value={3}>Utilisateur</MenuItem>
+                <MenuItem value={4}>Agent-Conteneur</MenuItem>
+                <MenuItem value={5}>Agent-Consignation</MenuItem>
+                <MenuItem value={6}>Agent-Financier</MenuItem>
               </Select>
               <Button
                 onClick={() => addUser()}

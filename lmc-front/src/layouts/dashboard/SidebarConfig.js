@@ -375,6 +375,95 @@ export default function SidebarConfig() {
           icon: getIcon(listFill)
         }
       ];
+    } else if (user && user.role_id === 4) {
+      sidebarConfig = [
+        {
+          title: 'Tableau de bord',
+          path: '/dashboard/app',
+          icon: getIcon(pieChart2Fill)
+        },
+        {
+          title: 'MasterFile',
+          path: '/dashboard/newmasterfile',
+          icon: getIcon(fileTextFill)
+        },
+        {
+          title: 'Mouvement',
+          path: '/dashboard/newmouvement',
+          icon: getIcon(fileTextFill)
+        },
+        {
+          title: 'Surestarie',
+          path: '/dashboard/newsurestaries',
+          icon: getIcon(fileTextFill)
+        },
+        {
+          title: 'Localisation',
+          path: '/dashboard/localisation',
+          icon: getIcon(fileTextFill)
+        },
+        {
+          title: 'Historique Masterfiles',
+          path: '/dashboard/newlistMasterFiles',
+          icon: getIcon(listFill)
+        },
+        {
+          title: 'Historique Mouvements',
+          path: '/dashboard/historicmouvement',
+          icon: getIcon(listFill)
+        },
+        // {
+        //   title: 'Historique Réparations',
+        //   path: '/dashboard/historicreparation',
+        //   icon: getIcon(listFill)
+        // },
+        {
+          title: 'Historique Surestaries',
+          path: '/dashboard/historicsurestarie',
+          icon: getIcon(listFill)
+        },
+        {
+          title: 'Historique Localisations',
+          path: '/dashboard/listlocalisation',
+          icon: getIcon(listFill)
+        }
+      ];
+    } else if (user && user.role_id === 5) {
+      sidebarConfig = [
+        {
+          title: 'Tableau de bord',
+          path: '/dashboard/app',
+          icon: getIcon(pieChart2Fill)
+        },
+        {
+          title: 'Mouvement',
+          path: '/dashboard/newmouvement',
+          icon: getIcon(fileTextFill)
+        },
+        {
+          title: 'Historique Mouvements',
+          path: '/dashboard/historicmouvement',
+          icon: getIcon(listFill)
+        }
+      ];
+    } else if (user && user.role_id === 6) {
+      sidebarConfig = [
+        {
+          title: 'Tableau de bord',
+          path: '/dashboard/app',
+          icon: getIcon(pieChart2Fill)
+        },
+        {
+          title: 'Surestarie',
+          path: '/dashboard/newsurestaries',
+          icon: getIcon(fileTextFill)
+        },
+        {
+          title: 'Historique Surestaries',
+          path: '/dashboard/historicsurestarie',
+          icon: getIcon(listFill)
+        }
+      ];
     }
   } else {
     sidebarConfig = [];

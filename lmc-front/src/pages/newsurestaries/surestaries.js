@@ -1169,6 +1169,7 @@ export default function Mouvement() {
         </Card>
         <Card className="card-botton-2-wrapper">
           <div>
+            Appuyer Trois (3) fois sur le Bouton{' '}
             <Button variant="contained" color="primary" onClick={() => validateCalcul()}>
               CALCUL SURESTARIE
             </Button>
