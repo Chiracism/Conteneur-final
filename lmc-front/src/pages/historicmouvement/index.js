@@ -121,7 +121,8 @@ function applySortFilter(array, comparator, query) {
       const finalData = dataFiltered || array;
       dataFiltered = filter(
         finalData,
-        (_user) => new Date(query.filterEndDate).getTime() >= new Date(_user.dates).get.getTime()
+        (_user) => _user.dates.toLowerCase() >= query.filterEndDate.toLowerCase()
+        // (_user) => new Date(query.filterEndDate).getTime() >= new Date(_user.dates).get.getTime()
       );
     }
     return dataFiltered;

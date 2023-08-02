@@ -3,7 +3,7 @@ const router = express.Router();
 
 import authMiddleware from "../middleware/auth";
 
-const mouvementCtrl = require("../controllers/mouvement");
+const mouvementCtrl = require("../controllers/newmouvement");
 
 router.get("/", authMiddleware, mouvementCtrl.getAllMouvements);
 router.get("/:id", authMiddleware, mouvementCtrl.getOneMouvement);

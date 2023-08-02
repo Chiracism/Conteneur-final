@@ -41,8 +41,8 @@ import { CheckUserAuth } from '../../utils/auth';
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-  { id: 'numero', label: 'Identifiant', alignRight: false },
-  { id: 'name', label: 'Nom', alignRight: false },
+  // { id: 'numero', label: 'Identifiant', alignRight: false },
+  { id: 'name', label: 'Nom du Chargeur', alignRight: false },
   { id: '' }
 ];
 
@@ -161,17 +161,17 @@ export default function Owner() {
     });
   };
 
-  const addOwner = (ownernumeroInput, ownernameInput) => {
+  const addOwner = (ownernameInput) => {
     if (
-      ownernumeroInput !== '' &&
-      ownernumeroInput !== null &&
+      // ownernumeroInput !== '' &&
+      // ownernumeroInput !== null &&
       ownernameInput !== '' &&
       ownernameInput !== null
     )
       axios
         .post(
           `${process.env.REACT_APP_BASE_URL}/owner/`,
-          { numero: ownernumeroInput, name: ownernameInput },
+          { name: ownernameInput },
           {
             headers: {
               Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`
@@ -238,7 +238,7 @@ export default function Owner() {
     setFilterName(event.target.value);
   };
 
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - setOwnerTab.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - OwnerTab.length) : 0;
 
   const filteredOwner = applySortFilter(OwnerTab, getComparator(order, orderBy), filterName);
 
@@ -274,22 +274,22 @@ export default function Owner() {
               <h2 align="center" id="simple-modal-title">
                 Ajouter un Propriétaire
               </h2>
-              <TextField
+              {/* <TextField
                 label="Saisissez son numéro"
                 variant="outlined"
                 style={{ marginTop: 20, marginBottom: 20 }}
                 value={ownernumeroInput}
                 onChange={(e) => setOwnerNumeroInput(e.target.value)}
-              />
+              /> */}
               <TextField
-                label="Saisissez le Nom"
+                label="Saisissez le Nom du Chargeur"
                 variant="outlined"
                 style={{ marginTop: 20, marginBottom: 20 }}
                 value={ownernameInput}
                 onChange={(e) => setOwnerNameInput(e.target.value)}
               />
               <Button
-                onClick={() => addOwner(ownernumeroInput, ownernameInput)}
+                onClick={() => addOwner(ownernameInput)}
                 variant="contained"
                 startIcon={<Icon icon={plusFill} />}
               >
@@ -313,7 +313,7 @@ export default function Owner() {
                   order={order}
                   orderBy={orderBy}
                   headLabel={TABLE_HEAD}
-                  rowCount={setOwnerTab.length}
+                  rowCount={OwnerTab.length}
                   numSelected={selected.length}
                   onRequestSort={handleRequestSort}
                   onSelectAllClick={handleSelectAllClick}
@@ -322,7 +322,7 @@ export default function Owner() {
                   {filteredOwner
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row) => {
-                      const { id, numero, name } = row;
+                      const { id, name } = row;
                       const isItemSelected = selected.indexOf(name) !== -1;
 
                       return (
@@ -340,13 +340,13 @@ export default function Owner() {
                               onChange={(event) => handleClick(event, name)}
                             />
                           </TableCell>
-                          <TableCell component="th" scope="row" padding="none">
+                          {/* <TableCell component="th" scope="row" padding="none">
                             <Stack direction="row" alignItems="center" spacing={2}>
                               <Typography variant="subtitle2" noWrap>
                                 {numero}
                               </Typography>
                             </Stack>
-                          </TableCell>
+                          </TableCell> */}
                           <TableCell component="th" scope="row" padding="none">
                             <Stack direction="row" alignItems="center" spacing={2}>
                               <Typography variant="subtitle2" noWrap>
@@ -358,7 +358,7 @@ export default function Owner() {
                           <TableCell align="right">
                             <OwnerMoreMenu
                               idOwner={id}
-                              numeroOwner={numero}
+                              // numeroOwner={numero}
                               nameOwner={name}
                               sendInformation={(value) => isDataChange(value)}
                             />
@@ -388,7 +388,7 @@ export default function Owner() {
           <TablePagination
             rowsPerPageOptions={[5, 10, 25]}
             component="div"
-            count={setOwnerTab.length}
+            count={OwnerTab.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}

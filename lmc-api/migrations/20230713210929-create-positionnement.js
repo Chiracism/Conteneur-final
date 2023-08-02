@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Newmouvements', {
+    await queryInterface.createTable('positionnements', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -17,38 +17,20 @@ module.exports = {
       type: {
         type: Sequelize.STRING
       },
-      bl: {
+      position: {
+        type: Sequelize.STRING
+      },
+      datedepart: {
+        type: Sequelize.DATE
+      },
+      port: {
         type: Sequelize.STRING
       },
       navire: {
         type: Sequelize.STRING
       },
-      eta: {
-        type: Sequelize.DATE
-      },
-      contenu: {
+      exportat: {
         type: Sequelize.STRING
-      },
-      poids: {
-        type: Sequelize.STRING
-      },
-      client: {
-        type: Sequelize.STRING
-      },
-      numeromemo: {
-        type: Sequelize.STRING
-      },
-      agence: {
-        type: Sequelize.STRING
-      },
-      caution: {
-        type: Sequelize.FLOAT
-      },
-      destination: {
-        type: Sequelize.STRING
-      },
-      dates: {
-        type: Sequelize.DATE
       },
       name: {
         type: Sequelize.STRING
@@ -64,6 +46,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Newmouvements');
+    await queryInterface.dropTable('positionnements');
   }
 };

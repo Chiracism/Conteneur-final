@@ -522,12 +522,12 @@ export default function Reparation() {
                 options={reparapaysTab}
                 onChange={(event, newType) => {
                   if (newType) {
-                    setReparaPaysInput(newType.name);
+                    setReparaPaysInput(newType.index);
                   } else {
                     setReparaPaysInput(null);
                   }
                 }}
-                getOptionLabel={(option) => option.name}
+                getOptionLabel={(option) => option.index}
                 style={{ width: 400 }}
                 renderInput={(params) => (
                   <TextField {...params} label="Sélectionner le Pays" variant="outlined" />

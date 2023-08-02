@@ -4,6 +4,7 @@ const { Op } = require("sequelize");
 // Endpoint to create mouvement
 exports.createMouvement = async (req, res, next) => {
   const newmouvementObject = JSON.parse(JSON.stringify(req.body));
+  // console.log('newmouvementObject : ', newmouvementObject);
 
   delete newmouvementObject.id;
 
@@ -22,7 +23,7 @@ exports.getOneMouvement = async (req, res, next) => {
     where: { id: req.params.id },
   });
 
-  if (newmouvementmouvement) {
+  if (newmouvement) {
     res.status(200).json(newmouvementmouvement);
   } else {
     res.status(400).json({ message: "Error on getting mouvement" });
@@ -31,7 +32,7 @@ exports.getOneMouvement = async (req, res, next) => {
 
 // Endpoint to update mouvement
 exports.modifyMouvement = async ({ body, query, params }, res, next) => {
-  const newmouvementmouvementObject = JSON.parse(JSON.stringify(body));
+  const newmouvementObject = JSON.parse(JSON.stringify(body));
 
   db.Newmouvement.update(
     { ...newmouvementObject },

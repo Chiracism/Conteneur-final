@@ -287,8 +287,12 @@ export default function Mouvement() {
   useEffect(() => {
     if (mouvsizeInput === 20) {
       setMouvCautionInput(1000);
-    } else {
+    } else if (mouvsizeInput === 40) {
       setMouvCautionInput(2000);
+    } else {
+      setMouvCautionInput(0);
+      setMouvSizeInput(0);
+      setMouvTypeInput('Aucun');
     }
   }, [mouvsizeInput]);
 
@@ -437,7 +441,7 @@ export default function Mouvement() {
               />
             </div>
             <div className="input-label-wrapper">
-              Poids:{' '}
+              Poids Conteneur en Tonne(T).:{' '}
               <TextField
                 className="basic-input"
                 // label="Saisissez le nombre"
