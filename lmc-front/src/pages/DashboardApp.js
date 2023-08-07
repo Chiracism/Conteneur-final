@@ -56,8 +56,8 @@ export default function DashboardApp() {
           </Grid>
           <Grid item xs={12} md={6} lg={8}>
             <AppWebsiteVisits
-              title="Visites sur le Site Web"
-              subheader="Année Dernière"
+              title="Visites sur le logiciel "
+              subheader="Année En cours"
               chartLabels={[
                 '01/01/2023',
                 '02/01/2023',

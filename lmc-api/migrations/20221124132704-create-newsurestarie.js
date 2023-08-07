@@ -53,6 +53,9 @@ module.exports = {
       montantafacture: {
         type: Sequelize.FLOAT
       },
+      statut: {
+        type: Sequelize.STRING
+      },
       total: {
         type: Sequelize.FLOAT
       },

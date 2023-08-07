@@ -1,5 +1,8 @@
 import { filter } from 'lodash';
 import { useState, useEffect, useRef } from 'react';
+// react-toastify
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 // material
 import {
@@ -60,6 +63,7 @@ const TABLE_HEAD = [
   { id: 'rembourser', label: 'Montant à Rembourser', alignRight: false },
   { id: 'montantafacture', label: 'Montant Facturer', alignRight: false },
   { id: 'total', label: 'Total', alignRight: false },
+  { id: 'statut', label: 'Statut', alignRight: false },
   { id: 'name', label: 'Utilisateur', alignRight: false },
   { id: 'date', label: 'Date', alignRight: false },
   { id: '' }
@@ -263,6 +267,7 @@ export default function User() {
           </Typography>
         </Stack>
 
+        <ToastContainer />
         <CheckUserAuth />
 
         <Card>
@@ -310,6 +315,7 @@ export default function User() {
                         rembourser,
                         montantafacture,
                         total,
+                        statut,
                         name,
                         createdAt
                       } = row;
@@ -447,6 +453,13 @@ export default function User() {
                           <TableCell component="th" scope="row" padding="none">
                             <Stack direction="row" justifyContent="center" spacing={2}>
                               <Typography variant="subtitle2" noWrap>
+                                {statut}
+                              </Typography>
+                            </Stack>
+                          </TableCell>
+                          <TableCell component="th" scope="row" padding="none">
+                            <Stack direction="row" justifyContent="center" spacing={2}>
+                              <Typography variant="subtitle2" noWrap>
                                 {name}
                               </Typography>
                             </Stack>
@@ -488,6 +501,7 @@ export default function User() {
                               // fraismod={frais}
                               facturermod={montantafacture}
                               remboursermod={rembourser}
+                              statutmod={statut}
                               totalmod={total}
                               sendInformation={(value) => isDataChange(value)}
                             />

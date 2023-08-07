@@ -37,6 +37,7 @@ const agenceRoutes = require('./routes/agence');
 const newSurestariesRoutes = require('./routes/newsurestarie');
 const newmouvementRoutes = require('./routes/newmouvement');
 const positionnementRoutes = require('./routes/positionnement');
+const statutRoutes = require('./routes/statut');
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -100,5 +101,6 @@ app.use("/api/situation", situationRoutes);
 app.use("/api/position", positionRoutes);
 app.use("/api/consultat", consultatRoutes);
 app.use("/api/agence", agenceRoutes);
+app.use("/api/statut", statutRoutes);
 
 module.exports = app;

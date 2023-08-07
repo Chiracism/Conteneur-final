@@ -1,5 +1,8 @@
 import { filter } from 'lodash';
 import { useState, useEffect, useRef } from 'react';
+// react-toastify
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 // material
 import {
@@ -267,6 +270,7 @@ export default function User() {
           </Typography>
         </Stack>
 
+        <ToastContainer />
         <CheckUserAuth />
 
         <Card>

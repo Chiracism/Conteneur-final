@@ -77,6 +77,7 @@ export default function Mouvement() {
   const [surestarierembourserInput, setSurestarieRembourserInput] = useState('');
   // const [surestarietotalInput, setSurestarieTotalInput] = useState('');
   // const [DatepickerR, setDatepickerInput] = useState('');
+  const [surestariestatutInput, setSurestarieStatutInput] = useState('');
 
   const reloadPage = () => {
     window.location.reload();
@@ -116,6 +117,7 @@ export default function Mouvement() {
           durees: surestariesdureesInput,
           rembourser: surestarierembourserInput,
           montantafacture: surestarietotalInput,
+          statut: surestariestatutInput,
           total: surestariefacturerInput,
           name: user.name,
           // surestariedate: surestariedateInput,
@@ -515,6 +517,7 @@ export default function Mouvement() {
         setSurestarieFacturerInput(0);
         setSurestarieFraisInput(0);
         setSurestarieRembourserInput(surestariecautionverseeInput);
+        setSurestarieStatutInput('Remboursable');
         setSurestarieTotalInput(0);
       } else if (surestariedetentionInput < 47) {
         setSurestarieDureeInput(surestariedetentionInput - 32);
@@ -523,8 +526,10 @@ export default function Mouvement() {
         setSurestarieFraisInput((surestariedetentionInput - 32) * 10);
         if (surestariecautionverseeInput > surestariefraisInput) {
           setSurestarieRembourserInput(surestariecautionverseeInput - surestariefraisInput);
+          setSurestarieStatutInput('Remboursable');
         } else {
           setSurestarieRembourserInput(0);
+          setSurestarieStatutInput('Non-Remboursable');
         }
         setSurestarieTotalInput(0);
         // if (surestariecautionverseeInput > surestariefraisInput) {
@@ -541,8 +546,10 @@ export default function Mouvement() {
         );
         if (surestariecautionverseeInput > surestariefraisInput) {
           setSurestarieRembourserInput(surestariecautionverseeInput - surestariefraisInput);
+          setSurestarieStatutInput('Remboursable');
         } else {
           setSurestarieRembourserInput(0);
+          setSurestarieStatutInput('Non-Remboursable');
         }
         if (surestariecautionverseeInput > surestariefraisInput) {
           setSurestarieTotalInput(0);
@@ -558,6 +565,7 @@ export default function Mouvement() {
         setSurestarieFacturerInput(0);
         setSurestarieFraisInput(0);
         setSurestarieRembourserInput(surestariecautionverseeInput);
+        setSurestarieStatutInput('Remboursable');
         setSurestarieTotalInput(0);
       } else if (surestariedetentionInput < 47) {
         setSurestarieDureeInput(surestariedetentionInput - 32);
@@ -566,8 +574,10 @@ export default function Mouvement() {
         setSurestarieFraisInput(surestariedureeInput * 20 + surestariesdureesInput * 20);
         if (surestariecautionverseeInput > surestariefraisInput) {
           setSurestarieRembourserInput(surestariecautionverseeInput - surestariefraisInput);
+          setSurestarieStatutInput('Remboursable');
         } else {
           setSurestarieRembourserInput(0);
+          setSurestarieStatutInput('Non-Remboursable');
         }
         // setSurestarieTotalInput(surestariefraisInput);
         if (surestariecautionverseeInput > surestariefraisInput) {
@@ -584,8 +594,10 @@ export default function Mouvement() {
         );
         if (surestariecautionverseeInput > surestariefraisInput) {
           setSurestarieRembourserInput(surestariecautionverseeInput - surestariefraisInput);
+          setSurestarieStatutInput('Remboursable');
         } else {
           setSurestarieRembourserInput(0);
+          setSurestarieStatutInput('Non-Remboursable');
         }
         // setSurestarieTotalInput(surestariefraisInput);
         if (surestariecautionverseeInput > surestariefraisInput) {
@@ -607,8 +619,12 @@ export default function Mouvement() {
   useEffect(() => {
     if (surestariesizeInput === 20) {
       setSurestarieCautionVerseeInput(1000);
-    } else {
+    } else if (surestariesizeInput === 40) {
       setSurestarieCautionVerseeInput(2000);
+    } else {
+      setSurestarieCautionVerseeInput(0);
+      setMouvTypeInput('Aucun');
+      setSurestarieSizeInput(0);
     }
   }, [surestariesizeInput]);
 

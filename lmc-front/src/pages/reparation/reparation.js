@@ -470,7 +470,7 @@ export default function Reparation() {
                 }}
               />
             </div>
-            <div className="input-label-wrapper">
+            {/* <div className="input-label-wrapper">
               Location:{' '}
               <TextField
                 className="basic-input"
@@ -481,7 +481,7 @@ export default function Reparation() {
                   setReparaSocLocInput(e.target.value);
                 }}
               />
-            </div>
+            </div> */}
           </Box>
           <Box className="box-wrapper">
             {/* <div className="input-label-wrapper">
@@ -550,8 +550,8 @@ export default function Reparation() {
             <div className="input-label-wrapper">
               Total:{' '}
               <TextField
-                className="basic-input"
-                label="Saisissez la date de r"
+                // className="basic-input"
+                // label="Saisissez la date de r"
                 variant="outlined"
                 value={reparatotal}
                 // onChange={(e) => {
@@ -561,10 +561,10 @@ export default function Reparation() {
             </div>
 
             <div className="input-label-wrapper">
-              Réçu.:{' '}
+              N° Facture.:{' '}
               <TextField
                 className="basic-input"
-                label="Saisissez le numero"
+                label="Saisissez le numero de la facture"
                 variant="outlined"
                 value={repararecuInput}
                 onChange={(e) => {
@@ -591,7 +591,7 @@ export default function Reparation() {
                 )}
               />
             </div>
-            <div className="input-label-wrapper">
+            {/* <div className="input-label-wrapper">
               Société:{' '}
               <TextField
                 className="basic-input"
@@ -602,7 +602,7 @@ export default function Reparation() {
                   setReparaSocieteInput(e.target.value);
                 }}
               />
-            </div>
+            </div> */}
             <div className="input-label-wrapper">
               Date Insp.:{' '}
               <TextField

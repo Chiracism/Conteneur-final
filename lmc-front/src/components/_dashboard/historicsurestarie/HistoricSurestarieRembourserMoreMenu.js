@@ -96,7 +96,6 @@ export default function UserMoreMenu({
   fraismod,
   facturermod,
   remboursermod,
-  statutmod,
   totalmod,
   sendInformation
 }) {
@@ -294,24 +293,6 @@ export default function UserMoreMenu({
   }, []);
 
   /**
-   * Informations for Statut
-   */
-  const [surestariestatutTab, setSurestarieStatutTab] = useState([]);
-  const [surestariestatutInput, setSurestarieStatutInput] = useState(statutmod);
-
-  useEffect(() => {
-    axios(`${process.env.REACT_APP_BASE_URL}/statut/`, {
-      headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`
-      }
-    })
-      .then((value) => {
-        setSurestarieStatutTab(value.data);
-      })
-      .catch(() => {});
-  }, []);
-
-  /**
    * Informations for Site
    */
   const [mouvsiteTab, setMouvSiteTab] = useState([]);
@@ -470,46 +451,6 @@ export default function UserMoreMenu({
     });
   };
 
-  const modifyStatut = () => {
-    axios
-      .put(
-        `${process.env.REACT_APP_BASE_URL}/newsurestarie/${idHistoric}`,
-        {
-          numero: surestarienumeroInput,
-          size: surestariesizeInput,
-          type: mouvtypeInput,
-          navire: surestarienavireInput,
-          port: surestarieportInput,
-          typeofchoix: sureschoixInput,
-          datearrivee: surestariedatearriveeInput,
-          client: surestarieclientInput,
-          caution: surestariecautionverseeInput,
-          daterestitution: surestariedaterestitutionInput,
-          detention: surestariedetentionInput,
-          duree: surestariedureeInput,
-          durees: surestariesdureesInput,
-          rembourser: surestarierembourserInput,
-          montantafacture: surestariefacturerInput,
-          statut: surestariestatutInput,
-          total: surestarietotalInput,
-          name: user.name
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`
-          }
-        }
-      )
-      .then((value) => {
-        sendInformation(value.data);
-      })
-      .catch(() => {});
-    // sendInformation(value.data);
-    setIsOpen(false);
-    handleClose();
-    showSuccessToastSTATUT();
-  };
-
   // Print Facture
   function printFacture() {
     axios
@@ -576,7 +517,6 @@ export default function UserMoreMenu({
     setSurestarieFacturerInput('');
     setSurestarieRembourserInput('');
     setSurestarieTotalInput('');
-    showSuccessToastMod();
   }
 
   const isDataChange = () => {
@@ -609,22 +549,15 @@ export default function UserMoreMenu({
   // React-Toastify-Notification
   const showSuccessToastSUP = () => {
     toast.warning('Opération a été supprimé avec succès', {
-      position: toast.POSITION.TOP_RIGHT,
-      autoClose: 1200
+      position: toast.POSITION.TOP_LEFT,
+      autoClose: 1000
     });
   };
 
   const showSuccessToastMOD = () => {
     toast.success('Opération a été modifié avec succès', {
-      position: toast.POSITION.TOP_RIGHT,
-      autoClose: 1200
-    });
-  };
-
-  const showSuccessToastSTATUT = () => {
-    toast.success('Statut a été modifié avec succès', {
-      position: toast.POSITION.TOP_RIGHT,
-      autoClose: 1200
+      position: toast.POSITION.TOP_LEFT,
+      autoClose: 1000
     });
   };
 
@@ -661,6 +594,76 @@ export default function UserMoreMenu({
             </h2>
             <Card className="card-wrapper">
               <Box className="box-wrapper">
+                {/* <div className="input-label-wrapper">
+                  N° Conteneur:{' '}
+                  <Autocomplete
+                    className="combo-box-completion"
+                    options={mouvementTab}
+                    onChange={(event, newType) => {
+                      if (newType) {
+                        setMouvNumberInput(newType.number);
+                      } else {
+                        setMouvNumberInput(null);
+                      }
+                    }}
+                    getOptionLabel={(option) => option.number}
+                    style={{ width: 400 }}
+                    renderInput={(params) => (
+                      <TextField {...params} label="Sélectionner le numero" variant="outlined" />
+                    )}
+                  />
+                </div> */}
+                {/* <div className="input-label-wrapper">
+                  Site:{' '}
+                  <Autocomplete
+                    className="combo-box-completion"
+                    options={mouvsiteTab}
+                    onChange={(event, newType) => {
+                      if (newType) {
+                        setMouvSiteInput(newType.name);
+                      } else {
+                        setMouvSiteInput(null);
+                      }
+                    }}
+                    getOptionLabel={(option) => option.name}
+                    style={{ width: 400 }}
+                    renderInput={(params) => (
+                      <TextField {...params} label="Sélectionner un Site" variant="outlined" />
+                    )}
+                  />
+                </div> */}
+                {/* <div className="input-label-wrapper">
+                  Date Surestarie:{' '}
+                  <TextField
+                    className="basic-input"
+                    // label="Saisissez la date de la Surestarie"
+                    type="date"
+                    variant="outlined"
+                    value={surestariedateInput}
+                    onChange={(e) => {
+                      setSurestarieDateInput(e.target.value);
+                    }}
+                  />
+                </div> */}
+                {/* <div className="input-label-wrapper">
+                  N° Conteneur:{' '}
+                  <Autocomplete
+                    className="combo-box-completion"
+                    options={surestarienumeroTab}
+                    onChange={(event, newType) => {
+                      if (newType) {
+                        setSurestarieNumeroInput(newType.number);
+                      } else {
+                        setSurestarieNumeroInput(null);
+                      }
+                    }}
+                    getOptionLabel={(option) => option.number}
+                    style={{ width: 400 }}
+                    renderInput={(params) => (
+                      <TextField {...params} label="Sélectionner le numero" variant="outlined" />
+                    )}
+                  />
+                </div> */}
                 <div className="input-label-wrapper">
                   N° Conteneur:{' '}
                   <TextField
@@ -683,6 +686,29 @@ export default function UserMoreMenu({
                     }}
                   />
                 </div>
+                {/* <div className="input-label-wrapper">
+                  Type:{' '}
+                  <Autocomplete
+                    className="combo-box-completion"
+                    options={mouvtypeTab}
+                    onChange={(event, newType) => {
+                      if (newType) {
+                        setMouvTypeInput(newType.name);
+                      } else {
+                        setMouvTypeInput(null);
+                      }
+                    }}
+                    getOptionLabel={(option) => option.name}
+                    style={{ width: 400 }}
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        label="Sélectionner l'Etat de Conteneur"
+                        variant="outlined"
+                      />
+                    )}
+                  />
+                </div> */}
                 <div className="input-label-wrapper">
                   Navire :{' '}
                   <TextField
@@ -694,6 +720,25 @@ export default function UserMoreMenu({
                     }}
                   />
                 </div>
+                {/* <div className="input-label-wrapper">
+                  Navire:{' '}
+                  <Autocomplete
+                    className="combo-box-completion"
+                    options={surestarienavireTab}
+                    onChange={(event, newType) => {
+                      if (newType) {
+                        setSurestarieNavireInput(newType.name);
+                      } else {
+                        setSurestarieNavireInput(null);
+                      }
+                    }}
+                    getOptionLabel={(option) => option.name}
+                    style={{ width: 400 }}
+                    renderInput={(params) => (
+                      <TextField {...params} label="Sélectionner le navire" variant="outlined" />
+                    )}
+                  />
+                </div> */}
                 <div className="input-label-wrapper">
                   Client :{' '}
                   <TextField
@@ -705,6 +750,25 @@ export default function UserMoreMenu({
                     }}
                   />
                 </div>
+                {/* <div className="input-label-wrapper">
+                  Client:{' '}
+                  <Autocomplete
+                    className="combo-box-completion"
+                    options={surestarieclientTab}
+                    onChange={(event, newType) => {
+                      if (newType) {
+                        setSurestarieClientInput(newType.name);
+                      } else {
+                        setSurestarieClientInput(null);
+                      }
+                    }}
+                    getOptionLabel={(option) => option.name}
+                    style={{ width: 400 }}
+                    renderInput={(params) => (
+                      <TextField {...params} label="Sélectionner un Client" variant="outlined" />
+                    )}
+                  />
+                </div> */}
                 <div className="input-label-wrapper">
                   Date Restitution:{' '}
                   <TextField
@@ -718,6 +782,18 @@ export default function UserMoreMenu({
                     }}
                   />
                 </div>
+                {/* <div className="input-label-wrapper">
+                  NLS:{' '}
+                  <TextField
+                    className="basic-input"
+                    label="Saisissez le NLS"
+                    variant="outlined"
+                    value={surestarienlsInput}
+                    onChange={(e) => {
+                      setSurestarieNlsInput(e.target.value);
+                    }}
+                  />
+                </div> */}
                 <div className="input-label-wrapper">
                   Type de Choix:{' '}
                   <Autocomplete
@@ -766,8 +842,51 @@ export default function UserMoreMenu({
                     }}
                   />
                 </div>
+                {/* <div className="input-label-wrapper">
+                  Frais:{' '}
+                  <TextField
+                    className="basic-input"
+                    // label="Frais à payer"
+                    variant="outlined"
+                    value={surestariefraisInput}
+                    onChange={(e) => {
+                      setSurestarieFraisInput(e.target.value);
+                    }}
+                  />
+                </div> */}
+                <div className="input-label-wrapper">
+                  Rembourser:{' '}
+                  <TextField
+                    className="basic-input"
+                    // label="A rembourser "
+                    variant="outlined"
+                    value={surestarierembourserInput}
+                    onChange={(e) => {
+                      setSurestarieRembourserInput(e.target.value);
+                    }}
+                  />
+                </div>
               </Box>
-              <Box className="box-wrapper">
+              <Box className="box-2-wrapper">
+                {/* <div className="input-label-wrapper">
+                  Taille:{' '}
+                  <Autocomplete
+                    className="combo-box-completion"
+                    options={surestariesizeTab}
+                    onChange={(event, newType) => {
+                      if (newType) {
+                        setSurestarieSizeInput(newType.name);
+                      } else {
+                        setSurestarieSizeInput(null);
+                      }
+                    }}
+                    getOptionLabel={(option) => option.name}
+                    style={{ width: 400 }}
+                    renderInput={(params) => (
+                      <TextField {...params} label="Sélectionner la Taille" variant="outlined" />
+                    )}
+                  />
+                </div> */}
                 <div className="input-label-wrapper">
                   Taille :{' '}
                   <TextField
@@ -790,6 +909,25 @@ export default function UserMoreMenu({
                     }}
                   />
                 </div>
+                {/* <div className="input-label-wrapper">
+                  Port:{' '}
+                  <Autocomplete
+                    className="combo-box-completion"
+                    options={surestarieportTab}
+                    onChange={(event, newType) => {
+                      if (newType) {
+                        setSurestariePortInput(newType.name);
+                      } else {
+                        setSurestariePortInput(null);
+                      }
+                    }}
+                    getOptionLabel={(option) => option.name}
+                    style={{ width: 400 }}
+                    renderInput={(params) => (
+                      <TextField {...params} label="Sélectionner le Port" variant="outlined" />
+                    )}
+                  />
+                </div> */}
                 <div className="input-label-wrapper">
                   Date Arrivée:{' '}
                   <TextField
@@ -803,6 +941,18 @@ export default function UserMoreMenu({
                     }}
                   />
                 </div>
+                {/* <div className="input-label-wrapper">
+                  Nombre:{' '}
+                  <TextField
+                    className="basic-input"
+                    label="Saisissez le nombre"
+                    variant="outlined"
+                    value={surestarienombreInput}
+                    onChange={(e) => {
+                      setSurestarieNombreInput(e.target.value);
+                    }}
+                  />
+                </div> */}
                 <div className="input-label-wrapper">
                   Caution Versée:{' '}
                   <TextField
@@ -815,6 +965,19 @@ export default function UserMoreMenu({
                     }}
                   />
                 </div>
+                {/* <div className="input-label-wrapper">
+                  Ls Date:{' '}
+                  <TextField
+                    className="basic-input"
+                    // label="Saisissez le ls date"
+                    type="date"
+                    variant="outlined"
+                    value={surestariedatelsInput}
+                    onChange={(e) => {
+                      setSurestarieDateLsInput(e.target.value);
+                    }}
+                  />
+                </div> */}
                 <div className="input-label-wrapper">
                   Durée:{' '}
                   <TextField
@@ -851,49 +1014,42 @@ export default function UserMoreMenu({
                     }}
                   />
                 </div>
-                <div className="input-label-wrapper">
-                  Montant à Rembourser:{' '}
+                {/* <div className="input-label-wrapper">
+                  Date:{' '}
                   <TextField
                     className="basic-input"
-                    // label="A rembourser "
+                    label="Total "
+                    type="date"
                     variant="outlined"
-                    value={surestarierembourserInput}
+                    value={DatepickerR}
                     onChange={(e) => {
-                      setSurestarieRembourserInput(e.target.value);
+                      setDatepickerInput(e.target.value);
                     }}
                   />
-                </div>
-                <div className="input-label-wrapper">
-                  Statut:{' '}
-                  <Autocomplete
-                    className="combo-box-completion"
-                    options={surestariestatutTab}
-                    onChange={(event, newType) => {
-                      if (newType) {
-                        setSurestarieStatutInput(newType.name);
-                      } else {
-                        setSurestarieStatutInput(null);
-                      }
+                </div> */}
+                {/* <CFormGroup row>
+                      <CCol md="3">
+                        <CLabel htmlFor="date-input">Date Input</CLabel>
+                      </CCol>
+                      <CCol xs="12" md="9">
+                        <CInput type="date" id="date-input" name="date-input" placeholder="date" />
+                      </CCol>
+                </CFormGroup> */}
+                {/* <div className="input-label-wrapper">
+                  Observation.:{' '}
+                  <TextField
+                    className="basic-input"
+                    label="Commentaires..."
+                    variant="outlined"
+                    value={mouvobservationInput}
+                    onChange={(e) => {
+                      setMouvObservationInput(e.target.value);
                     }}
-                    getOptionLabel={(option) => option.name}
-                    style={{ width: 400 }}
-                    renderInput={(params) => (
-                      <TextField {...params} label="Sélectionner le Statut" variant="outlined" />
-                    )}
                   />
-                </div>
+                </div> */}
               </Box>
             </Card>
             <Card className="card-botton-2-wrapper">
-              <div>
-                <Button
-                  onClick={() => modifyStatut()}
-                  variant="contained"
-                  startIcon={<Icon icon={plusFill} />}
-                >
-                  Sauvegarder le Statut
-                </Button>
-              </div>
               <div>
                 <Button variant="contained" color="primary" onClick={() => validateCalcul()}>
                   CALCUL SURESTARIE
@@ -901,45 +1057,312 @@ export default function UserMoreMenu({
               </div>
             </Card>
             <br />
-            <Card className="card-botton-2-wrapper">
-              <div>
-                <div>
-                  <ReactToPrint
-                    trigger={() => (
-                      <Button variant="contained" color="primary" disabled={disabledPrint()}>
-                        Imprimer & Sauvegarder
-                      </Button>
+            {/* <Card className="card-wrapper">
+              <Box className="box-wrapper">
+                <div className="input-label-wrapper">
+                  N° Conteneur:{' '}
+                  <Autocomplete
+                    className="combo-box-completion"
+                    options={reparationTab}
+                    onChange={(event, newType) => {
+                      if (newType) {
+                        setReparaNumeroInput(newType.number);
+                      } else {
+                        setReparaNumeroInput(null);
+                      }
+                    }}
+                    getOptionLabel={(option) => option.number}
+                    style={{ width: 400 }}
+                    renderInput={(params) => (
+                      <TextField {...params} label="Sélectionner le numero" variant="outlined" />
                     )}
-                    content={() => componentRef.current}
-                    suppressErrors
-                    onAfterPrint={() => printFacture()}
-                  />
-                  <ComponentToPrintSurestarie
-                    ref={componentRef}
-                    numero={surestarienumeroInput}
-                    datedernierereparation={surestariedateInput}
-                    // typeconteneur={reparatypeInput}
-                    tailleconteneur={surestariesizeInput}
-                    client={surestarieclientInput}
-                    detention={surestariedetentionInput}
-                    port={surestarieportInput}
-                    size={surestariesizeInput}
-                    total={surestarietotalInput}
-                    // proprietaireid={reparaownerInput}
-                    // paysname={reparapaysInput}
-                    // taux={reparatauxInput}
-                    // heure={reparaheureInput}
-                    // materielid={reparamaterielInput}
-                    // total={reparatotal}
-                    // numerorecu={repararecuInput}
-                    // societereparation={reparasocrepInput}
-                    // societelocation={reparasoclocInput}
-                    // site={reparasiteInput}
-                    // datederniereinspection={reparadateinspInput}
-                    // societe={reparasocieteInput}
-                    rows={[]}
                   />
                 </div>
+                <div className="input-label-wrapper">
+                  Date Réparation.:{' '}
+                  <TextField
+                    className="basic-input"
+                    // label="Saisissez la date de reparation"
+                    type="date"
+                    variant="outlined"
+                    value={reparadatereparaInput}
+                    onChange={(e) => {
+                      setReparaDateReparaInput(e.target.value);
+                    }}
+                  />
+                </div>
+                <div className="input-label-wrapper">
+                  Type:{' '}
+                  <Autocomplete
+                    className="combo-box-completion"
+                    options={reparationtypeTab}
+                    onChange={(event, newType) => {
+                      if (newType) {
+                        setReparaTypeInput(newType.name);
+                      } else {
+                        setReparaTypeInput(null);
+                      }
+                    }}
+                    getOptionLabel={(option) => option.name}
+                    style={{ width: 400 }}
+                    renderInput={(params) => (
+                      <TextField {...params} label="Sélectionner le Type" variant="outlined" />
+                    )}
+                  />
+                </div>
+                <div className="input-label-wrapper">
+                  Propriétaire:{' '}
+                  <Autocomplete
+                    className="combo-box-completion"
+                    options={reparaownerTab}
+                    onChange={(event, newType) => {
+                      if (newType) {
+                        setReparaOwnerInput(newType.name);
+                      } else {
+                        setReparaOwnerInput(null);
+                      }
+                    }}
+                    getOptionLabel={(option) => option.name}
+                    style={{ width: 400 }}
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        label="Sélectionner le Propriétaire"
+                        variant="outlined"
+                      />
+                    )}
+                  />
+                </div>
+                <div className="input-label-wrapper">
+                  Taux:{' '}
+                  <Autocomplete
+                    className="combo-box-completion"
+                    options={reparatauxTab}
+                    onChange={(event, newType) => {
+                      if (newType) {
+                        setReparaTauxInput(newType.amount);
+                      } else {
+                        setReparaTauxInput(null);
+                      }
+                    }}
+                    getOptionLabel={(option) => option.amount}
+                    style={{ width: 400 }}
+                    renderInput={(params) => (
+                      <TextField {...params} label="Sélectionner le taux" variant="outlined" />
+                    )}
+                  />
+                </div>
+                <div className="input-label-wrapper">
+                  Materiel:{' '}
+                  <Autocomplete
+                    className="combo-box-completion"
+                    options={reparamaterielTab}
+                    onChange={(event, newType) => {
+                      if (newType) {
+                        setReparaMaterielInput(newType.name);
+                      } else {
+                        setReparaMaterielInput(null);
+                      }
+                    }}
+                    getOptionLabel={(option) => option.name}
+                    style={{ width: 400 }}
+                    renderInput={(params) => (
+                      <TextField {...params} label="Sélectionner le matériel" variant="outlined" />
+                    )}
+                  />
+                </div>
+                <div className="input-label-wrapper">
+                  Société Rép.:{' '}
+                  <TextField
+                    className="basic-input"
+                    label="Saisissez le nom de la societe"
+                    variant="outlined"
+                    value={reparasocrepInput}
+                    onChange={(e) => {
+                      setReparaSocRepInput(e.target.value);
+                    }}
+                  />
+                </div>
+                <div className="input-label-wrapper">
+                  Location:{' '}
+                  <TextField
+                    className="basic-input"
+                    label="Saisissez l'adresse de la Société"
+                    variant="outlined"
+                    value={reparasoclocInput}
+                    onChange={(e) => {
+                      setReparaSocLocInput(e.target.value);
+                    }}
+                  />
+                </div>
+                <div className="input-label-wrapper">
+                  Date Insp.:{' '}
+                  <TextField
+                    className="basic-input"
+                    // label="Saisissez la Date"
+                    type="date"
+                    variant="outlined"
+                    value={reparadateinspInput}
+                    onChange={(e) => {
+                      setReparaDateInspInput(e.target.value);
+                    }}
+                  />
+                </div>
+              </Box>
+              <Box className="box-2-wrapper">
+                <div className="input-label-wrapper">
+                  Taille:{' '}
+                  <Autocomplete
+                    className="combo-box-completion"
+                    options={reparatailleTab}
+                    onChange={(event, newType) => {
+                      if (newType) {
+                        setReparaTailleInput(newType.name);
+                      } else {
+                        setReparaTailleInput(null);
+                      }
+                    }}
+                    getOptionLabel={(option) => option.name}
+                    style={{ width: 400 }}
+                    renderInput={(params) => (
+                      <TextField {...params} label="Sélectionner la Taille" variant="outlined" />
+                    )}
+                  />
+                </div>
+                <div className="input-label-wrapper">
+                  Pays:{' '}
+                  <Autocomplete
+                    className="combo-box-completion"
+                    options={reparapaysTab}
+                    onChange={(event, newType) => {
+                      if (newType) {
+                        setReparaPaysInput(newType.name);
+                      } else {
+                        setReparaPaysInput(null);
+                      }
+                    }}
+                    getOptionLabel={(option) => option.name}
+                    style={{ width: 400 }}
+                    renderInput={(params) => (
+                      <TextField {...params} label="Sélectionner le Pays" variant="outlined" />
+                    )}
+                  />
+                </div>
+                <div className="input-label-3-wrapper">
+                  Nombre Heure:{' '}
+                  <TextField
+                    className="basic-input"
+                    label="Saisissez le nomre d'heure"
+                    variant="outlined"
+                    value={reparaheureInput}
+                    onChange={(e) => {
+                      setReparaHeureInput(e.target.value);
+                    }}
+                  />
+                </div>
+
+                <div className="input-label-wrapper">
+                  Total:{' '}
+                  <TextField
+                    className="basic-input"
+                    label="Saisissez la date de r"
+                    variant="outlined"
+                    value={reparatotal}
+                    // onChange={(e) => {
+                    //   setReparaTotalInput(e.target.value);
+                    // }}
+                  />
+                </div>
+
+                <div className="input-label-wrapper">
+                  Réçu.:{' '}
+                  <TextField
+                    className="basic-input"
+                    label="Saisissez le numero"
+                    variant="outlined"
+                    value={repararecuInput}
+                    onChange={(e) => {
+                      setReparaRecuInput(e.target.value);
+                    }}
+                  />
+                </div>
+                <div className="input-label-wrapper">
+                  Site:{' '}
+                  <Autocomplete
+                    className="combo-box-completion"
+                    options={reparasiteTab}
+                    onChange={(event, newType) => {
+                      if (newType) {
+                        setReparaSiteInput(newType.name);
+                      } else {
+                        setReparaSiteInput(null);
+                      }
+                    }}
+                    getOptionLabel={(option) => option.name}
+                    style={{ width: 400 }}
+                    renderInput={(params) => (
+                      <TextField {...params} label="Sélectionner le Site" variant="outlined" />
+                    )}
+                  />
+                </div>
+                <div className="input-label-wrapper">
+                  Société:{' '}
+                  <TextField
+                    className="basic-input"
+                    label="Saisissez la Société"
+                    variant="outlined"
+                    value={reparasocieteInput}
+                    onChange={(e) => {
+                      setReparaSocieteInput(e.target.value);
+                    }}
+                  />
+                </div>
+              </Box>
+            </Card> */}
+            {/* <Button
+              onClick={() => modifyListHistoric()}
+              variant="contained"
+              startIcon={<Icon icon={plusFill} />}
+            >
+              Sauvegarder
+            </Button> */}
+            <Card className="card-botton-2-wrapper">
+              <div>
+                <ReactToPrint
+                  trigger={() => (
+                    <Button variant="contained" color="primary" disabled={disabledPrint()}>
+                      Imprimer & Sauvegarder
+                    </Button>
+                  )}
+                  content={() => componentRef.current}
+                  suppressErrors
+                  onAfterPrint={() => printFacture()}
+                />
+                <ComponentToPrintSurestarie
+                  ref={componentRef}
+                  numero={surestarienumeroInput}
+                  datedernierereparation={surestariedateInput}
+                  // typeconteneur={reparatypeInput}
+                  tailleconteneur={surestariesizeInput}
+                  client={surestarieclientInput}
+                  detention={surestariedetentionInput}
+                  port={surestarieportInput}
+                  size={surestariesizeInput}
+                  total={surestarietotalInput}
+                  // proprietaireid={reparaownerInput}
+                  // paysname={reparapaysInput}
+                  // taux={reparatauxInput}
+                  // heure={reparaheureInput}
+                  // materielid={reparamaterielInput}
+                  // total={reparatotal}
+                  // numerorecu={repararecuInput}
+                  // societereparation={reparasocrepInput}
+                  // societelocation={reparasoclocInput}
+                  // site={reparasiteInput}
+                  // datederniereinspection={reparadateinspInput}
+                  // societe={reparasocieteInput}
+                  rows={[]}
+                />
               </div>
             </Card>
           </div>
@@ -960,7 +1383,7 @@ export default function UserMoreMenu({
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       >
-        {/* <MenuItem sx={{ color: 'green' }}>
+        <MenuItem sx={{ color: 'green' }}>
           <ListItemIcon>
             <ReactToPrint
               // NOTE: could just as easily return <SomeComponent />. Do NOT pass an `onClick` prop
@@ -1004,12 +1427,6 @@ export default function UserMoreMenu({
               }
             ]}
           />
-        </MenuItem> */}
-        <MenuItem sx={{ color: 'green' }} onClick={() => handleOpen()}>
-          <ListItemIcon>
-            <Icon icon={bookOpenOutline} width={40} height={40} />
-          </ListItemIcon>
-          <ListItemText primary=" Remboursement " primaryTypographyProps={{ variant: 'body2' }} />
         </MenuItem>
         <MenuItem sx={{ color: 'blue' }} onClick={() => handleOpen()}>
           <ListItemIcon>
