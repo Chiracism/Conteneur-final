@@ -122,6 +122,13 @@ class ComponentToPrint extends React.PureComponent {
           {/* 1rem 1rem 0rem 1rem */}
           <strong>Date</strong> : <span>{dates}</span>
         </p>
+        <br />
+        <br />
+        <br />
+        <p className="print-source" style={{ textAlign: 'right', margin: '0rem 1rem 0rem 1rem' }}>
+          {/* 1rem 1rem 0rem 1rem */}
+          <strong>Date</strong> : <span>{date}</span>
+        </p>
         {/* <div
           className="print-source"
           style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem', width: '100%' }}
@@ -191,9 +198,32 @@ class ComponentToPrint extends React.PureComponent {
           {/* <p>
             <strong>Montant Net</strong> : {total} FC
           </p> */}
-          <p>
+          {/* <p>
             <strong> Date </strong> : {date}
-          </p>
+          </p> */}
+        </div>
+        <br />
+        <br />
+        <br />
+        <div>
+          <div>
+            <p
+              className="print-source"
+              style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}
+            >
+              {/* <strong>NGUNGA WAMPILUKULA</strong> */}
+              <strong>Chef de Sce Adj. Ctnr & Aire Stockage </strong>
+            </p>
+          </div>
+          <div>
+            <p
+              className="print-source"
+              style={{ textAlign: 'right', margin: '0rem 1rem 0rem 1rem' }}
+            >
+              {/* <strong>NGUNGA WAMPILUKULA</strong> */}
+              <strong>Chef de Sce. Multimodal</strong>
+            </p>
+          </div>
         </div>
         <div
           className="print-source"
