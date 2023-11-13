@@ -33,7 +33,8 @@ import Modal from '@material-ui/core/Modal';
 import { makeStyles } from '@material-ui/styles';
 
 import ReactToPrint from 'react-to-print';
-import ComponentToPrintSurestarie from './ComponentToPrintSurestarie';
+import ComponentToPrintSurest from './ComponentToPrintSurest';
+// import ComponentToPrintSurestarie from './ComponentToPrintSurestarie';
 
 // import { CheckUserAuth } from '../../utils/auth';
 
@@ -914,7 +915,7 @@ export default function UserMoreMenu({
                     suppressErrors
                     onAfterPrint={() => printFacture()}
                   />
-                  <ComponentToPrintSurestarie
+                  <ComponentToPrintSurest
                     ref={componentRef}
                     numero={surestarienumeroInput}
                     datedernierereparation={surestariedateInput}
@@ -924,6 +925,9 @@ export default function UserMoreMenu({
                     detention={surestariedetentionInput}
                     port={surestarieportInput}
                     size={surestariesizeInput}
+                    caution={surestariecautionverseeInput}
+                    rembourser={surestarierembourserInput}
+                    montantafacture={surestariefacturerInput}
                     total={surestarietotalInput}
                     // proprietaireid={reparaownerInput}
                     // paysname={reparapaysInput}
@@ -1009,14 +1013,14 @@ export default function UserMoreMenu({
           <ListItemIcon>
             <Icon icon={bookOpenOutline} width={40} height={40} />
           </ListItemIcon>
-          <ListItemText primary=" Remboursement " primaryTypographyProps={{ variant: 'body2' }} />
+          <ListItemText primary=" Imprimer " primaryTypographyProps={{ variant: 'body2' }} />
         </MenuItem>
-        <MenuItem sx={{ color: 'blue' }} onClick={() => handleOpen()}>
+        {/* <MenuItem sx={{ color: 'blue' }} onClick={() => handleOpen()}>
           <ListItemIcon>
             <Icon icon={editOutline} width={40} height={40} />
           </ListItemIcon>
           <ListItemText primary=" Modifier " primaryTypographyProps={{ variant: 'body2' }} />
-        </MenuItem>
+        </MenuItem> */}
         <MenuItem sx={{ color: 'red' }} onClick={() => deleteListHistoric()}>
           <ListItemIcon>
             <Icon icon={trash2Outline} width={24} height={24} />

@@ -118,7 +118,7 @@ export default function LoginForm() {
             style={{ background: 'blue' }}
             sx={{ mt: 6 }}
           >
-            Login
+            Connexion
           </LoadingButton>
         </Form>
       </FormikProvider>

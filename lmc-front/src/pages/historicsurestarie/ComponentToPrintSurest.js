@@ -131,8 +131,6 @@ class ComponentToPrintSurest extends React.PureComponent {
         <br />
         <br />
         <br />
-        <br />
-        <br />
         <div>
           <div>
             <p

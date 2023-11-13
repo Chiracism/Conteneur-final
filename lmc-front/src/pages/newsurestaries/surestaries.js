@@ -1185,7 +1185,7 @@ export default function Mouvement() {
         </Card>
         <Card className="card-botton-2-wrapper">
           <div>
-            Appuyer Trois (3) fois sur le Bouton{' '}
+            Appuyer Trois (3) fois ou plus sur le Bouton{' '}
             <Button variant="contained" color="primary" onClick={() => validateCalcul()}>
               CALCUL SURESTARIE
             </Button>
@@ -1257,6 +1257,18 @@ export default function Mouvement() {
               />
             </div>
             <div className="input-label-wrapper">
+              Total à Payer:{' '}
+              <TextField
+                className="basic-input"
+                label="Total "
+                variant="outlined"
+                value={surestariefacturerInput}
+                onChange={(e) => {
+                  setSurestarieTotalInput(e.target.value);
+                }}
+              />
+            </div>
+            <div className="input-label-wrapper">
               Montant à Facturer:{' '}
               <TextField
                 className="basic-input"
@@ -1265,18 +1277,6 @@ export default function Mouvement() {
                 value={surestarietotalInput}
                 onChange={(e) => {
                   setSurestarieFacturerInput(e.target.value);
-                }}
-              />
-            </div>
-            <div className="input-label-wrapper">
-              Total Net à Payer:{' '}
-              <TextField
-                className="basic-input"
-                label="Total "
-                variant="outlined"
-                value={surestariefacturerInput}
-                onChange={(e) => {
-                  setSurestarieTotalInput(e.target.value);
                 }}
               />
             </div>

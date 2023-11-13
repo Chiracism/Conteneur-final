@@ -10,7 +10,18 @@ class ComponentToPrintSurest extends React.PureComponent {
   }
 
   render() {
-    const { rows, client, total, numero, port, size, detention, caution, rembourser } = this.props;
+    const {
+      rows,
+      client,
+      total,
+      numero,
+      port,
+      size,
+      detention,
+      caution,
+      rembourser,
+      montantafacture
+    } = this.props;
     const { date } = this.state;
 
     return (
@@ -117,7 +128,7 @@ class ComponentToPrintSurest extends React.PureComponent {
           }}
         >
           <p>
-            <strong>Montant Net à Payer</strong> : {total} CDF/USD
+            <strong>Montant Net à Payer</strong> : {montantafacture} CDF/USD
           </p>
           {/* <br /> */}
           <p>

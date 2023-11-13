@@ -66,7 +66,7 @@ class ComponentToPrintSurestarie extends React.PureComponent {
           </div>
         </div>
         <h3 className="print-source" style={{ textAlign: 'center' }}>
-          REPORT
+          HISTORIQUE DES OPERATIONS DE SURESTARIE
         </h3>
         {/* <p className="print-source" style={{ textAlign: 'right', margin: '2rem 1rem 3rem 0' }}>
           <strong>Client</strong> : <span>{client}</span>
