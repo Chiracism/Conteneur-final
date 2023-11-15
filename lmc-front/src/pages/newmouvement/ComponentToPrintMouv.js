@@ -16,6 +16,7 @@ class ComponentToPrintMouv extends React.PureComponent {
       taille,
       type,
       bl,
+      voyage,
       navire,
       eta,
       contenu,
@@ -65,7 +66,7 @@ class ComponentToPrintMouv extends React.PureComponent {
         </div>
         <br />
         <h3 className="print-source" style={{ textAlign: 'center' }}>
-          MOUVEMENT DE CONTENEUR
+          FICHE MOUVEMENT DE CONTENEUR
         </h3>
         <br />
         <p className="print-source" style={{ textAlign: 'right', margin: '2rem 1rem 3rem 0' }}>
@@ -92,6 +93,14 @@ class ComponentToPrintMouv extends React.PureComponent {
         <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
           {/* 1rem 1rem 0rem 1rem */}
           <strong>ETA</strong> : <span>{eta}</span>
+        </p>
+        <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
+          {/* 1rem 1rem 0rem 1rem */}
+          <strong>N° Voyage</strong> : <span>{voyage}</span>
+        </p>
+        <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
+          {/* 1rem 1rem 0rem 1rem */}
+          <strong>N° B/L</strong> : <span>{bl}</span>
         </p>
         <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
           {/* 1rem 1rem 0rem 1rem */}

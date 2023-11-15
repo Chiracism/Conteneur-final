@@ -76,6 +76,7 @@ export default function UserMoreMenu({
   numberMouvement,
   tailleMouvement,
   typeMouvement,
+  voyageMouvement,
   blMouvement,
   navireMouvement,
   etaMouvement,
@@ -103,6 +104,7 @@ export default function UserMoreMenu({
 
   // for Mouvement
 
+  const [mouvvoyageInput, setMouvVoyageInput] = useState(voyageMouvement);
   const [mouvblInput, setMouvBlInput] = useState(blMouvement);
   const [mouvetaInput, setMouvEtaInput] = useState(etaMouvement);
   const [mouvcontenuInput, setMouvContenuInput] = useState(contenuMouvement);
@@ -345,6 +347,7 @@ export default function UserMoreMenu({
           numero: mouvnumberInput,
           taille: mouvtailleInput,
           type: mouvtypeInput,
+          voyage: mouvvoyageInput,
           bl: mouvblInput,
           navire: mouvnavireInput,
           eta: mouvetaInput,
@@ -371,6 +374,7 @@ export default function UserMoreMenu({
     setMouvNumberInput('');
     setMouvTailleInput('');
     setMouvTypeInput('');
+    setMouvVoyageInput('');
     setMouvBlInput('');
     setMouvNavireInput('');
     setMouvEtaInput('');
@@ -472,7 +476,19 @@ export default function UserMoreMenu({
                   />
                 </div>
                 <div className="input-label-wrapper">
-                  B/L:{' '}
+                  N° Voyage:{' '}
+                  <TextField
+                    className="basic-input"
+                    // label="Saisissez la date de mouvement"
+                    variant="outlined"
+                    value={mouvvoyageInput}
+                    onChange={(e) => {
+                      setMouvVoyageInput(e.target.value);
+                    }}
+                  />
+                </div>
+                <div className="input-label-wrapper">
+                  N° B/L:{' '}
                   <TextField
                     className="basic-input"
                     // label="Saisissez la date de mouvement"
@@ -819,6 +835,8 @@ export default function UserMoreMenu({
                   number={mouvnumberInput}
                   taille={mouvtailleInput}
                   type={mouvtypeInput}
+                  voyage={mouvvoyageInput}
+                  bl={mouvblInput}
                   navire={mouvnavireInput}
                   eta={mouvetaInput}
                   contenu={mouvcontenuInput}

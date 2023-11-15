@@ -29,13 +29,13 @@ class ComponentToPrint extends React.PureComponent {
             <hr style={{ opacity: 1, color: 'blue', backgroundColor: 'blue', height: '3px' }} />
           </div>
         </div>
-        <h5
+        {/* <h5
           className="print-source"
           police="Monotype Corsiva"
           style={{ textAlign: 'left', police: 'Monotype Corsiva' }}
         >
           DIRECTION COMMERCIALE & EXPLOITATION
-        </h5>
+        </h5> */}
         <br />
         <h3 className="print-source" style={{ textAlign: 'center' }}>
           HISTORIQUE DE LOCALISATION CONTENEURS
@@ -90,6 +90,48 @@ class ComponentToPrint extends React.PureComponent {
               })}
             </tbody>
           </table>
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <div
+          className="print-source"
+          style={{
+            position: 'absolute',
+            bottom: '35%',
+            right: 0,
+            textAlign: 'right',
+            margin: '1rem 1rem 1rem 0'
+          }}
+        >
+          <p>
+            <strong>Date </strong> : {date}
+          </p>
+        </div>
+        <div>
+          <div>
+            <p
+              className="print-source"
+              style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}
+            >
+              {/* <strong>NGUNGA WAMPILUKULA</strong> */}
+              <strong>Chef de Sce. ADJ. CTNR & Stockage</strong>
+            </p>
+          </div>
+          <div>
+            <p
+              className="print-source"
+              style={{ textAlign: 'right', margin: '0rem 1rem 0rem 1rem' }}
+            >
+              {/* <strong>NGUNGA WAMPILUKULA</strong> */}
+              <strong>Chef de Sce. Multimodal</strong>
+            </p>
+          </div>
         </div>
       </div>
     );

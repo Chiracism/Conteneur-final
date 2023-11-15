@@ -32,6 +32,9 @@ module.exports = {
       proprietaire: {
         type: Sequelize.STRING
       },
+      // etat: {
+      //   type: Sequelize.DATE
+      // },
       observation: {
         type: Sequelize.STRING
       },

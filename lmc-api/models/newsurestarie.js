@@ -17,6 +17,8 @@ module.exports = (sequelize, DataTypes) => {
     numero: DataTypes.STRING,
     taille: DataTypes.INTEGER,
     type: DataTypes.STRING,
+    bl: DataTypes.STRING,
+    voyage: DataTypes.STRING,
     navire: DataTypes.STRING,
     port: DataTypes.STRING,
     typeofchoix: DataTypes.STRING,

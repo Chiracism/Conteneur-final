@@ -78,6 +78,8 @@ export default function Mouvement() {
   // const [surestarietotalInput, setSurestarieTotalInput] = useState('');
   // const [DatepickerR, setDatepickerInput] = useState('');
   const [surestariestatutInput, setSurestarieStatutInput] = useState('');
+  const [surestarieblInput, setSurestarieBlInput] = useState('');
+  const [surestarievoyageInput, setSurestarieVoyageInput] = useState('');
 
   const reloadPage = () => {
     window.location.reload();
@@ -105,6 +107,8 @@ export default function Mouvement() {
           numero: surestarienumeroInput,
           taille: surestariesizeInput,
           type: mouvtypeInput,
+          bl: surestarieblInput,
+          voyage: surestarievoyageInput,
           navire: surestarienavireInput,
           port: surestarieportInput,
           typeofchoix: sureschoixInput,
@@ -165,6 +169,8 @@ export default function Mouvement() {
     setSurestarieFacturerInput('');
     setSurestarieRembourserInput('');
     setSurestarieTotalInput('');
+    setSurestarieBlInput('');
+    setSurestarieVoyageInput('');
   }
 
   /**
@@ -795,6 +801,18 @@ export default function Mouvement() {
               />
             </div>
             <div className="input-label-wrapper">
+              N° B/L:{' '}
+              <TextField
+                className="basic-input"
+                label="Saisissez le numéro de Bill of Lading"
+                variant="outlined"
+                value={surestarieblInput}
+                onChange={(e) => {
+                  setSurestarieBlInput(e.target.value);
+                }}
+              />
+            </div>
+            <div className="input-label-wrapper">
               Type de Choix:{' '}
               <Autocomplete
                 className="combo-box-completion"
@@ -967,6 +985,18 @@ export default function Mouvement() {
                 renderInput={(params) => (
                   <TextField {...params} label="Sélectionner le navire" variant="outlined" />
                 )}
+              />
+            </div>
+            <div className="input-label-wrapper">
+              N° Voyage:{' '}
+              <TextField
+                className="basic-input"
+                label="Saisissez le numéro du Voyage"
+                variant="outlined"
+                value={surestarievoyageInput}
+                onChange={(e) => {
+                  setSurestarieVoyageInput(e.target.value);
+                }}
               />
             </div>
             <div className="input-label-wrapper">
@@ -1297,6 +1327,8 @@ export default function Mouvement() {
             <ComponentToPrintSurest
               ref={componentRef}
               client={surestarieclientInput}
+              bl={surestarieblInput}
+              voyage={surestarievoyageInput}
               detention={surestariedetentionInput}
               numero={surestarienumeroInput}
               port={surestarieportInput}

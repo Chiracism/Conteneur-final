@@ -534,6 +534,7 @@ export default function UserMoreMenu({
                   constructeur={masterownerInput}
                   dateentrerservice={masterdateexp}
                   datederniereinspection={masterdateinsp}
+                  etatconteneur={masteretatInput}
                   // dernierconstat={masterdernierconst}
                   // dernierconstat={masterdateexp}
                   observation={masterobservation}
@@ -585,6 +586,7 @@ export default function UserMoreMenu({
             constructeur={dataPrint.proprietaire}
             number={dataPrint.numero}
             tailleconteneurid={dataPrint.taille}
+            etatconteneur={dataPrint.etatconteneur}
             typeconteneurid={dataPrint.type}
             datefabrication={dataPrint.datefabrication}
             dateentrerservice={dataPrint.dateexpiration}

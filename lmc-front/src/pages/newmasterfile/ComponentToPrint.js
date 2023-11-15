@@ -16,6 +16,7 @@ class ComponentToPrint extends React.PureComponent {
       number,
       typeconteneurid,
       tailleconteneurid,
+      etatconteneur,
       constructeur,
       datefabrication,
       dateentrerservice,
@@ -102,6 +103,11 @@ class ComponentToPrint extends React.PureComponent {
         <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
           {/* 1rem 1rem 0rem 1rem */}
           <strong>Date Prochaine Insp.</strong> : <span>{datederniereinspection}</span>
+        </p>
+        <br />
+        <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
+          {/* 1rem 1rem 0rem 1rem */}
+          <strong>Etat Conteneur.</strong> : <span>{etatconteneur}</span>
         </p>
         <br />
         <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>

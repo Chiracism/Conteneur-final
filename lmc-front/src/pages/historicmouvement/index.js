@@ -51,7 +51,8 @@ const TABLE_HEAD = [
   { id: 'Type', label: 'Type', alignRight: false },
   // { id: 'materiel_id', label: 'Matériel', alignRight: false },
   // { id: 'proprietaire_id', label: 'Propriétaire', alignRight: false },
-  { id: 'bl', label: 'B/L', alignRight: false },
+  { id: 'voyage', label: 'N° Voyage', alignRight: false },
+  { id: 'bl', label: 'N° B/L', alignRight: false },
   // { id: 'constructeur', label: 'Constructeur', alignRight: false },
   { id: 'navire', label: 'Navire', alignRight: false },
   { id: 'eta', label: 'ETA', alignRight: false },
@@ -157,7 +158,7 @@ export default function User() {
   const [filterName, setFilterName] = useState('');
   const [filterStartDate, setFilterStartDate] = useState('');
   const [filterEndDate, setFilterEndDate] = useState('');
-  const [rowsPerPage, setRowsPerPage] = useState(15);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const [historic, setHistoric] = useState([]);
   const componentRef = useRef();
@@ -304,6 +305,7 @@ export default function User() {
                         numero,
                         taille,
                         type,
+                        voyage,
                         bl,
                         navire,
                         eta,
@@ -354,6 +356,13 @@ export default function User() {
                             <Stack direction="row" justifyContent="center" spacing={2}>
                               <Typography variant="subtitle2" noWrap>
                                 {type}
+                              </Typography>
+                            </Stack>
+                          </TableCell>
+                          <TableCell component="th" scope="row" padding="none">
+                            <Stack direction="row" justifyContent="center" spacing={2}>
+                              <Typography variant="subtitle2" noWrap>
+                                {voyage}
                               </Typography>
                             </Stack>
                           </TableCell>
@@ -454,6 +463,7 @@ export default function User() {
                               numberMouvement={numero}
                               tailleMouvement={taille}
                               typeMouvement={type}
+                              voyageMouvement={voyage}
                               blMouvement={bl}
                               navireMouvement={navire}
                               etaMouvement={eta}

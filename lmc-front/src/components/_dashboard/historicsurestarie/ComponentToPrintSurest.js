@@ -15,6 +15,8 @@ class ComponentToPrintSurest extends React.PureComponent {
       client,
       total,
       numero,
+      bl,
+      voyage,
       port,
       size,
       detention,
@@ -75,6 +77,12 @@ class ComponentToPrintSurest extends React.PureComponent {
         {/* <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 6.8rem' }}> */}
         <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
           <strong>Taille Conteneur</strong> : <span>{size}</span>
+        </p>
+        <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
+          <strong>N° B/L</strong> : <span>{bl}</span>
+        </p>
+        <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
+          <strong>N° Voyage</strong> : <span>{voyage}</span>
         </p>
         <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
           <strong>Port</strong> : <span>{port}</span>

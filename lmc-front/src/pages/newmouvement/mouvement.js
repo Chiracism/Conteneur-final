@@ -45,6 +45,7 @@ export default function Mouvement() {
   const [mouvcautionInput, setMouvCautionInput] = useState('');
   const [mouvdestinationInput, setMouvDestinationInput] = useState('');
   const [mouvdatesInput, setMouvDatesInput] = useState('');
+  const [mouvvoyageInput, setMouvVoyageInput] = useState('');
   const [mouvdatemouvInput, setMouvDateMouvInput] = useState('');
   // const [mouvnavireInput, setMouvNavireInput] = useState('');
   const [mouvdatearriveeInput, setMouvDateArriveeInput] = useState('');
@@ -83,6 +84,7 @@ export default function Mouvement() {
           numero: mouvnumberInput,
           taille: mouvsizeInput,
           type: mouvtypeInput,
+          voyage: mouvvoyageInput,
           bl: mouvblInput,
           navire: mouvnavireInput,
           eta: mouvetaInput,
@@ -108,6 +110,7 @@ export default function Mouvement() {
     setMouvNumberInput('');
     setMouvSizeInput('');
     setMouvTypeInput('');
+    setMouvVoyageInput('');
     setMouvBlInput('');
     setMouvNavireInput('');
     setMouvEtaInput('');
@@ -416,6 +419,18 @@ export default function Mouvement() {
         <Card className="card-wrapper">
           <Box className="box-wrapper">
             <div className="input-label-wrapper">
+              N° Voyage:{' '}
+              <TextField
+                className="basic-input"
+                // label="Saisissez le nombre"
+                variant="outlined"
+                value={mouvvoyageInput}
+                onChange={(e) => {
+                  setMouvVoyageInput(e.target.value);
+                }}
+              />
+            </div>
+            <div className="input-label-wrapper">
               B/L:{' '}
               <TextField
                 className="basic-input"
@@ -658,7 +673,7 @@ export default function Mouvement() {
               />
             </div>
             <div className="input-label-wrapper">
-              Numéro Memo:{' '}
+              N° Memo:{' '}
               <TextField
                 className="basic-input"
                 label="Saisissez le Numéro Memo"
@@ -810,6 +825,8 @@ export default function Mouvement() {
               number={mouvnumberInput}
               taille={mouvsizeInput}
               type={mouvtypeInput}
+              bl={mouvblInput}
+              voyage={mouvvoyageInput}
               navire={mouvnavireInput}
               eta={mouvetaInput}
               contenu={mouvcontenuInput}

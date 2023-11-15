@@ -45,6 +45,8 @@ class ComponentToPrint extends React.PureComponent {
             <thead>
               <th>N° Conteneur</th>
               <th>Taille</th>
+              <th>B/L</th>
+              <th>Voyage</th>
               {/* <th>Type</th>
               <th>Navire</th>
               <th>Port</th>
@@ -98,6 +100,8 @@ class ComponentToPrint extends React.PureComponent {
                 const {
                   numero,
                   taille,
+                  bl,
+                  voyage,
                   // type,
                   // navire,
                   // port,
@@ -144,6 +148,8 @@ class ComponentToPrint extends React.PureComponent {
                   <tr key={key} style={{ textAlign: 'center' }}>
                     <td>{numero}</td>
                     <td>{taille}</td>
+                    <td>{bl}</td>
+                    <td>{voyage}</td>
                     {/* <td>{type}</td>
                     <td>{navire}</td>
                     <td>{port}</td>
@@ -195,6 +201,48 @@ class ComponentToPrint extends React.PureComponent {
               })}
             </tbody>
           </table>
+        </div>
+        <br />
+        <br />
+        {/* <div
+          className="print-source"
+          style={{
+            position: 'absolute',
+            bottom: '35%',
+            right: 0,
+            textAlign: 'right',
+            margin: '1rem 1rem 1rem 0'
+          }}
+        >
+          <p>
+            <strong>Date </strong> : {date}
+          </p> 
+        </div> */}
+        <br />
+        <br />
+        <p className="print-source" style={{ textAlign: 'right', margin: '0rem 1rem 0rem 1rem' }}>
+          {/* <strong>NGUNGA WAMPILUKULA</strong> */}
+          <strong>{date}</strong>
+        </p>
+        <div>
+          <div>
+            <p
+              className="print-source"
+              style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}
+            >
+              {/* <strong>NGUNGA WAMPILUKULA</strong> */}
+              <strong>Chef de Sce Adj. Ctnr & Aire Stockage </strong>
+            </p>
+          </div>
+          <div>
+            <p
+              className="print-source"
+              style={{ textAlign: 'right', margin: '0rem 1rem 0rem 1rem' }}
+            >
+              {/* <strong>NGUNGA WAMPILUKULA</strong> */}
+              <strong>Chef de Sce. Multimodal</strong>
+            </p>
+          </div>
         </div>
       </div>
     );

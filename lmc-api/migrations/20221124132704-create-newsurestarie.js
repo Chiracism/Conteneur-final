@@ -17,6 +17,12 @@ module.exports = {
       type: {
         type: Sequelize.STRING
       },
+      bl: {
+        type: Sequelize.STRING
+      },
+      voyage: {
+        type: Sequelize.STRING
+      },
       navire: {
         type: Sequelize.STRING
       },

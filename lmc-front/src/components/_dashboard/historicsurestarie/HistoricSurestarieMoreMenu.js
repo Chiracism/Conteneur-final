@@ -79,6 +79,8 @@ export default function UserMoreMenu({
   idHistoric,
   surestariedatemod,
   numeromod,
+  blmod,
+  voyagemod,
   exnaviremod,
   datearrivee,
   clientmod,
@@ -137,6 +139,8 @@ export default function UserMoreMenu({
   const [surestariefacturerInput, setSurestarieFacturerInput] = useState(facturermod);
   const [surestarierembourserInput, setSurestarieRembourserInput] = useState(remboursermod);
   const [surestarietotalInput, setSurestarieTotalInput] = useState(totalmod);
+  const [surestarieblInput, setSurestarieBlInput] = useState(blmod);
+  const [surestarievoyageInput, setSurestarieVoyageInput] = useState(voyagemod);
   const [dataPrint, setDataPrint] = useState({});
 
   const componentToPrintRef = useRef();
@@ -479,6 +483,8 @@ export default function UserMoreMenu({
           numero: surestarienumeroInput,
           size: surestariesizeInput,
           type: mouvtypeInput,
+          bl: surestarieblInput,
+          voyage: surestarievoyageInput,
           navire: surestarienavireInput,
           port: surestarieportInput,
           typeofchoix: sureschoixInput,
@@ -521,6 +527,8 @@ export default function UserMoreMenu({
           numero: surestarienumeroInput,
           size: surestariesizeInput,
           type: mouvtypeInput,
+          bl: surestarieblInput,
+          voyage: surestarievoyageInput,
           navire: surestarienavireInput,
           port: surestarieportInput,
           typeofchoix: sureschoixInput,
@@ -564,6 +572,8 @@ export default function UserMoreMenu({
     handleClose();
     showSuccessToastMOD();
     setSurestarieDateInput('');
+    setSurestarieBlInput('');
+    setSurestarieVoyageInput('');
     setSurestarieDateArriveeInput('');
     setSurestarieNombreInput('');
     setSurestarieDateRestitutionInput('');
@@ -685,6 +695,17 @@ export default function UserMoreMenu({
                   />
                 </div>
                 <div className="input-label-wrapper">
+                  N° B/L :{' '}
+                  <TextField
+                    className="basic-input"
+                    variant="outlined"
+                    value={surestarieblInput}
+                    onChange={(e) => {
+                      setSurestarieBlInput(e.target.value);
+                    }}
+                  />
+                </div>
+                <div className="input-label-wrapper">
                   Navire :{' '}
                   <TextField
                     className="basic-input"
@@ -777,6 +798,17 @@ export default function UserMoreMenu({
                     value={surestariesizeInput}
                     onChange={(e) => {
                       setSurestarieSizeInput(e.target.value);
+                    }}
+                  />
+                </div>
+                <div className="input-label-wrapper">
+                  N° Voyage :{' '}
+                  <TextField
+                    className="basic-input"
+                    variant="outlined"
+                    value={surestarievoyageInput}
+                    onChange={(e) => {
+                      setSurestarieVoyageInput(e.target.value);
                     }}
                   />
                 </div>
@@ -921,6 +953,8 @@ export default function UserMoreMenu({
                     datedernierereparation={surestariedateInput}
                     // typeconteneur={reparatypeInput}
                     tailleconteneur={surestariesizeInput}
+                    bl={surestarieblInput}
+                    voyage={surestarievoyageInput}
                     client={surestarieclientInput}
                     detention={surestariedetentionInput}
                     port={surestarieportInput}

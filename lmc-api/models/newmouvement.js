@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     type: DataTypes.STRING,
     bl: DataTypes.STRING,
     navire: DataTypes.STRING,
+    voyage: DataTypes.STRING,
     eta: DataTypes.DATE,
     contenu: DataTypes.STRING,
     poids: DataTypes.STRING,

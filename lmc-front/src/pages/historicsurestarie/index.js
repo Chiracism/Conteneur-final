@@ -48,6 +48,8 @@ const TABLE_HEAD = [
   { id: 'numero', label: 'N° Conteneur', alignRight: false },
   { id: 'taille', label: 'Taille', alignRight: false },
   { id: 'type', label: 'Type', alignRight: false },
+  { id: 'bl', label: 'N° B/L', alignRight: false },
+  { id: 'voyage', label: 'N° Voyage', alignRight: false },
   { id: 'navire', label: 'Navire', alignRight: false },
   { id: 'port', label: 'Port', alignRight: false },
   // { id: 'nombreconteneur', label: 'Nombre', alignRight: false },
@@ -302,6 +304,8 @@ export default function User() {
                         numero,
                         taille,
                         type,
+                        bl,
+                        voyage,
                         navire,
                         port,
                         typeofchoix,
@@ -356,6 +360,20 @@ export default function User() {
                             <Stack direction="row" justifyContent="center" spacing={2}>
                               <Typography variant="subtitle2" noWrap>
                                 {type}
+                              </Typography>
+                            </Stack>
+                          </TableCell>
+                          <TableCell component="th" scope="row" padding="none">
+                            <Stack direction="row" justifyContent="center" spacing={2}>
+                              <Typography variant="subtitle2" noWrap>
+                                {bl}
+                              </Typography>
+                            </Stack>
+                          </TableCell>
+                          <TableCell component="th" scope="row" padding="none">
+                            <Stack direction="row" justifyContent="center" spacing={2}>
+                              <Typography variant="subtitle2" noWrap>
+                                {voyage}
                               </Typography>
                             </Stack>
                           </TableCell>
@@ -483,6 +501,8 @@ export default function User() {
                               idHistoric={id}
                               // surestariedatemod={surestariedate}
                               numeromod={numero}
+                              blmod={bl}
+                              voyagemod={voyage}
                               exnaviremod={navire}
                               datearrivee={datearrivee}
                               clientmod={client}

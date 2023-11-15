@@ -38,6 +38,7 @@ export default function Masterfile() {
   const [masterdatefab, setMasterDateFab] = useState('');
   const [masterdateexp, setMasterDateExp] = useState('');
   const [masterdateinsp, setMasterDateInsp] = useState('');
+  const [masteretat, setMasterEtat] = useState('');
   const [masterobservation, setMasterObservation] = useState('');
   // const [masternumber, setMasterNumber] = useState('');
   // const [masternameNavire, setMasterNameNavire] = useState('');
@@ -95,6 +96,7 @@ export default function Masterfile() {
           dateinspection: masterdateinsp,
           etatconteneur: masteretatInput,
           proprietaire: masterownerInput,
+          etat: masteretat,
           observation: masterobservation,
           name: user.name,
           date: new Date()
@@ -138,6 +140,7 @@ export default function Masterfile() {
     setMasterDateExp('');
     setMasterDateInsp('');
     setMasterEtatInput('');
+    setMasterEtat('');
     setMasterOwnerInput('');
     setMasterObservation('');
 
@@ -645,6 +648,7 @@ export default function Masterfile() {
               typeconteneurid={mastertype}
               tailleconteneurid={mastersizeInput}
               // client={masterclient}
+              etatconteneur={masteretatInput}
               datefabrication={masterdatefab}
               constructeur={masterownerInput}
               dateentrerservice={masterdateexp}

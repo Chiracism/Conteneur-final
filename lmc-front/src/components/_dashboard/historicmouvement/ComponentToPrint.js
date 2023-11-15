@@ -16,6 +16,8 @@ class ComponentToPrint extends React.PureComponent {
       number,
       taille,
       type,
+      bl,
+      voyage,
       navire,
       eta,
       contenu,
@@ -93,6 +95,14 @@ class ComponentToPrint extends React.PureComponent {
         <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
           {/* 1rem 1rem 0rem 1rem */}
           <strong>ETA</strong> : <span>{eta}</span>
+        </p>
+        <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
+          {/* 1rem 1rem 0rem 1rem */}
+          <strong>N° Voyage</strong> : <span>{voyage}</span>
+        </p>
+        <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
+          {/* 1rem 1rem 0rem 1rem */}
+          <strong>N° B/L</strong> : <span>{bl}</span>
         </p>
         <p className="print-source" style={{ textAlign: 'left', margin: '0rem 1rem 0rem 1rem' }}>
           {/* 1rem 1rem 0rem 1rem */}

@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     dateinspection: DataTypes.DATE,
     etatconteneur: DataTypes.STRING,
     proprietaire: DataTypes.STRING,
+    // etat: DataTypes.DATE,
     observation: DataTypes.STRING,
     name: DataTypes.STRING
   }, {
